@@ -16,7 +16,7 @@ class CreateTableStatusMembro extends Migration
         Schema::create('status_membro', function (Blueprint $table) {
             $table->increments('id');
             // $table->integer('id_tipo_status');
-            $table->integer('criado_por');
+            //$table->integer('criado_por');
             $table->timestamps();
             
         });

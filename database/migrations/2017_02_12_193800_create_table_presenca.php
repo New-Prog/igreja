@@ -16,7 +16,7 @@ class CreateTablePresenca extends Migration
         Schema::create('presenca', function (Blueprint $table) {
             $table->increments('id');
             $table->binary('presente');
-            $table->integer('criado_por');
+            //$table->integer('criado_por');
             $table->timestamps();
         });
     }

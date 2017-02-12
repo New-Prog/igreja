@@ -172,11 +172,11 @@ return [
         /*
          * Application Service Providers...
          */
-        PriceSpy\Providers\AppServiceProvider::class,
-        PriceSpy\Providers\AuthServiceProvider::class,
-        // PriceSpy\Providers\BroadcastServiceProvider::class,
-        PriceSpy\Providers\EventServiceProvider::class,
-        PriceSpy\Providers\RouteServiceProvider::class,
+        App\Providers\AppServiceProvider::class,
+        App\Providers\AuthServiceProvider::class,
+        // App\Providers\BroadcastServiceProvider::class,
+        App\Providers\EventServiceProvider::class,
+        App\Providers\RouteServiceProvider::class,
 
     ],
 

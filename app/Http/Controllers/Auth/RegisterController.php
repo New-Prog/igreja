@@ -1,10 +1,10 @@
 <?php
 
-namespace PriceSpy\Http\Controllers\Auth;
+namespace App\Http\Controllers\Auth;
 
-use PriceSpy\User;
+use App\User;
 use Validator;
-use PriceSpy\Http\Controllers\Controller;
+use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
 class RegisterController extends Controller

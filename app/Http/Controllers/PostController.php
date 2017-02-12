@@ -1,12 +1,12 @@
 <?php
 
-namespace PriceSpy\Http\Controllers;
+namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
-use PriceSpy\Http\Requests;
-use PriceSpy\Post;
+use App\Http\Requests;
+use App\Post;
 
 class PostController extends Controller
 {

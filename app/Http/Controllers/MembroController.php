@@ -1,12 +1,12 @@
 <?php
 
-namespace PriceSpy\Http\Controllers;
+namespace App\Http\Controllers;
 
 // use Illuminate\Http\Request;
 
-use PriceSpy\Http\Requests;
+use App\Http\Requests;
 
-use PriceSpy\Membro;
+use App\Membro;
 
 // use App\Http\Requests;
 use App\User;
@@ -185,19 +185,4 @@ class MembroController extends Controller
         }
         return Response::json(['response' => 'Usuário removido'], 200);        
     }
-    
-    
-    
-    /*
-        // Route::get('', ['membro' => 'MembroController@allMembros']);   
-        
-        Route::get('{id}',  ['membro' => 'MembroController@getMembro']);    
-        Route::get('app/{id}',  ['membro' => 'MembroController@getMembrosByLider']);    
-        
-        Route::post('',  ['membro' => 'MembroController@saveMembro']);     
-        Route::post('up/{id}',  ['membro' => 'MembroController@updateMembro']);     
-        Route::post('del/{id}',  ['membro' => 'MembroController@deleteMembro']);
-    */
-    
-    
 }

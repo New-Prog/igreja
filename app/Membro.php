@@ -1,6 +1,6 @@
 <?php
 
-namespace PriceSpy;
+namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -10,9 +10,14 @@ use Exception;
 
 class Membro extends Model
 {
-	protected $table = 'membros';
+	protected $table = 'membro';
  
-    protected $fillable = ['membro_cpf', 'membro_nome', 'membro_sobrenome', 'membro_rg', 'membro_data_nascimento', 'membro_endereco',	'membro_cep', 'membro_id_celula', 'membro_telefone_1', 'membro_telefone_2', 'membro_tipo', 'id_lider'];
+    protected $fillable = ['nome', 'sexo', 'cpf', 'email', 'tipo', 'telefone', 'celular', 'id_celula', 'id_endereco', 'id_status'];
+    
+    public function celula() 
+    {
+        return $this->belongsTo(App\Celula);   
+    }
     
     public function allMembros()
     {

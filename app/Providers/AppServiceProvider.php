@@ -1,6 +1,6 @@
 <?php
 
-namespace PriceSpy\Providers;
+namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 

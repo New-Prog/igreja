@@ -1,6 +1,6 @@
 <?php
 
-namespace PriceSpy;
+namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 

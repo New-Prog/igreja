@@ -17,14 +17,9 @@ class CreateTablePost extends Migration
             $table->increments('id');
             $table->integer('nome');
             $table->integer('descricao');
-            $table->integer('criado_por');
             $table->timestamps();
         });
-        
-        Schema::table('post', function (Blueprint $table) {
-            $table->integer('cod_tipo_post')->unsigned();
-            $table->foreign('cod_tipo_post')->references('id')->on('tipo_post')->onDelete('cascade');;
-        }); 
+
     }
 
     /**

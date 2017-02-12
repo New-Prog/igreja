@@ -16,7 +16,6 @@ class CreateTableTipoStatus extends Migration
         Schema::create('tipo_status', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('descricao');
-            $table->integer('criado_por');
             $table->timestamps();
         });
         

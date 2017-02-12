@@ -21,7 +21,7 @@
             "database"
         ],
         "psr-4": {
-            "PriceSpy\\": "app/"
+            "App\\": "app/"
         }
     },
     "autoload-dev": {
