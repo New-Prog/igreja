@@ -45,3 +45,13 @@ Route::get('/logout', function() {
 	Auth::logout();
 	return view('principal');
 });
+
+
+
+
+Route::get('/api/membros', 'MembroController@allMembros'); // Get all members
+Route::get('/api/membros/{id}', 'MembroController@getMembro'); // Get member specific
+Route::get('/api/membros/app/{id}', 'MembroController@getMembrosByLider'); // Get members by leader
+Route::post('/api/membros', 'MembroController@saveMembro'); // save member
+Route::post('/api/membros/up/{id}', 'MembroController@updateMembro'); // update member     
+Route::post('/api/membros/del/{id}', 'MembroController@deleteMembro'); // delete member

@@ -2,14 +2,31 @@
 
 namespace PriceSpy\Http\Controllers;
 
-use Illuminate\Http\Request;
+// use Illuminate\Http\Request;
 
 use PriceSpy\Http\Requests;
 
 use PriceSpy\Membro;
 
+// use App\Http\Requests;
+use App\User;
+use Request;
+use Response;
+
+
 class MembroController extends Controller
 {
+    protected $membro;
+      /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function __construct(Membro $membro)
+    {
+        $this->membro = $membro;
+    }
+    
     /**
      * Display a listing of the resource.
      *
@@ -27,7 +44,6 @@ class MembroController extends Controller
      */
     public function listar(){
 
-
         // $membros =  DB::select('select * from membros');
 
         // return view('listagem')->with('membros', $membros);
@@ -41,7 +57,7 @@ class MembroController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
@@ -50,7 +66,6 @@ class MembroController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-
     public function store(Request $request)
     {
         // $validator = Validator::make($request->all(),[
@@ -129,4 +144,60 @@ class MembroController extends Controller
     {
         //
     }
+    
+    public function allMembros()
+    {
+        return Response::json($this->membro->allMembros(), 200);
+    }
+    public function getMembro($id)
+    {
+        $membro = $this->membro->getMembro($id);
+        
+        if (!$membro)
+        {
+            return Response::json(['response' => 'Membro não encontrado'], 400);
+        }
+     
+        return Response::json( $membro, 200);
+    }
+    public function saveMembro()
+    {
+        return Response::json($this->membro->saveMembro(), 200);        
+    }
+    public function updateMembro($id)
+    {
+        $membro = $this->membro->updateMembro($id);
+        
+        if (!$membro)
+        {
+            return Response::json(['response' => 'Membro não encontrado'], 400);
+        }
+     
+        return Response::json($membro, 200);
+        
+    }
+    public function deleteMembro($id)
+    {
+        $membro = $this->membro->deleteUser($id);
+        if (!$membro)
+        {
+            return Response::json(['response' => 'Usuário não encontrado'], 400);
+        }
+        return Response::json(['response' => 'Usuário removido'], 200);        
+    }
+    
+    
+    
+    /*
+        // Route::get('', ['membro' => 'MembroController@allMembros']);   
+        
+        Route::get('{id}',  ['membro' => 'MembroController@getMembro']);    
+        Route::get('app/{id}',  ['membro' => 'MembroController@getMembrosByLider']);    
+        
+        Route::post('',  ['membro' => 'MembroController@saveMembro']);     
+        Route::post('up/{id}',  ['membro' => 'MembroController@updateMembro']);     
+        Route::post('del/{id}',  ['membro' => 'MembroController@deleteMembro']);
+    */
+    
+    
 }

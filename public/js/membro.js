@@ -1,6 +1,6 @@
 
 
-obj_list_membros = {};
+var obj_list_membros = {};
 
 function gravarPost() {
 
@@ -95,7 +95,7 @@ function montarListaMembros(data) {
 	obj_list_membros = data;
 
 	console.log("Lista de membros: ", obj_list_membros);
-	count = 0;
+	var count = 0;
     for(var i in data) { 
         html += "<tr id=" + data[i].id + " data-data="+ data[i] +" >" +
                 "   <td>" + data[i].membro_nome +" "+  data[i].membro_sobrenome + "</td>" +
@@ -126,7 +126,7 @@ $("#pesquisar").on('click',function() {
     console.log(response);
 	montarListaMembros(response);
 });
-acoes_cad_modal = function() {
+var acoes_cad_modal = function() {
 
 	// LIMPA TODAS AS INPUTS DA TELA 
 	$("#deonde").val('cadastrado');
