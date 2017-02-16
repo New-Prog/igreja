@@ -16,7 +16,7 @@ class Membro extends Model
     
     public function celula() 
     {
-        return $this->belongsTo(App\Celula);   
+        return $this->belongsTo("App\Celula");   
     }
     
     public function allMembros()
