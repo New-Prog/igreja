@@ -20,7 +20,7 @@ use Illuminate\Http\Request;
 //https://igreja-npjoao.c9users.io/api/membros
 
 Route::group(['prefix' => 'membros'], function () {
-    Route::get('', 'MembroController@allMembros'); // Get all members
+    // Route::get('', 'MembroController@allMembros'); // Get all members
     Route::get('/{id}', 'MembroController@getMembro'); // Get member specific
     Route::get('/app/{id}', 'MembroController@getMembrosByLider'); // Get members by leader
     Route::post('', 'MembroController@saveMembro'); // save member

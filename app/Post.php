@@ -8,5 +8,7 @@ class Post extends Model
 {
 	protected $table = 'posts';
 
-    protected $fillable = ['autor','titulo', 'descricao'];
+    protected $fillable = ['titulo', 'descricao', 'tipo'];
+    
+    
 }

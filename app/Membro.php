@@ -10,13 +10,21 @@ use Exception;
 
 class Membro extends Model
 {
-	protected $table = 'membro';
+	protected $table = 'membros';
  
-    protected $fillable = ['nome', 'sexo', 'cpf', 'email', 'tipo', 'telefone', 'celular', 'id_celula', 'id_endereco', 'id_status'];
+    protected $fillable = ['nome', 'sexo', 'cpf', 'data_nasc',  'email', 'tipo', 'telefone', 'celular'];
     
+    public function endereco() 
+    {
+        return $this->hasOne('App\Endereco','fk_endereco' );   
+    }
     public function celula() 
     {
-        return $this->belongsTo("App\Celula");   
+        return $this->hasOne('App\Celula','fk_celula' );   
+    }
+    public function hierarquia()
+    {
+       return $this->hasOne('App\Hierarquia', 'fk_hierarquia');
     }
     
     public function allMembros()

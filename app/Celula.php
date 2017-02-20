@@ -6,16 +6,17 @@ use Illuminate\Database\Eloquent\Model;
 
 class Celula extends Model
 {
-	protected $table = 'celula';
-    protected $fillable = ['id_lider', 'id_endereco', 'criado_por', 'criado_em', 'atualizado_em'];
+	protected $table = 'celulas';
+    protected $fillable = ['descricao'];
     
-     /*public function celula() 
+    public function endereco() 
     {
-        return $this->belongsTo("App\Celula");   
+        return $this->hasOne('App\Endereco','fk_endereco' );   
     }
-     */
      
-     public function allCelulas()
+     
+     
+    public function allCelulas()
     {
         return self::all();
     
@@ -25,7 +26,7 @@ class Celula extends Model
     {
         $input = Request::all();
         // $input['password'] = Hash::make($input['password']);
-        $user = new User();
+        // $user = new User();
         $user->fill($input); // Mass assignment
         $user->save();
         return $user;
