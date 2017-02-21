@@ -32,8 +32,7 @@ class Membro extends Model
     {
 
         $input = Request::all();
-
-        $input = Request::all();
+           
         // $input['password'] = Hash::make($input['password']);
         $user = new User();
         $user->fill($input); // Mass assignment
