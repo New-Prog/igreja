@@ -21,7 +21,7 @@ class CelulaController extends Controller
     public function update(Request $request)
     {
 
-
+       
         // $request->input('id')
         // $request->input('id')
         // $request->input('id')

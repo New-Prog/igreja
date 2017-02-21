@@ -22,10 +22,6 @@ class Membro extends Model
     {
         return $this->belongsTo('App\Celula','fk_celula' );   
     }
-    public function hierarquia()
-    {
-       return $this->belongsTo('App\Hierarquia', 'fk_hierarquia');
-    }
     
     public function allMembros()
     {
@@ -34,6 +30,9 @@ class Membro extends Model
     }
     public function saveMembro()
     {
+
+        $input = Request::all();
+
         $input = Request::all();
         // $input['password'] = Hash::make($input['password']);
         $user = new User();

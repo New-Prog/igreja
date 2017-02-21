@@ -63,7 +63,7 @@ class MembroController extends Controller
     
     public function allMembros()
     {
-        $membro = $this->membro->with(['endereco', 'celula', 'hierarquia'])->get();
+        $membro = $this->membro->with(['endereco', 'celula'])->get();
         return Response::json($membro, 200);
     }
     public function getMembro($id)
@@ -77,9 +77,16 @@ class MembroController extends Controller
      
         return Response::json( $membro, 200);
     }
-    public function saveMembro()
+    public function saveMembro(Request $request)
     {
-        return Response::json($this->membro->saveMembro(), 200);        
+
+        $membro = $this->membro->saveMembro($request);
+
+        if (!$membro)
+        {
+            return Response::json(['response' => 'Membro não encontrado'], 400);
+        } 
+        return Response::json($membro, 200);        
     }
     public function updateMembro($id)
     {

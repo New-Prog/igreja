@@ -26,11 +26,11 @@ class CreateAllTables extends Migration
             $table->timestamps();
         });
         
-        Schema::create('hierarquias', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('descricao', 255);
-            $table->timestamps();
-        });
+        // Schema::create('hierarquias', function (Blueprint $table) {
+        //     $table->increments('id');
+        //     $table->string('descricao', 255);
+        //     $table->timestamps();
+        // });
         
         // Schema::create('tipos_posts', function (Blueprint $table) {
         //     $table->increments('id');
@@ -82,8 +82,8 @@ class CreateAllTables extends Migration
             $table->integer('fk_celula')->unsigned();
             $table->foreign('fk_celula')->references('id')->on('celulas')->onDelete('cascade');            
             
-            $table->integer('fk_hierarquia')->unsigned();
-            $table->foreign('fk_hierarquia')->references('id')->on('hierarquias')->onDelete('cascade');
+            // $table->integer('fk_hierarquia')->unsigned();
+            // $table->foreign('fk_hierarquia')->references('id')->on('hierarquias')->onDelete('cascade');
             $table->timestamps();        
             
         });
@@ -127,10 +127,10 @@ class CreateAllTables extends Migration
         Schema::table('membros', function (Blueprint $table) {
             $table->dropForeign('membros_fk_endereco_foreign');
             $table->dropForeign('membros_fk_celula_foreign');
-            $table->dropForeign('membros_fk_hierarquia_foreign');
+            // $table->dropForeign('membros_fk_hierarquia_foreign');
             $table->dropColumn('fk_endereco');
             $table->dropColumn('fk_celula');
-            $table->dropColumn('fk_hierarquia');
+            // $table->dropColumn('fk_hierarquia');
         });
         Schema::table('presencas', function (Blueprint $table) {
             $table->dropForeign('presencas_fk_membro_foreign');
@@ -140,7 +140,7 @@ class CreateAllTables extends Migration
         });
 
         Schema::dropIfExists('enderecos');
-        Schema::dropIfExists('hierarquias');
+        // Schema::dropIfExists('hierarquias');
         // Schema::dropIfExists('tipos_posts');
         Schema::dropIfExists('posts');
         Schema::dropIfExists('celulas');
