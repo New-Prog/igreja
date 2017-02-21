@@ -15,26 +15,26 @@ class PostController extends Controller
         return view('blog');
     }
 
-    public function store(Request $request)
-    {
-    	$validator = Validator::make($request->all(),[
-    		'autor' => 'required|min:5',
-    		'titulo' => 'required|min:5',
-    		'descricao' => 'required|min:5'
-    	]);
+    // public function store(Request $request)
+    // {
+    // 	$validator = Validator::make($request->all(),[
+    // 		'autor' => 'required|min:5',
+    // 		'titulo' => 'required|min:5',
+    // 		'descricao' => 'required|min:5'
+    // 	]);
 
-    	if($validator->fails()) {
-            return response()->json(['error'=>$validator->errors()->all()]);
-        }
+    // 	if($validator->fails()) {
+    //         return response()->json(['error'=>$validator->errors()->all()]);
+    //     }
 
-        $data = [
-            'autor'     => $request->input('autor'),
-            'titulo'  => $request->input('titulo'),
-            'descricao'    => $request->input('descricao')
-        ];
+    //     $data = [
+    //         'autor'     => $request->input('autor'),
+    //         'titulo'  => $request->input('titulo'),
+    //         'descricao'    => $request->input('descricao')
+    //     ];
 
-    	Post::create($data);
+    // 	Post::create($data);
 
-    	return response()->json(['OK' => 'Sucesso '], 200);
-    }
+    // 	return response()->json(['OK' => 'Sucesso '], 200);
+    // }
 }

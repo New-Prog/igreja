@@ -12,7 +12,7 @@ class Membro extends Model
 {
 	protected $table = 'membros';
  
-    protected $fillable = ['nome', 'sexo', 'cpf', 'data_nasc',  'email', 'tipo', 'telefone', 'celular'];
+    protected $fillable = ['nome', 'sexo', 'cpf', 'dt_nasc',  'email', 'tipo', 'telefone', 'celular', 'fk_endereco', 'fk_celula'];
     
     public function endereco() 
     {
@@ -28,17 +28,19 @@ class Membro extends Model
         return self::all();
     
     }
-    public function saveMembro()
+
+    public function saveMembro($arr)
     {
 
-        $input = Request::all();
+        $input = $arr;
            
-        // $input['password'] = Hash::make($input['password']);
-        $user = new User();
-        $user->fill($input); // Mass assignment
-        $user->save();
-        return $user;
+        $membro = new Membro();
+        $membro->fill($input); // Mass assignment
+        $membro->save();
+
+        return $membro;
     }
+
     public function getMembro($id)
     {
         $membro = self::find($id);
@@ -48,7 +50,7 @@ class Membro extends Model
             return false;
         }
         
-        return $membro;
+        return $membro->with(['endereco', 'celula'])->get();
         
     }
     public function updateMembro($id)
@@ -68,6 +70,7 @@ class Membro extends Model
         
         $membro->fill($input); // Mass assignment
         $membro->save();
+
         return $membro;
         
     }
