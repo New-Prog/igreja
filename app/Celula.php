@@ -11,24 +11,26 @@ class Celula extends Model
     
     public function endereco() 
     {
-        return $this->hasOne('App\Endereco','fk_endereco' );   
+        return $this->belongsTo('App\Endereco','fk_endereco' );   
     }
      
      
      
     public function allCelulas()
     {
-        return self::all();
-    
+        return self::all(); 
     }
      
-     public function saveCelula()
+    public function saveCelula($request)
     {
-        $input = Request::all();
+
+        // dd(http_request(method, url))
+
+        // $input = Request::all();
         // $input['password'] = Hash::make($input['password']);
         // $user = new User();
-        $user->fill($input); // Mass assignment
-        $user->save();
+        //$user->fill($input); // Mass assignment
+        //$user->save();
         return $user;
         
     }

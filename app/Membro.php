@@ -16,15 +16,15 @@ class Membro extends Model
     
     public function endereco() 
     {
-        return $this->hasOne('App\Endereco','fk_endereco' );   
+        return $this->belongsTo('App\Endereco','fk_endereco' );   
     }
     public function celula() 
     {
-        return $this->hasOne('App\Celula','fk_celula' );   
+        return $this->belongsTo('App\Celula','fk_celula' );   
     }
     public function hierarquia()
     {
-       return $this->hasOne('App\Hierarquia', 'fk_hierarquia');
+       return $this->belongsTo('App\Hierarquia', 'fk_hierarquia');
     }
     
     public function allMembros()
