@@ -41,6 +41,8 @@ Route::get('/home', 'PostController@VemNiMimView');
 
 Route::post('/post', 'PostController@store');
 
+
+
 Route::get('/logout', function() {
 	Auth::logout();
 	return view('principal');
@@ -55,3 +57,33 @@ Route::get('/api/membros/app/{id}', 'MembroController@getMembrosByLider'); // Ge
 Route::post('/api/membros', 'MembroController@saveMembro'); // save member
 Route::post('/api/membros/up/{id}', 'MembroController@updateMembro'); // update member     
 Route::post('/api/membros/del/{id}', 'MembroController@deleteMembro'); // delete member
+
+
+
+Route::get('/dashboard', function() {
+		return view('dashboard');
+});
+
+Route::get('/membros/cadastrar', 'DashboardController@teste');
+
+Route::get('/membros/consultar', function() {
+		$denis = array('nome' => 'Denis da Silva', 'celula' => 'Celula do Céu', 'hierarquia' => 'Membro');
+		$membros = array($denis);
+		return view('membros_consultar')->with('membros', $membros);
+}); 
+
+Route::get('/celulas/consultar', function() {
+		return view('celulas_consultar');
+}); 
+
+Route::get('/celulas/cadastrar', function() {
+		return view('celulas_cadastrar');
+}); 
+
+Route::get('/reunioes/cadastrar', function() {
+		return view('reunioes_cadastrar');
+}); 
+
+Route::get('/reunioes/cadastrar', function() {
+		return view('reunioes_cadastrar');
+}); 
