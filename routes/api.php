@@ -2,39 +2,47 @@
 
 use Illuminate\Http\Request;
 
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| is assigned the "api" middleware group. Enjoy building your API!
-|
-*/
-
 // Route::get('/user', function (Request $request) {
 //     return $request->user();
 // })->middleware('auth:api');
 
-//https://igreja-npjoao.c9users.io/api/membros
+/*
+* @example https://igreja-npjoao.c9users.io/api/membros
+*/
+//  
 
 Route::group(['prefix' => 'membros'], function () {
     Route::get('', 'MembroController@allMembros'); // Get all members
     Route::get('/{id}', 'MembroController@getMembro'); // Get member specific
-    // Route::get('/app/{id}', 'MembroController@getMembrosByLider'); // Get members by leader
     Route::post('', 'MembroController@saveMembro'); // save member
     Route::post('/up/{id}', 'MembroController@updateMembro'); // update member     
-    Route::post('/del/{id}', 'MembroController@deleteMembro'); // delete member
 });
 
 
 Route::group(['prefix' => 'celulas'], function () {
     Route::get('', 'CelulaController@allCelulas'); // Get all celulas
     Route::get('/{id}', 'CelulaController@getCelula'); // Get celula specific
-    Route::get('/app/{id}', 'CelulaController@getCelulasByLider'); // Get celulas by leader
     Route::post('', 'CelulaController@saveCelula'); // save celula
     Route::post('/up/{id}', 'CelulaController@updateCelula'); // update celula     
-    Route::post('/del/{id}', 'CelulaController@deleteCelula'); // delete celula
 });
 
+Route::group(['prefix' => 'reunioes'], function () {
+    Route::get('', 'ReuniaoController@allReunioes'); // Get all reunioes
+    Route::get('/{id}', 'ReuniaoController@getReuniao'); // Get Reuniao specific
+    Route::post('', 'ReuniaoController@saveReuniao'); // save Reuniao
+    Route::post('/up/{id}', 'ReuniaoController@updateReuniao'); // update Reuniao     
+});
+
+Route::group(['prefix' => 'presencas'], function () {
+    Route::get('', 'PresencaController@allPresencas'); // Get all reunioes
+    Route::get('/{id}', 'PresencaController@getPresenca'); // Get Presenca specific
+    Route::post('', 'PresencaController@savePresenca'); // save Presenca
+    Route::post('/up/{id}', 'PresencaController@updatePresenca'); // update Reuniao     
+});
+
+Route::group(['prefix' => 'posts'], function () {
+    Route::get('', 'PostController@allPosts'); // Get all reunioes
+    Route::get('/{id}', 'PostController@getPost'); // Get Post specific
+    Route::post('', 'PostController@savePost'); // save Post
+    Route::post('/up/{id}', 'PostController@updatePost'); // update Post     
+});

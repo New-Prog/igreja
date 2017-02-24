@@ -13,18 +13,19 @@ class CreateAllTables extends Migration
      */
     public function up()
     {
-        Schema::create('enderecos', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('tipo', 100);
-            $table->string('logradouro', 255);
-            $table->string('numero', 20);
-            $table->string('cep', 8);
-            $table->string('bairro', 100);
-            $table->string('cidade', 100);
-            $table->string('latitude', 255);
-            $table->string('logitude', 255);
-            $table->timestamps();
-        });
+        // Schema::create('enderecos', function (Blueprint $table) {
+        //     $table->increments('id');
+        //     $table->string('cep', 8);
+        //     $table->string('logradouro', 255);
+        //     $table->string('numero', 20);
+        //     $table->string('complemento', 20);
+        //     $table->string('bairro', 100);
+        //     $table->string('cidade', 100);
+        //     $table->string('estado', 100);
+        //     $table->string('latitude', 255)->nullable();
+        //     $table->string('logitude', 255)->nullable();
+        //     $table->timestamps();
+        // });
         
         // Schema::create('hierarquias', function (Blueprint $table) {
         //     $table->increments('id');
@@ -39,51 +40,64 @@ class CreateAllTables extends Migration
         // });
         
         Schema::create('posts', function (Blueprint $table) {
+
             $table->increments('id');
+            
             $table->string('nome', 255);
             $table->string('descricao', 255);
             $table->string('tipo', 255);
-            // $table->integer('fk_tipo_post')->unsigned();
-            // $table->foreign('fk_tipo_post')->references('id')->on('tipos_posts')->onDelete('cascade');
             $table->timestamps();
+
         });
         
         Schema::create('celulas', function (Blueprint $table) {
             $table->increments('id');
             $table->string('descricao');
-            $table->integer('fk_endereco')->unsigned();
-            $table->foreign('fk_endereco')->references('id')->on('enderecos')->onDelete('cascade');
+            $table->string('cep', 8);
+            $table->string('logradouro', 255);
+            $table->string('numero', 20);
+            $table->string('complemento', 20);
+            $table->string('bairro', 100);
+            $table->string('cidade', 100);
+            $table->string('estado', 100);
+            $table->string('latitude', 255)->nullable();
+            $table->string('logitude', 255)->nullable();
             $table->timestamps();
         });
         Schema::create('reunioes', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('descricao');
+            $table->string('descricao')->nullable();
             $table->integer('fk_celula')->unsigned();
             $table->foreign('fk_celula')->references('id')->on('celulas')->onDelete('cascade');
             $table->timestamps();
         });
         
         Schema::create('membros', function (Blueprint $table) {
-                //Definindo tabelas para o sistema.
-
             $table->increments('id');
-            $table->string('nome', 255);
-            $table->char('sexo', 1);
-            $table->char('cpf', 11);
-            $table->string('dt_nasc', 12);
-            $table->string('email', 255);
-            $table->string('tipo');
-            $table->string('telefone', 20);
-            $table->string('celular', 20);
-            // $table->string('descricao');
-            $table->integer('fk_endereco')->unsigned();
-            $table->foreign('fk_endereco')->references('id')->on('enderecos')->onDelete('cascade');
+            $table->string('nome', 255)->nullable();
+            $table->char('sexo', 1)->nullable();
+            $table->char('cpf', 11)->nullable();
+
+            $table->string('estado_civil', 12)->nullable();
+            $table->string('dt_nasc', 12)->nullable();
+            $table->string('email', 255)->nullable();
+            $table->string('tipo')->nullable();
+            $table->string('telefone', 20)->nullable();
+            $table->string('celular', 20)->nullable();
+
+            $table->string('cep', 8)->nullable();
+            $table->string('logradouro', 255)->nullable();
+            $table->string('numero', 20)->nullable();
+            $table->string('complemento', 20)->nullable();
+            $table->string('bairro', 100)->nullable();
+            $table->string('cidade', 100)->nullable();
+            $table->string('estado', 100)->nullable();
+            $table->string('latitude', 255)->nullable();
+            $table->string('logitude', 255)->nullable();
             
-            $table->integer('fk_celula')->unsigned();
+            $table->integer('fk_celula')->unsigned()->nullable();
             $table->foreign('fk_celula')->references('id')->on('celulas')->onDelete('cascade');            
             
-            // $table->integer('fk_hierarquia')->unsigned();
-            // $table->foreign('fk_hierarquia')->references('id')->on('hierarquias')->onDelete('cascade');
             $table->timestamps();        
             
         });
@@ -116,19 +130,19 @@ class CreateAllTables extends Migration
         //   $table->dropColumn('fk_tipo_post');
 
         // });
-        Schema::table('celulas', function (Blueprint $table) {
-            $table->dropForeign('celulas_fk_endereco_foreign');
-            $table->dropColumn('fk_endereco');
-        });
+        // Schema::table('celulas', function (Blueprint $table) {
+        //     $table->dropForeign('celulas_fk_endereco_foreign');
+        //     $table->dropColumn('fk_endereco');
+        // });
         Schema::table('reunioes', function (Blueprint $table) {
             $table->dropForeign('reunioes_fk_celula_foreign');
             $table->dropColumn('fk_celula');
         });
         Schema::table('membros', function (Blueprint $table) {
-            $table->dropForeign('membros_fk_endereco_foreign');
+            // $table->dropForeign('membros_fk_endereco_foreign');
             $table->dropForeign('membros_fk_celula_foreign');
             // $table->dropForeign('membros_fk_hierarquia_foreign');
-            $table->dropColumn('fk_endereco');
+            // $table->dropColumn('fk_endereco');
             $table->dropColumn('fk_celula');
             // $table->dropColumn('fk_hierarquia');
         });
@@ -139,7 +153,7 @@ class CreateAllTables extends Migration
             $table->dropColumn('fk_reuniao');
         });
 
-        Schema::dropIfExists('enderecos');
+        // Schema::dropIfExists('enderecos');
         // Schema::dropIfExists('hierarquias');
         // Schema::dropIfExists('tipos_posts');
         Schema::dropIfExists('posts');

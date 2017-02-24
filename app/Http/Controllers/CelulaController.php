@@ -18,27 +18,11 @@ class CelulaController extends Controller
         $this->celula = $celula;
     }
 
-    public function update(Request $request)
-    {
-
-       
-        // $request->input('id')
-        // $request->input('id')
-        // $request->input('id')
-        // $request->input('id')
-        // $celula = Celula::find();
-
-        $celula->fill($request->all());
-        $celula->save();
-
-
-        return response()->json(['OK' => 'Sucesso '], 200);
-    }
-
     public function allCelulas()
     {
         
-        $celula = $this->celula->with('endereco')->get();
+        $celula = $this->celula->with('membro')->get();
+        
         if (!$celula)
         {
             return Response::json(['response' => 'Célula não encontrada'], 400);
@@ -50,19 +34,32 @@ class CelulaController extends Controller
     public function getCelula($id)
     {
         $celula = $this->celula->getCelula($id);
+   
         if (!$celula)
         {
             return Response::json(['response' => 'Célula não encontrada'], 400);
         }
-        return Response::json( $celula, 200);
+
+        return Response::json( $celula->with(['membro', 'endereco'])->get(), 200);
     }
-    public function saveCelula($request)
-    {
-        return Response::json($this->celula->saveCelula(), 200);        
+
+    public function saveCelula(Request $request)
+    {   
+        $input = $request->all();
+
+        $celula = $this->celula->saveCelula($input);
+        if (!$celula) {
+            Response::json(['response' => 'Celula não encontrado'], 400);   
+        }
+
+        return Response::json($celula->with('membro')->get(), 200);        
     }
-    public function updateCelula($id)
+        
+    public function updateCelula($id, Request $request)
     {
-        $celula = $this->celula->updateCelula($id);
+        $input = $request->all();
+
+        $celula = $this->celula->updateCelula($id, $input);
         
         if (!$celula)
         {
@@ -70,16 +67,5 @@ class CelulaController extends Controller
         }
      
         return Response::json($celula, 200);
-        
     }
-    
-    // public function deleteCelula($id)
-    // {
-    //     $celula = $this->celula->deleteUser($id);
-    //     if (!$celula)
-    //     {
-    //         return Response::json(['response' => 'Célula não encontrada'], 400);
-    //     }
-    //     return Response::json(['response' => 'Célula removida'], 200);        
-    // }
 }

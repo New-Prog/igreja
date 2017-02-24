@@ -20,18 +20,16 @@ class Reuniao extends Model
         return self::all(); 
     }
      
-    public function saveReuniao($request)
+    public function saveReuniao($arr)
     {
 
-        // dd(http_request(method, url))
-    	
-        // $input = Request::all();
-        // $input['password'] = Hash::make($input['password']);
-        // $user = new User();
-        //$user->fill($input); // Mass assignment
-        //$user->save();
-        // return $user;
-        
+        $input = $arr;
+           
+        $reuniao = new Reuniao();
+        $reuniao->fill($input); // Mass assignment
+        $reuniao->save();
+
+        return $reuniao;
     }
     
     public function getReuniao($id)
@@ -58,15 +56,9 @@ class Reuniao extends Model
        
         $input = Request::all();
         
-        // if (isset($input['password'])) {
-        //     $input['password'] = Hash::make($input['password']);
-        // }
-        
         $reuniao->fill($input); // Mass assignment
         $reuniao->save();
+
         return $reuniao;
-        
     }
-
-
 }

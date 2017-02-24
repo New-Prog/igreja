@@ -16,17 +16,17 @@ class Post extends Model
         return self::all(); 
     }
      
-    public function savePost($request)
+    public function savePost($arr)
     {
+        $input = $arr;
+        
+        $post = new Post();
+        
+        $post->fill($input);
 
-        // dd(http_request(method, url))
+        $post->save();
 
-        // $input = Request::all();
-        // $input['password'] = Hash::make($input['password']);
-        // $user = new User();
-        //$user->fill($input); // Mass assignment
-        //$user->save();
-        // return $user;
+        return $post;
         
     }
     
@@ -43,7 +43,7 @@ class Post extends Model
         
     }
     
-    public function updatePost($id)
+    public function updatePost($id, $arr_up_post)
     {
         $post = self::find($id);
         
@@ -52,11 +52,7 @@ class Post extends Model
             return false;
         }
        
-        $input = Request::all();
-        
-        // if (isset($input['password'])) {
-        //     $input['password'] = Hash::make($input['password']);
-        // }
+        $input = $arr_up_post;
         
         $post->fill($input); // Mass assignment
         $post->save();

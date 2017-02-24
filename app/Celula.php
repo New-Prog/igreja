@@ -7,13 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 class Celula extends Model
 {
 	protected $table = 'celulas';
-    protected $fillable = ['descricao'];
-    
-    public function endereco() 
+    protected $fillable = ['descricao', 'cep', 'logradouro', 'numero' , 'complemento' , 'bairro' , 'cidade' , 'estado','latitude', 'logitude'];
+        
+    public function membro() 
     {
-        return $this->belongsTo('App\Endereco','fk_endereco' );   
-    }
-     
+        return $this->hasMany('App\Membro', 'fk_celula');   
+    } 
      
      
     public function allCelulas()
@@ -21,20 +20,20 @@ class Celula extends Model
         return self::all(); 
     }
      
-    public function saveCelula($request)
+
+
+    public function saveCelula($arr)
     {
 
-        // dd(http_request(method, url))
+        $input = $arr;
+           
+        $celula = new Celula();
+        $celula->fill($input); // Mass assignment
+        $celula->save();
 
-        // $input = Request::all();
-        // $input['password'] = Hash::make($input['password']);
-        // $user = new User();
-        //$user->fill($input); // Mass assignment
-        //$user->save();
-        return $user;
-        
+        return $celula;
     }
-    
+
     public function getCelula($id)
     {
         $celula = self::find($id);
@@ -43,12 +42,11 @@ class Celula extends Model
         {
             return false;
         }
-        
+            
         return $celula;
         
     }
-    
-    public function updateCelula($id)
+    public function updateCelula($id, Request $request)
     {
         $celula = self::find($id);
         
@@ -56,30 +54,14 @@ class Celula extends Model
         {
             return false;
         }
-       
-        $input = Request::all();
-        
-        // if (isset($input['password'])) {
-        //     $input['password'] = Hash::make($input['password']);
-        // }
-        
+        $input = $request->all();
+
         $celula->fill($input); // Mass assignment
+        
         $celula->save();
+
         return $celula;
-        
     }
-    
-    public function deleteCelula($id)
-    {
-        $celula = self::find($id);
-        if (is_null($celula))
-        {
-            return false;
-        }
-        return $celula->delete();
-        
-    }
-    
     
 }
  
