@@ -8,7 +8,7 @@ class Post extends Model
 {
 	protected $table = 'posts';
 
-    protected $fillable = ['titulo', 'descricao', 'tipo'];
+    protected $fillable = ['nome', 'descricao', 'tipo'];
     
 
     public function allPosts()

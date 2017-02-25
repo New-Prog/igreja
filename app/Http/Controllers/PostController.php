@@ -9,6 +9,8 @@ use App\Http\Requests;
 use App\Post;
 use Response;
 
+
+
 class PostController extends Controller
 {
     protected $post;
@@ -68,7 +70,7 @@ class PostController extends Controller
     {
         $input = $request->all();
 
-        $post = $this->$post->savePost($id, $input);
+        $post = $this->post->updatePost($id, $input);
         
 
         if (!$post)
@@ -79,6 +81,4 @@ class PostController extends Controller
 
         return Response::json($post, 200);        
     }
-
-
 }

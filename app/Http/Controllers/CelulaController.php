@@ -2,12 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests;
-use App\Celula;
-use App\User;
-use Request;
-use Response;
 
+
+use Illuminate\Http\Request;
+
+use App\Http\Requests;
+
+use App\Celula;
+
+// use App\Http\Requests;
+use App\User;
+// use Request;
+use Response;
 
 class CelulaController extends Controller
 {
@@ -40,7 +46,7 @@ class CelulaController extends Controller
             return Response::json(['response' => 'Célula não encontrada'], 400);
         }
 
-        return Response::json( $celula->with(['membro', 'endereco'])->get(), 200);
+        return Response::json( $celula->with('membro')->get(), 200);
     }
 
     public function saveCelula(Request $request)

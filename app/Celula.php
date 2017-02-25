@@ -46,7 +46,7 @@ class Celula extends Model
         return $celula;
         
     }
-    public function updateCelula($id, Request $request)
+    public function updateCelula($id, $request)
     {
         $celula = self::find($id);
         
@@ -54,7 +54,7 @@ class Celula extends Model
         {
             return false;
         }
-        $input = $request->all();
+        $input = $request;
 
         $celula->fill($input); // Mass assignment
         

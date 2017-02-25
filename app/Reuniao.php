@@ -8,7 +8,7 @@ class Reuniao extends Model
 {
     protected $table = 'reunioes';
 
-    protected $fillable = ['data', 'tema'];
+    protected $fillable = ['descricao', 'fk_celula'];
     
     public function celula() 
     {
@@ -45,16 +45,19 @@ class Reuniao extends Model
         
     }
     
-    public function updateReuniao($id)
+    public function updateReuniao($id , $request)
     {
-        $reuniao = self::find($id);
         
+        // dd($id);
+
+        $reuniao = self::find($id);
+           
         if (is_null($reuniao)) 
         {
             return false;
         }
        
-        $input = Request::all();
+        $input = $request;
         
         $reuniao->fill($input); // Mass assignment
         $reuniao->save();

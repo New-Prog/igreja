@@ -14,7 +14,7 @@ class Membro extends Model
 {
     protected $table = 'membros';
  
-    protected $fillable = ['nome', 'sexo' , 'cpf','estado_civil', 'dt_nasc' , 'email' , 'tipo' ,'telefone' ,'celular','cep','logradouro','numero','complemento','bairro','cidade','estado','latitude','logitude']; 
+    protected $fillable = ['nome', 'sexo' , 'cpf','estado_civil', 'dt_nasc' , 'email' , 'tipo' ,'telefone' ,'celular','cep','logradouro','numero','complemento','bairro','cidade','estado','latitude','logitude', 'fk_celula']; 
 
     public function celula() 
     {
@@ -50,7 +50,7 @@ class Membro extends Model
         return $membro->with('celula')->get();
         
     }
-    public function updateMembro($id, Request $request)
+    public function updateMembro($id, $request)
     {
         $membro = self::find($id);
         
@@ -58,7 +58,7 @@ class Membro extends Model
         {
             return false;
         }
-        $input = $request->all();
+        $input = $request;
         $membro->fill($input); // Mass assignment
         
         $membro->save();

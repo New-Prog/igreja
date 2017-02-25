@@ -79,6 +79,8 @@ class MembroController extends Controller
     public function updateMembro($id , Request $request)
     {
         $input = $request->all();
+        // dd($input, $id);
+        // return Response::json(['input' => $input, 'id' => $id], 400);
         
         $membro = $this->membro->updateMembro($id , $input);
         
@@ -90,13 +92,4 @@ class MembroController extends Controller
         return Response::json($membro->with('celula')->get(), 200);
         
     }
-    // public function deleteMembro($id)
-    // {
-    //     $membro = $this->membro->deleteUser($id);
-    //     if (!$membro)
-    //     {
-    //         return Response::json(['response' => 'Usuário não encontrado'], 400);
-    //     }
-    //     return Response::json(['response' => 'Usuário removido'], 200);        
-    // }
 }
