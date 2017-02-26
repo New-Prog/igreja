@@ -12,11 +12,11 @@ class Presenca extends Model
     
     public function reuniao() 
     {
-        return $this->hasOne('App\Reuniao','fk_reuniao' );   
+        return $this->HasMany('App\Reuniao','fk_reuniao' );   
     }    
     public function membro() 
     {
-        return $this->hasOne('App\Membro','fk_membro' );   
+        return $this->HasMany('App\Membro','fk_membro' );   
     }
 
         public function allPresencas()
@@ -24,17 +24,18 @@ class Presenca extends Model
         return self::all(); 
     }
      
-    public function savePresenca()
+    public function savePresenca($arr)
     {
 
-
+        $input = $arr;
         
-        // $input = Request::all();
-        // $input['password'] = Hash::make($input['password']);
-        // $user = new User();
-        //$user->fill($input); // Mass assignment
-        //$user->save();
-        // return $user;
+        $presenca = new Presenca();
+        
+        $presenca->fill($input);
+
+        $presenca->save();
+
+        return $presenca;
         
     }
     
@@ -51,7 +52,7 @@ class Presenca extends Model
         
     }
     
-    public function updatePresenca($id)
+    public function updatePresenca($id, $arr_up_presenca)
     {
         $presenca = self::find($id);
         
@@ -59,15 +60,12 @@ class Presenca extends Model
         {
             return false;
         }
-       
-        $input = Request::all();
-        
-        // if (isset($input['password'])) {
-        //     $input['password'] = Hash::make($input['password']);
-        // }
+          
+        $input = $arr_up_presenca;
         
         $presenca->fill($input); // Mass assignment
         $presenca->save();
+        
         return $presenca;
         
     }

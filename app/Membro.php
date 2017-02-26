@@ -8,16 +8,14 @@ use Request;
 use Hash;
 use Exception;
 
+use App\Celula;
+
 class Membro extends Model
 {
-	protected $table = 'membros';
+    protected $table = 'membros';
  
-    protected $fillable = ['nome', 'sexo', 'cpf', 'dt_nasc',  'email', 'tipo', 'telefone', 'celular', 'fk_endereco', 'fk_celula'];
-    
-    public function endereco() 
-    {
-        return $this->belongsTo('App\Endereco','fk_endereco' );   
-    }
+    protected $fillable = ['nome', 'sexo' , 'cpf','estado_civil', 'dt_nasc' , 'email' , 'tipo' ,'telefone' ,'celular','cep','logradouro','numero','complemento','bairro','cidade','estado','latitude','logitude', 'fk_celula']; 
+
     public function celula() 
     {
         return $this->belongsTo('App\Celula','fk_celula' );   
@@ -26,7 +24,6 @@ class Membro extends Model
     public function allMembros()
     {
         return self::all();
-    
     }
 
     public function saveMembro($arr)
@@ -49,11 +46,11 @@ class Membro extends Model
         {
             return false;
         }
-        
-        return $membro->with(['endereco', 'celula'])->get();
+            
+        return $membro->with('celula')->get();
         
     }
-    public function updateMembro($id)
+    public function updateMembro($id, $request)
     {
         $membro = self::find($id);
         
@@ -61,29 +58,11 @@ class Membro extends Model
         {
             return false;
         }
-       
-        $input = Request::all();
-        
-        // if (isset($input['password'])) {
-        //     $input['password'] = Hash::make($input['password']);
-        // }
-        
+        $input = $request;
         $membro->fill($input); // Mass assignment
+        
         $membro->save();
 
         return $membro;
-        
-    }
-    public function deleteMembro($id)
-    {
-        $membro = self::find($id);
-        if (is_null($membro))
-        {
-            return false;
-        }
-        return $membro->delete();
-        
-    }
-    
-    
+    }    
 }

@@ -8,7 +8,7 @@ class Reuniao extends Model
 {
     protected $table = 'reunioes';
 
-    protected $fillable = ['data', 'tema'];
+    protected $fillable = ['descricao', 'fk_celula'];
     
     public function celula() 
     {
@@ -20,18 +20,16 @@ class Reuniao extends Model
         return self::all(); 
     }
      
-    public function saveReuniao($request)
+    public function saveReuniao($arr)
     {
 
-        // dd(http_request(method, url))
-    	
-        // $input = Request::all();
-        // $input['password'] = Hash::make($input['password']);
-        // $user = new User();
-        //$user->fill($input); // Mass assignment
-        //$user->save();
-        // return $user;
-        
+        $input = $arr;
+           
+        $reuniao = new Reuniao();
+        $reuniao->fill($input); // Mass assignment
+        $reuniao->save();
+
+        return $reuniao;
     }
     
     public function getReuniao($id)
@@ -47,26 +45,23 @@ class Reuniao extends Model
         
     }
     
-    public function updateReuniao($id)
+    public function updateReuniao($id , $request)
     {
-        $reuniao = self::find($id);
         
+        // dd($id);
+
+        $reuniao = self::find($id);
+           
         if (is_null($reuniao)) 
         {
             return false;
         }
        
-        $input = Request::all();
-        
-        // if (isset($input['password'])) {
-        //     $input['password'] = Hash::make($input['password']);
-        // }
+        $input = $request;
         
         $reuniao->fill($input); // Mass assignment
         $reuniao->save();
+
         return $reuniao;
-        
     }
-
-
 }
