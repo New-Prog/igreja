@@ -4,7 +4,7 @@
         <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
     </div>
 
-    <!--logo start-->
+    <!--logo start teste-->
     <a href="/home" class="logo"><b>Igreja</b></a>
     <!--logo end-->
 
