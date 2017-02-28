@@ -1,5 +1,4 @@
 
-
 @extends('layouts.dashboard.layout')
 
 @section('conteudo')
@@ -18,14 +17,15 @@
                     </tr>
                     </thead>
                     <tbody>
+
                     @foreach($membros as $membro)
                         <tr>
                             <td><a href="basic_table.html#">{{ $membro['nome'] }}</a></td>
-                            <td class="hidden-phone">{{ $membro['celula'] }}</td>
-                            <td>{{ $membro['hierarquia'] }}</td>
+                            <td class="hidden-phone">{{ $membro['fk_celula'] }}</td>
+                            <td>{{ $membro['tipo'] }}</td>
                             <td>
                                 <button class="btn btn-success btn-xs"><i class="fa fa-check"></i></button>
-                                <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
+                                <a href="/membros/alterar/{{ $membro['id'] }}"><button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button></a>
                                 <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
                             </td>
                         </tr>

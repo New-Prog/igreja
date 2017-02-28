@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Http\Request;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -10,6 +12,19 @@
 | to using a Closure or controller method. Build something great!
 |
 */
+
+Route::group(['prefix' => 'membros'], function () {
+    Route::get('/cadastrar', function(){ 
+			return view('membros_cadastrar');
+		}); // Get all members
+
+    Route::post('/cadastrar/salvar', 'MembroViewController@saveMembro'); // save member
+    Route::get('/consultar', 'MembroViewController@allMembros'); // Get all members
+    Route::get('/alterar/{id}', 'MembroViewController@alterarMembro'); // Get all members
+    Route::post('/up/{id}', 'MembroViewController@updateMembro'); // update member     
+
+    // Route::get('/{id}', 'MembroViewController@getMembro'); // Get member specific
+});
 
 
 Route::get('/login', 'HomeController@index');
@@ -29,7 +44,7 @@ Route::get('/listarMembros', 'MembroController@listar');
 #Route::get('/CadastrarMembros', 'MembrosController@cadastrar');
 
 
-Route::get('/membros', 'MembroController@index');
+//Route::get('/membros', 'MembroController@index');
 
 Route::post('/membros/save', 'MembroController@store');
 
@@ -66,11 +81,6 @@ Route::get('/dashboard', function() {
 
 Route::get('/membros/cadastrar', 'DashboardController@teste');
 
-Route::get('/membros/consultar', function() {
-		$denis = array('nome' => 'Denis da Silva', 'celula' => 'Celula do Céu', 'hierarquia' => 'Membro');
-		$membros = array($denis);
-		return view('membros_consultar')->with('membros', $membros);
-}); 
 
 Route::get('/celulas/consultar', function() {
 		return view('celulas_consultar');
