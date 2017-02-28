@@ -83,12 +83,14 @@ class MembroViewController extends Controller
         
         $membro = $this->membro->updateMembro($id , $input);
         
+        
         if (!$membro)
         {
             return Response::json(['response' => 'Membro não encontrado'], 400);
         }
-     
-        return Response::json($membro->with('celula')->get(), 200);
+
+        $membros = $this->membro->with('celula')->get();
+        return view('membros_consultar')->with('membros', $membros);
         
     }
     public function alterarMembro($id)
@@ -99,8 +101,8 @@ class MembroViewController extends Controller
         {
             //return Response::json(['response' => 'Membro não encontrado'], 400);
         }
-        
-        return view('membros_cadastrar')->with('membro', $membro);
+        $id = $id - 1;
+        return view('membros_cadastrar')->with('membro', $membro[$id]);
         
     }
 }

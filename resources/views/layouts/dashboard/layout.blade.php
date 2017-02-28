@@ -7,7 +7,7 @@
     <meta name="author" content="Dashboard">
     <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
 
-    <title>DASHGUM - FREE Bootstrap Admin Template</title>
+    <title>Igreja Bastista Vinho Novo - Dashboard </title>
 
     <!-- Bootstrap core CSS -->
     <link href="/dashboard_layout/css/bootstrap.css" rel="stylesheet">
@@ -15,6 +15,7 @@
     <link href="/dashboard_layout/font-awesome/css/font-awesome.css" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="/dashboard_layout/css/zabuto_calendar.css">
     <link rel="stylesheet" type="text/css" href="/dashboard_layout/js/gritter/css/jquery.gritter.css" />
+    <link rel="stylesheet" type="text/javascript" href="/dashboard_layout/js/jquery.js" />
     <link rel="stylesheet" type="text/css" href="/dashboard_layout/lineicons/style.css">    
     
     <!-- Custom styles for this template -->

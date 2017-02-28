@@ -5,7 +5,7 @@
     </div>
 
     <!--logo start teste-->
-    <a href="/home" class="logo"><b>Igreja</b></a>
+    <a href="/dashboard" class="logo"><b><img src="/images/logo.png"/> <label>IBVN<label></b></a>
     <!--logo end-->
 
     <div class="top-menu">

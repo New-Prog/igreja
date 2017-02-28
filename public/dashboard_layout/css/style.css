@@ -19,6 +19,17 @@ body {
     font-size:13px;
 }
 
+.logo label{
+    font-weight: lighter;
+    text-shadow: 0px 3px 3px black;
+}
+
+.logo img{ 
+    height: 52px;
+    margin: -13px 0;
+    -webkit-filter: drop-shadow(0px 0px 6px #fff);
+    vertical-align: middle;
+}
 ul li {
     list-style: none;
 }
@@ -230,6 +241,7 @@ ul.top-menu > li > .logout {
 /*sidebar navigation*/
 
 #sidebar {
+    z-index: 10;
     width: 210px;
     height: 100%;
     position: fixed;
@@ -296,7 +308,7 @@ ul.sidebar-menu {
 }
 
 ul.sidebar-menu li ul.sub li{
-    background: #424a5d;
+    /*/background: #424a5d;*/
     margin-bottom: 0;
     margin-left: 0;
     margin-right: 0;
@@ -309,8 +321,8 @@ ul.sidebar-menu li ul.sub li:last-child{
 
 ul.sidebar-menu li ul.sub li a {
     font-size: 12px;
-    padding: 6px 0;
-    line-height: 35px;
+    padding: 12px 24px;
+    /* line-height: 24px; */
     height: 35px;
     -webkit-transition: all 0.3s ease;
     -moz-transition: all 0.3s ease;
@@ -318,6 +330,16 @@ ul.sidebar-menu li ul.sub li a {
     -ms-transition: all 0.3s ease;
     transition: all 0.3s ease;
     color: #aeb2b7;
+    margin: 5px 0 0 0;
+}
+
+.grupo_btn_cadastro button {
+    margin: 0px 3px;
+}
+
+.grupo_btn_cadastro {
+    text-align: right;
+    margin: 0px 85px;
 }
 
 ul.sidebar-menu li ul.sub li a:hover {
@@ -423,6 +445,7 @@ ul.sidebar-menu li a.active i {
 .wrapper {
     display: inline-block;
     margin-top: 60px;
+    margin-bottom: 60px;
     padding-left: 15px;
     padding-right: 15px;
     padding-bottom: 15px;
@@ -2219,9 +2242,13 @@ label {
 
 /*footer*/
 .site-footer {
-    background: #68dff0;
+    background: linear-gradient(#ad0423, #540907);
+    border-bottom: 1px solid #333;
     color: #fff;
     padding: 10px 0;
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
 }
 
 

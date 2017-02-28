@@ -13,7 +13,7 @@
                         <th><i class="fa fa-bullhorn"></i> Nome</th>
                         <th class="hidden-phone"><i class="fa fa-question-circle"></i> Celula</th>
                         <th><i class="fa fa-bookmark"></i> Hierarquia</th>
-                        <th></th>
+                        <th>Ações</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -24,9 +24,8 @@
                             <td class="hidden-phone">{{ $membro['fk_celula'] }}</td>
                             <td>{{ $membro['tipo'] }}</td>
                             <td>
-                                <button class="btn btn-success btn-xs"><i class="fa fa-check"></i></button>
-                                <a href="/membros/alterar/{{ $membro['id'] }}"><button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button></a>
-                                <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
+                                <a href="/membros/alterar/{{ $membro['id'] }}" alt="alterar"><button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button></a>
+                                <a href="#" alt="alterar" ><button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button></a>
                             </td>
                         </tr>
                     @endforeach

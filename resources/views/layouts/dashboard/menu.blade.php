@@ -13,7 +13,7 @@
 
                   
                   <li class="mt">
-                      <a class="active" href="index.html">
+                      <a class="active" href="/dashboard">
                           <i class="fa fa-dashboard"></i>
                           <span>Dashboard</span>
                       </a>
