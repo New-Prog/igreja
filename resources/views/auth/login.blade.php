@@ -44,6 +44,7 @@
                                     <label>
                                         <input type="checkbox" name="remember"> Lembrar
                                     </label>
+                                    <a class='pull-right' style="cursor: pointer;" href="/forgot">Esqueceu sua senha?</a>
                                 </div>
                             </div>
                         </div>
