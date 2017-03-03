@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Celula extends Model
 {
 	protected $table = 'celulas';
-    protected $fillable = ['descricao', 'cep', 'logradouro', 'numero' , 'complemento' , 'bairro' , 'cidade' , 'estado','latitude', 'logitude'];
+    protected $fillable = ['nome', 'descricao', 'lider'];
         
     public function membro() 
     {

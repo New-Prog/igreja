@@ -27,6 +27,28 @@ Route::group(['prefix' => 'membros'], function () {
 });
 
 
+Route::group(['prefix' => 'celulas'], function () {
+    Route::get('/cadastrarxxxx', function(){ 
+			return view('membros_cadastrar');
+		}); // Get all members
+
+    Route::get('/cadastrar', 'CelulaViewController@viewCelula'); // save member
+    Route::post('/cadastrar/save', 'CelulaViewController@saveCelula'); // save member
+    Route::get('/consultar', 'CelulaViewController@allCelulas'); // Get all members
+    Route::get('/alterar/{id}', 'MembroViewController@alterarMembro'); // Get all members
+    Route::post('/up/{id}', 'MembroViewController@updateMembro'); // update member     
+
+    // Route::get('/{id}', 'MembroViewController@getMembro'); // Get member specific
+});
+
+
+Route::group(['prefix' => 'reunioes'], function () {
+    Route::get('/consultar', 'ReuniaoViewController@viewReuniao'); // save member
+    Route::get('/cadastrar', 'ReuniaoViewController@saveReuniao'); // save member
+    Route::post('/cadastrar/save', 'ReuniaoViewController@saveReuniao'); // save member
+    Route::post('/alterar/{id}', 'MembroViewController@alterarMembro'); // Get all members
+});
+
 Route::get('/login', 'HomeController@index');
 
 Route::get('/', function () {
@@ -80,15 +102,6 @@ Route::get('/dashboard', function() {
 });
 
 Route::get('/membros/cadastrar', 'DashboardController@teste');
-
-
-Route::get('/celulas/consultar', function() {
-		return view('celulas_consultar');
-}); 
-
-Route::get('/celulas/cadastrar', function() {
-		return view('celulas_cadastrar');
-}); 
 
 Route::get('/reunioes/cadastrar', function() {
 		return view('reunioes_cadastrar');
