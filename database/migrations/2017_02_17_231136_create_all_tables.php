@@ -52,8 +52,16 @@ class CreateAllTables extends Migration
         
         Schema::create('celulas', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('nome');
             $table->string('descricao');
-            $table->string('cep', 8);
+            $table->integer('lider');
+            $table->timestamps();
+        });
+        
+        Schema::create('reunioes', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('descricao')->nullable();
+            $table->string('cep', 20);
             $table->string('logradouro', 255);
             $table->string('numero', 20);
             $table->string('complemento', 20);
@@ -62,11 +70,6 @@ class CreateAllTables extends Migration
             $table->string('estado', 100);
             $table->string('latitude', 255)->nullable();
             $table->string('logitude', 255)->nullable();
-            $table->timestamps();
-        });
-        Schema::create('reunioes', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('descricao')->nullable();
             $table->integer('fk_celula')->unsigned();
             $table->foreign('fk_celula')->references('id')->on('celulas')->onDelete('cascade');
             $table->timestamps();
@@ -76,7 +79,7 @@ class CreateAllTables extends Migration
             $table->increments('id');
             $table->string('nome', 255)->nullable();
             $table->char('sexo', 1)->nullable();
-            $table->char('cpf', 11)->nullable();
+            $table->char('cpf', 20)->nullable();
 
             $table->string('estado_civil', 12)->nullable();
             $table->string('dt_nasc', 12)->nullable();
