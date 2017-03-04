@@ -68,7 +68,7 @@ class ReuniaoController extends Controller
     {
         $input = $request->all();
 
-        $reuniao = $this->reuniao->updateReuniao($id, $input);
+        $reuniao = $this->xreuniao->updateReuniao($id, $input);
         
 
         if (!$reuniao)

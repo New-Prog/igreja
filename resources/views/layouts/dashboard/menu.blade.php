@@ -51,6 +51,18 @@
                       </ul>
                   </li>
 
+                  <li class="sub-menu">
+                      <a href="javascript:;" >
+                          <i class="fa fa-book"></i>
+                          <span>Posts</span>
+
+                      </a>
+                      <ul class="sub">
+                          <li><a  href="/posts/cadastrar">Cadastrar</a></li>
+                          <li><a  href="/posts/consultar">Consultar</a></li>
+                      </ul>
+                  </li>
+
 
 
                   <li class="sub-menu">

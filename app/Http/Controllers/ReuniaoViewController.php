@@ -14,7 +14,7 @@ use Response;
 
 
 
-class ReuniaoController extends Controller
+class ReuniaoViewController extends Controller
 {
 	
     protected $reuniao;
