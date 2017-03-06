@@ -53,6 +53,10 @@ Route::get('/dashboard', function() {
 //*******************//
 
 
+//*****************//
+//* INI - MEMBROS *//
+//*****************//
+
 Route::group(['prefix' => 'membros'], function () {
     Route::get('/cadastrar', function(){
 		return view('membros_cadastrar');
@@ -65,15 +69,21 @@ Route::group(['prefix' => 'membros'], function () {
 
     // Route::get('/{id}', 'MembroViewController@getMembro'); // Get member specific
 });
+//*****************//
+//* FIM - MEMBROS *//
+//*****************//
 
 
+//*****************//
+//* INI - CELULAS *//
+//*****************//
 Route::group(['prefix' => 'celulas'], function () {
-    Route::get('/cadastrar', function(){ 
+    Route::get('/cadastrar', function() { 
 		return view('membros_cadastrar');
     }); 
 
-    Route::get('/cadastrar', 'CelulaViewController@viewCelula'); // save member
-    // Route::post('/cadastrar/save', 'CelulaViewController@saveCelula'); // save member
+    // Route::get('/cadastrar', 'CelulaViewController@viewCelula'); // save member
+    Route::post('/cadastrar/save', 'CelulaViewController@saveCelula'); // save member
     Route::get('/consultar', 'CelulaViewController@allCelulas'); // Get all members
     Route::get('/alterar/{id}', 'CelulaViewController@alterarMembro'); // Get all members
     Route::post('/up/{id}', 'CelulaViewController@updateMembro'); // update member     
@@ -81,6 +91,14 @@ Route::group(['prefix' => 'celulas'], function () {
     // Route::get('/{id}', 'MembroViewController@getMembro'); // Get member specific
 });
 
+//*****************//
+//* FIM - CELULAS *//
+//*****************//
+
+
+//*****************//
+//* INI  - CELULAS *//
+//*****************//
 Route::group(['prefix' => 'reunioes'], function () {
     Route::get('/cadastrar', function() { 
         return view('reunioes_cadastrar');
@@ -97,7 +115,7 @@ Route::group(['prefix' => 'reunioes'], function () {
         return view('reunioes_cadastrar');
     }); 
 
-    Route::get('/consultar', 'ReuniaoViewController@viewReuniao'); // Abrir tela retornando a view
+    Route::get('/consultar', 'ReuniaoViewController@allReunioes'); // Abrir tela retornando a view
     // Route::get('/cadastrar', 'ReuniaoViewController@saveReuniao'); //  
     Route::post('/cadastrar/save', 'ReuniaoViewController@saveReuniao'); // 
     Route::post('/alterar/{id}', 'ReuniaoViewController@alterarReuniao'); // 

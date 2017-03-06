@@ -60,7 +60,7 @@ class CreateAllTables extends Migration
         
         Schema::create('reunioes', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('descricao')->nullable();
+            $table->string('tema')->nullable();
             $table->string('cep', 20);
             $table->string('logradouro', 255);
             $table->string('numero', 20);
