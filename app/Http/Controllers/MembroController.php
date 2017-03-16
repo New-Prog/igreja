@@ -54,7 +54,7 @@ class MembroController extends Controller
 
     public function allLiders()
     {
-
+        
         $membro = $this->membro->allLiders();
         
         if (!$membro) 
