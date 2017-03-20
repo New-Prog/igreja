@@ -60,7 +60,7 @@ class CelulaViewController extends Controller
         $input = $request->all();
 
         $celula = $this->celula->saveCelula($input);
-        $celulaa = $this->celula->with('membro')->get();
+        $celulas = $this->celula->with('membro')->get();
         if (!$celula) {
             Response::json(['response' => 'Celula não encontrado'], 400);   
         }

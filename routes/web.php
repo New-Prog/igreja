@@ -101,17 +101,17 @@ Route::get('/dashboard', function() {
 
 Route::get('/membros/cadastrar', 'DashboardController@teste');
 
-<<<<<<< HEAD
-=======
-Route::get('/celulas/consultar', function() {
-		return view('celulas_consultar');
-});
+// <<<<<<< HEAD
+// =======
+// Route::get('/celulas/consultar', function() {
+// 		return view('celulas_consultar');
+// });
 
-Route::get('/celulas/cadastrar', function() {
-		return view('celulas_cadastrar');
-	});
+// Route::get('/celulas/cadastrar', function() {
+// 		return view('celulas_cadastrar');
+// 	});
 
->>>>>>> 2fa284f5c01a3c22a241a71348d33b13513591e7
+// >>>>>>> 2fa284f5c01a3c22a241a71348d33b13513591e7
 Route::get('/reunioes/cadastrar', function() {
 		return view('reunioes_cadastrar');
 });
