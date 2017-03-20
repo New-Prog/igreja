@@ -1,7 +1,6 @@
 @extends('layouts.dashboard.layout')
 
 @section('conteudo')
-<?php var_dump($celulas) ?>
     <div class="row mt">
         <div class="col-md-12">
             <div class="content-panel">
@@ -12,16 +11,16 @@
                     <tr>
                         <th><i class="fa fa-bullhorn"></i> Nome da Célula</th>
                         <th class="hidden-phone"><i class="fa fa-question-circle"></i> Líder</th>
-                        <th><i class="fa fa-bookmark"></i> Quantidade de membros</th>
+                        <th><i class="fa fa-bookmark"></i>Descrição</th>
                         <th></th>
                     </tr>
                     </thead>
                     <tbody>
                     @foreach($celulas as $celula)
                         <tr>
-                            <td><a href="basic_table.html#">Celula do céu</a></td>
-                            <td class="hidden-phone">Albert Einstein</td>
-                            <td>4</td>
+                            <td><a href="basic_table.html#">{{ $celula->nome }}</a></td>
+                            <td class="hidden-phone">{{ $celula->lider }}</td>
+                            <td>{{ $celula->descricao }}</td>
                             <td>
                                 <button class="btn btn-success btn-xs"><i class="fa fa-check"></i></button>
                                 <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>

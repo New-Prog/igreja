@@ -207,7 +207,7 @@
 <script type="text/javascript" src="/js/jquery.mask.js"></script>
 <script>
     $(document).ready(function ($) { 
-       // $("#cpf").mask('000.000.000-00', {reverse: true});
+        $("#cpf").mask('000.000.000-00', {reverse: true});
         $("#telefone").mask('(00)0000-0000', {reverse: false});
         $("#celular").mask('(00)00000-0000', {reverse: false});
         $("#cep").mask('0000-000', {reverse: false});

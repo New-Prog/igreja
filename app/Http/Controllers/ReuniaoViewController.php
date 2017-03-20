@@ -53,15 +53,17 @@ class ReuniaoViewController extends Controller
     public function saveReuniao(Request $request)
     {
         $input = $request->all();
-        // dd($input);
+
         $reuniao = $this->reuniao->saveReuniao($input);
 
         if (!$reuniao)
         {
-            return Response::json(['response' => 'reuniao não encontrado'], 400);
+            //return Response::json(['response' => 'reuniao não encontrado'], 400);
         } 
+        $reunioes = $this->reuniao->allReunioes();
+
         
-        return Response::json($reuniao->with('celula')->get(), 200);        
+        return view('reunioes_consultar')->with('reunioes', $reunioes);
 
     }
 

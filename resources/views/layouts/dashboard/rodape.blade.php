@@ -1,7 +1,7 @@
      <!--footer start-->
       <footer class="site-footer">
           <div class="text-center">
-              2017 - New Prog Sofwares
+              2017 - New Prog Softwares
               <a href="index.html#" class="go-top">
                   <i class="fa fa-angle-up"></i>
               </a>

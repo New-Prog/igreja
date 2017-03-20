@@ -17,7 +17,7 @@
 <div class="row mt">
   <div class="col-lg-12">
     
-    <form class="form-horizontal style-form" method="post" action="/celulas/cadastrar/save">
+    <form class="form-horizontal style-form" method="post" action="/reunioes/cadastrar/save">
         <div class="form-panel">
             <h4 class="mb"><i class="fa fa-angle-right"></i> Nova Reunião</h4>
                 
@@ -31,7 +31,7 @@
             <div class="form-group">
                 <label class="col-sm-1  control-label">Celula</label>
                 <div class="col-sm-11">
-                    <input type="text" class="form-control" name="celula">
+                    <input type="text" class="form-control" name="fk_celula">
                 </div>  
             </div> 
 

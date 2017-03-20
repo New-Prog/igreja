@@ -79,7 +79,7 @@ Route::group(['prefix' => 'membros'], function () {
 //*****************//
 Route::group(['prefix' => 'celulas'], function () {
     Route::get('/cadastrar', function() { 
-		return view('membros_cadastrar');
+		return view('celulas_cadastrar');
     }); 
 
     // Route::get('/cadastrar', 'CelulaViewController@viewCelula'); // save member
@@ -97,7 +97,7 @@ Route::group(['prefix' => 'celulas'], function () {
 
 
 //*****************//
-//* INI  - CELULAS *//
+//* INI  - REUNIOES *//
 //*****************//
 Route::group(['prefix' => 'reunioes'], function () {
     Route::get('/cadastrar', function() { 
@@ -110,16 +110,9 @@ Route::group(['prefix' => 'reunioes'], function () {
     Route::post('/alterar/{id}', 'ReuniaoViewController@alterarReuniao'); // 
 });
 
-Route::group(['prefix' => 'reunioes'], function () {
-    Route::get('/cadastrar', function() { 
-        return view('reunioes_cadastrar');
-    }); 
-
-    Route::get('/consultar', 'ReuniaoViewController@allReunioes'); // Abrir tela retornando a view
-    // Route::get('/cadastrar', 'ReuniaoViewController@saveReuniao'); //  
-    Route::post('/cadastrar/save', 'ReuniaoViewController@saveReuniao'); // 
-    Route::post('/alterar/{id}', 'ReuniaoViewController@alterarReuniao'); // 
-});
+//*****************//
+//* FIM  - REUNIOES *//
+//*****************//
 
 Route::group(['prefix' => 'posts'], function () {
     Route::get('/cadastrar', function() { 
@@ -169,13 +162,4 @@ Route::group(['prefix' => 'posts'], function () {
 
 // Route::get('/reunioes/cadastrar', function() {
 // 		return view('reunioes_cadastrar');
-// });
-
-
-// Route::get('/posts/cadastrar', function() {
-//         return view('reunioes_cadastrar');
-// });
-
-// Route::get('/posts/cadastrar', function() {
-//         return view('reunioes_cadastrar');
 // });
