@@ -8,6 +8,8 @@ use Request;
 use Hash;
 use Exception;
 
+use Illuminate\Support\Facades\DB;
+
 use App\Celula;
 
 class Membro extends Model
@@ -24,6 +26,19 @@ class Membro extends Model
     public function allMembros()
     {
         return self::all();
+    }
+
+    public function allLiders()
+    {   
+        
+        $membro = self::where('tipo' ,'lider')->get();
+
+        if (is_null($membro))
+        {
+            return false;
+        }
+
+        return $membro;
     }
 
     public function saveMembro($arr)
@@ -47,9 +62,24 @@ class Membro extends Model
             return false;
         }
             
-        return $membro->with('celula')->get();
+        return $membro;
         
     }
+
+    public function getMembroByCelula($id)
+    {
+
+        $membro = self::where('fk_celula' ,$id)->get();
+        
+        if (is_null($membro))
+        {
+            return false;
+        }
+            
+        return $membro;
+        
+    }
+
     public function updateMembro($id, $request)
     {
         $membro = self::find($id);

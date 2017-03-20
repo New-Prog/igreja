@@ -51,6 +51,20 @@ class MembroController extends Controller
         }    
         return Response::json($membro, 200);
     }
+
+    public function allLiders()
+    {
+        
+        $membro = $this->membro->allLiders();
+        
+        if (!$membro) 
+        {
+            return Response::json(['response' => 'Membro não encontrado'], 400);
+        }    
+
+        return Response::json($membro, 200);
+    }
+
     public function getMembro($id)
     {
         $membro = $this->membro->getMembro($id);

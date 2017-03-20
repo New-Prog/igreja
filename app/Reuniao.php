@@ -8,7 +8,7 @@ class Reuniao extends Model
 {
     protected $table = 'reunioes';
 
-    protected $fillable = ['descricao', 'fk_celula'];
+    protected $fillable = ['tema', 'cep','logradouro','numero','complemento','bairro','cidade','estado','latitude','logitude', 'fk_celula'];
     
     public function celula() 
     {

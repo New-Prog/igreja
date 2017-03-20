@@ -159,10 +159,10 @@
                 <div class="form-group">
                     <label class="col-sm-1  control-label">Celula Participante</label>
                     <div class="col-sm-11">
-                        <select type="tipo" class="form-control">
-                            <option val="1">Celula Deus Vivo</option>
-                            <option val="2">Celula Amor Paterno</option>
-                            <option val="3">Celula novos Discipulos</option>
+                        <select type="tipo" class="form-control"  name="fk_celula">
+                            <option value="1">Celula Deus Vivo</option>
+                            <option value="2">Celula Amor Paterno</option>
+                            <option value="3">Celula novos Discipulos</option>
                         </select>
                     </div>  
                 </div> 
@@ -174,10 +174,10 @@
                 <div class="form-group">
                     <label class="col-sm-1  control-label">Tipo de membro</label>
                     <div class="col-sm-11">
-                        <select type="tipo" class="form-control">
-                            <option val="membro">Membro</option>
-                            <option val="lider">Lider</option>
-                            <option val="pastor">Pastor</option>
+                        <select type="tipo" class="form-control" name="tipo">
+                            <option value="membro">Membro</option>
+                            <option value="lider">Lider</option>
+                            <option value="pastor">Pastor</option>
                         </select>
                     </div>  
                 </div> 

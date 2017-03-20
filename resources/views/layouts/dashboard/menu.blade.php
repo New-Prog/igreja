@@ -8,7 +8,7 @@
               <!-- sidebar menu start-->
               <ul class="sidebar-menu" id="nav-accordion">
               
-              	  <p class="centered"><a href="profile.html"><img src="/dashboard_layout/img/ui-sam.jpg" class="img-circle" width="60"></a></p>
+              	  <p class="centered"><a href="/dashboard"><img src="/dashboard_layout/img/ui-sam.jpg" class="img-circle" width="60"></a></p>
                   <h5 class="centered">{{ Auth::user()->name }}</h5>
 
                   
@@ -48,6 +48,18 @@
                       <ul class="sub">
                           <li><a  href="/reunioes/cadastrar">Cadastrar</a></li>
                           <li><a  href="/reunioes/consultar">Consultar</a></li>
+                      </ul>
+                  </li>
+
+                  <li class="sub-menu">
+                      <a href="javascript:;" >
+                          <i class="fa fa-book"></i>
+                          <span>Posts</span>
+
+                      </a>
+                      <ul class="sub">
+                          <li><a  href="/posts/cadastrar">Cadastrar</a></li>
+                          <li><a  href="/posts/consultar">Consultar</a></li>
                       </ul>
                   </li>
 

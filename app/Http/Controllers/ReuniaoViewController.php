@@ -14,7 +14,7 @@ use Response;
 
 
 
-class ReuniaoController extends Controller
+class ReuniaoViewController extends Controller
 {
 	
     protected $reuniao;
@@ -33,8 +33,9 @@ class ReuniaoController extends Controller
         {
             return Response::json(['response' => ''], 400);
         }
+        return view('reunioes_consultar')->with('reunioes', $reuniao);
 
-        return Response::json($reuniao->with('celula')->get(), 200);
+        // return Response::json($reuniao->with('celula')->get(), 200);
     }
 
     public function getReuniao($id)

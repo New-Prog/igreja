@@ -27,14 +27,14 @@ class ReuniaoController extends Controller
 
     public function allReunioes()
     {
-        $reuniao = $this->reuniao->allReunioes();
-
+        $reuniao = $this->reuniao->with('celulas')->get();
+        
         if (!$reuniao)
         {
             return Response::json(['response' => ''], 400);
         }
 
-        return Response::json($reuniao->with('celula')->get(), 200);
+        return Response::json($reuniao, 200);
     }
 
     public function getReuniao($id)
@@ -68,7 +68,7 @@ class ReuniaoController extends Controller
     {
         $input = $request->all();
 
-        $reuniao = $this->reuniao->updateReuniao($id, $input);
+        $reuniao = $this->xreuniao->updateReuniao($id, $input);
         
 
         if (!$reuniao)

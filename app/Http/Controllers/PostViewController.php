@@ -11,7 +11,7 @@ use Response;
 
 
 
-class PostViewController extends Controller
+class PostsViewController extends Controller
 {
     protected $post;
 
