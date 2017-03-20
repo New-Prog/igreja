@@ -1,12 +1,6 @@
 <?php
-
-/*
-* @example https://igreja-npjoao.c9users.io/api/membros
-*/
-//  
-
 Route::group(['middleware' => 'cors'], function() {
-     
+ 
     Route::group(['prefix' => 'membros'], function () {
         Route::get('', 'MembroController@allMembros'); // Get all members
         Route::get('/liders', 'MembroController@allLiders'); // Get all members
@@ -14,7 +8,6 @@ Route::group(['middleware' => 'cors'], function() {
         Route::post('', 'MembroController@saveMembro'); // save member
         Route::post('/up/{id}', 'MembroController@updateMembro'); // update member     
     });
-    
     
     Route::group(['prefix' => 'celulas'], function () {
         Route::get('', 'CelulaController@allCelulas'); // Get all celulas
