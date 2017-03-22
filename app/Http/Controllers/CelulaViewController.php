@@ -3,13 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 use App\Http\Requests;
 
 use App\Celula;
 
 use App\Membro;
-
 // use App\Http\Requests;
 use App\User;
 // use Request;
@@ -89,8 +89,7 @@ class CelulaViewController extends Controller
     public function deleteMembro($id)
     {
         $this->celula->deleteMembro($id);
-        
-        return Redirect::route('celulas.allCelulas');
+        return Redirect::route('allCelulas');
 
     }
 }

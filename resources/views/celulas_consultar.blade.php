@@ -1,16 +1,17 @@
 @extends('layouts.dashboard.layout')
 
 @section('conteudo')
-        // $actionForm = "/membros/cadastrar/salvar";
-    if(!isset($membro)){ 
-        // $messageButton = "Cadastrar";
-        // $membro = null;
-    } else { 
-        $actionForm = "/celulas/up/{$membro['id']}";
-        $messageButton = "Alterar";
-    }
-?>
-<?php 
+<?php
+    //     // $actionForm = "/membros/cadastrar/salvar";
+    // if(!isset($membro)){ 
+    //     // $messageButton = "Cadastrar";
+    //     // $membro = null;
+    // } else { 
+    //     $actionForm = "/celulas/up/{$membro['id']}";
+    //     $messageButton = "Alterar";
+    // }
+?>  
+    <form method="post" name="teste" >
     <div class="row mt">
         <div class="col-md-12">
             <div class="content-panel">
@@ -34,8 +35,7 @@
                             <td>
                                 <button class="btn btn-success btn-xs"><i class="fa fa-check"></i></button>
                                 <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
-                                <input type="submit" />
-                                <a href="/celulas/del/{{$celula->id}}"><button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button></a>
+                                <button onclick="javascript: $('form').attr('action', '/celulas/del/{{$celula->id}}').submit()" class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
                             </td>
                         </tr>
                     @endforeach
@@ -53,4 +53,5 @@
             </div><!-- /content-panel -->
         </div><!-- /col-md-12 -->
     </div><!-- /row -->
+    </form>
 @stop

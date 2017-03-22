@@ -80,7 +80,7 @@ Route::group(['prefix' => 'membros'], function () {
 Route::group(['prefix' => 'celulas'], function () {
     Route::get('/cadastrar', 'CelulaViewController@viewCelula'); // save member
     Route::post('/cadastrar/save', 'CelulaViewController@saveCelula'); // save member
-    Route::get('/consultar', 'CelulaViewController@allCelulas'); // Get all members
+    Route::get('/consultar', 'CelulaViewController@allCelulas')->name('allCelulas'); // Get all members
     Route::get('/alterar/{id}', 'CelulaViewController@alterarMembro'); // Get all members
     Route::post('/up/{id}', 'CelulaViewController@updateMembro'); // update member     
     Route::post('/del/{id}', 'CelulaViewController@deleteMembro'); // update member     
