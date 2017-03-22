@@ -79,4 +79,17 @@ class CelulaViewController extends Controller
      
         return Response::json($celula, 200);
     }
+            /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function deleteMembro($id)
+    {
+        $this->celula->deleteMembro($id);
+        
+        return Redirect::route('celulas.allCelulas');
+
+    }
 }

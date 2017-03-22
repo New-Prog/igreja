@@ -1,6 +1,16 @@
 @extends('layouts.dashboard.layout')
 
 @section('conteudo')
+<?php 
+    if(!isset($membro)){ 
+        // $actionForm = "/membros/cadastrar/salvar";
+        // $messageButton = "Cadastrar";
+        // $membro = null;
+    } else { 
+        $actionForm = "/celulas/up/{$membro['id']}";
+        $messageButton = "Alterar";
+    }
+?>
     <div class="row mt">
         <div class="col-md-12">
             <div class="content-panel">
@@ -24,7 +34,8 @@
                             <td>
                                 <button class="btn btn-success btn-xs"><i class="fa fa-check"></i></button>
                                 <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
-                                <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
+                                <input type="submit" />
+                                <a href="/celulas/del/{{$celula->id}}"><button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button></a>
                             </td>
                         </tr>
                     @endforeach

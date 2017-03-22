@@ -59,5 +59,17 @@ class Celula extends Model
 
         return $celula;
     }
+        /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function deleteMembro($id)
+    {
+        $celula = self::find($id);
+        $celula->delete();
+        return;
+    }
 
 }
