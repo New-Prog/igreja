@@ -1,9 +1,8 @@
 @extends('layouts.dashboard.layout')
 
 @section('conteudo')
-<?php 
-    if(!isset($membro)){ 
         // $actionForm = "/membros/cadastrar/salvar";
+    if(!isset($membro)){ 
         // $messageButton = "Cadastrar";
         // $membro = null;
     } else { 
@@ -11,6 +10,7 @@
         $messageButton = "Alterar";
     }
 ?>
+<?php 
     <div class="row mt">
         <div class="col-md-12">
             <div class="content-panel">

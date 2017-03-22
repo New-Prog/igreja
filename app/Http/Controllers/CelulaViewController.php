@@ -8,6 +8,8 @@ use App\Http\Requests;
 
 use App\Celula;
 
+use App\Membro;
+
 // use App\Http\Requests;
 use App\User;
 // use Request;
@@ -25,20 +27,19 @@ class CelulaViewController extends Controller
     public function allCelulas()
     {
         
-        $celula = $this->celula->with('membro')->get();
+        $celula = $this->celula->allCelulas();
         
         if (!$celula)
         {
             return Response::json(['response' => 'Célula não encontrada'], 400);
         }
-     
-        return view('celulas_consultar')->with('celulas', $celula);
+        
+        return view('celulas_consultar')->with('celulas' , $celula);
     }
 
     public function viewCelula()
     {
-  
-        return view('celulas_cadastrar');
+        return view('celulas_cadastrar')->with('liders', Membro::allLiders());
     }
 
     public function getCelula($id)

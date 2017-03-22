@@ -78,11 +78,7 @@ Route::group(['prefix' => 'membros'], function () {
 //* INI - CELULAS *//
 //*****************//
 Route::group(['prefix' => 'celulas'], function () {
-    Route::get('/cadastrar', function() { 
-		return view('celulas_cadastrar');
-    }); 
-
-    // Route::get('/cadastrar', 'CelulaViewController@viewCelula'); // save member
+    Route::get('/cadastrar', 'CelulaViewController@viewCelula'); // save member
     Route::post('/cadastrar/save', 'CelulaViewController@saveCelula'); // save member
     Route::get('/consultar', 'CelulaViewController@allCelulas'); // Get all members
     Route::get('/alterar/{id}', 'CelulaViewController@alterarMembro'); // Get all members
