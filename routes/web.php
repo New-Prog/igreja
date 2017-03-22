@@ -104,11 +104,23 @@ Route::group(['prefix' => 'reunioes'], function () {
         return view('reunioes_cadastrar');
     }); 
 
+
+<<<<<<< HEAD
     Route::get('/consultar', 'ReuniaoViewController@allReunioes'); // Abrir tela retornando a view
+=======
+    Route::get('/consultar', 'ReuniaoViewController@viewReuniao'); // Abrir tela retornando a view
+>>>>>>> c2a0093ac3ee6d0dbdf2f439c0c5dd689bc1a841
     // Route::get('/cadastrar', 'ReuniaoViewController@saveReuniao'); //  
     Route::post('/cadastrar/save', 'ReuniaoViewController@saveReuniao'); // 
     Route::post('/alterar/{id}', 'ReuniaoViewController@alterarReuniao'); // 
 });
+<<<<<<< HEAD
+=======
+
+//*****************//
+//* FIM  - REUNIOES *//
+//*****************//
+>>>>>>> c2a0093ac3ee6d0dbdf2f439c0c5dd689bc1a841
 
 //*****************//
 //* FIM  - REUNIOES *//

@@ -3,17 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use App\Http\Requests;
-
 use App\Membro;
 use App\Celula;
-
 // use App\Http\Requests;
 use App\User;
 // use Request;
-use Response;
-
+use Response
 
 class MembroController extends Controller
 {
