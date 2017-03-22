@@ -11,7 +11,7 @@ use Response;
 
 
 
-class PostsViewController extends Controller
+class PostViewController extends Controller
 {
     protected $post;
 
@@ -38,6 +38,18 @@ class PostsViewController extends Controller
 
         return Response::json($post, 200);
     }
+    public function viewPosts()
+    {
+
+        $posts = $this->post->allPosts();
+
+        if (!$posts)
+        {
+            return Response::json(['response' => ''], 400);
+        }
+
+        return view('posts_consultar')->with('posts', $posts);
+    }
     public function getPost($id)
     {
         $post = $this->post->getPost($id);
@@ -61,7 +73,8 @@ class PostsViewController extends Controller
             return Response::json(['response' => 'post não encontrado'], 400);
         } 
         
-        return Response::json($post, 200);        
+        $posts = $this->post->allPosts();
+        return view('posts_consultar')->with('posts', $posts);
 
     }
 

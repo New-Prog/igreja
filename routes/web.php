@@ -79,7 +79,7 @@ Route::group(['prefix' => 'membros'], function () {
 //*****************//
 Route::group(['prefix' => 'celulas'], function () {
     Route::get('/cadastrar', function() { 
-		return view('membros_cadastrar');
+		return view('celulas_cadastrar');
     }); 
 
     // Route::get('/cadastrar', 'CelulaViewController@viewCelula'); // save member
@@ -97,19 +97,8 @@ Route::group(['prefix' => 'celulas'], function () {
 
 
 //*****************//
-//* INI  - CELULAS *//
+//* INI  - REUNIOES *//
 //*****************//
-Route::group(['prefix' => 'reunioes'], function () {
-    Route::get('/cadastrar', function() { 
-        return view('reunioes_cadastrar');
-    }); 
-
-    Route::get('/consultar', 'ReuniaoViewController@viewReuniao'); // Abrir tela retornando a view
-    // Route::get('/cadastrar', 'ReuniaoViewController@saveReuniao'); //  
-    Route::post('/cadastrar/save', 'ReuniaoViewController@saveReuniao'); // 
-    Route::post('/alterar/{id}', 'ReuniaoViewController@alterarReuniao'); // 
-});
-
 Route::group(['prefix' => 'reunioes'], function () {
     Route::get('/cadastrar', function() { 
         return view('reunioes_cadastrar');
@@ -121,15 +110,19 @@ Route::group(['prefix' => 'reunioes'], function () {
     Route::post('/alterar/{id}', 'ReuniaoViewController@alterarReuniao'); // 
 });
 
+//*****************//
+//* FIM  - REUNIOES *//
+//*****************//
+
 Route::group(['prefix' => 'posts'], function () {
     Route::get('/cadastrar', function() { 
         return view('posts_cadastrar');
     }); 
 
-    Route::get('/consultar', 'PostsViewController@viewPosts'); // Abrir tela retornando a view
+    Route::get('/consultar', 'PostViewController@viewPosts'); // Abrir tela retornando a view
     // Route::get('/cadastrar', 'ReuniaoViewController@saveReuniao'); //  
-    Route::post('/cadastrar/save', 'PostsViewController@savePosts'); // 
-    Route::post('/alterar/{id}', 'PostsViewController@alterarPosts'); // 
+    Route::post('/cadastrar/save', 'PostViewController@savePost'); // 
+    Route::post('/alterar/{id}', 'PostViewController@alterarPosts'); // 
 });
 // Route::get('/listarMembros', 'MembroController@listar');
 
@@ -169,30 +162,4 @@ Route::group(['prefix' => 'posts'], function () {
 
 // Route::get('/reunioes/cadastrar', function() {
 // 		return view('reunioes_cadastrar');
-// });
-
-<<<<<<< HEAD
-// <<<<<<< HEAD
-// =======
-// Route::get('/celulas/consultar', function() {
-// 		return view('celulas_consultar');
-// });
-
-// Route::get('/celulas/cadastrar', function() {
-// 		return view('celulas_cadastrar');
-// 	});
-
-// >>>>>>> 2fa284f5c01a3c22a241a71348d33b13513591e7
-Route::get('/reunioes/cadastrar', function() {
-		return view('reunioes_cadastrar');
-});
-=======
-
-// Route::get('/posts/cadastrar', function() {
-//         return view('reunioes_cadastrar');
-// });
->>>>>>> 3ef179b5869681defd93ac0f797d3b04e1e792b8
-
-// Route::get('/posts/cadastrar', function() {
-//         return view('reunioes_cadastrar');
 // });
