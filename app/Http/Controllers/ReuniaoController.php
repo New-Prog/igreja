@@ -27,7 +27,8 @@ class ReuniaoController extends Controller
 
     public function allReunioes()
     {
-        $reuniao = $this->reuniao->with('celulas')->get();
+        $reuniao = $this->reuniao->with('celula')->get();
+        
         
         if (!$reuniao)
         {
