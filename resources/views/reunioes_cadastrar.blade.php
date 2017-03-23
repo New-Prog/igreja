@@ -83,15 +83,18 @@
                     <input type="text" class="form-control" name="estado" value="{{ $reuniao['estado']}}">
                 </div>  
             </div>  
+        </div>
 
+        <div class="form-panel barra-botoes">
             <div class="form-group">
                 <div class="col-sm-11 grupo_btn_cadastro">
                     <button type="submit" class="btn btn-danger">Cancelar</button>
                     <button type="submit" class="btn btn-warning">Limpar</button>
-                    <button type="submit" class="btn btn-success">{{ $messageButton }}</button>
+                    <button class="btn btn-success">{{ $messageButton }}</button>
                 </div>  
             </div> 
-        </div>
+        </div>  
+
     </form>
 
   </div><!-- col-lg-12-->      	

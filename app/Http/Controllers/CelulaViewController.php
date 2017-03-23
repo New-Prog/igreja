@@ -32,13 +32,13 @@ class CelulaViewController extends Controller
             return Response::json(['response' => 'Célula não encontrada'], 400);
         }
      
-        return view('celulas_consultar')->with('celulas', $celula);
+        return view('celulas_consultar')->with('celulas', $celula)->renderSections()['conteudo'];
     }
 
     public function viewCelula()
     {
   
-        return view('celulas_cadastrar');
+        return view('celulas_cadastrar')->renderSections()['conteudo'];
     }
 
     public function getCelula($id)
@@ -50,7 +50,7 @@ class CelulaViewController extends Controller
             return Response::json(['response' => 'Célula não encontrada'], 400);
         }
 
-        return view('celulas_consultar')->with('celulas', $celula);
+        return view('celulas_consultar')->with('celulas', $celula)->renderSections()['conteudo'];
     }
 
     public function saveCelula(Request $request)

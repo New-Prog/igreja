@@ -13,6 +13,8 @@
 ?>
 <h3><i class="fa fa-angle-right"></i> Cadastro de Membros</h3>
 
+
+
 <!-- BASIC FORM ELELEMNTS -->
 <div class="row mt">
   <div class="col-lg-12">
@@ -20,14 +22,13 @@
     <form class="form-horizontal style-form" method="post" action="{{ $actionForm }}">
         <div class="form-panel">
             <h4 class="mb"><i class="fa fa-angle-right"></i> Dados Pesoais</h4>
-                
+
             <div class="form-group">
                 <label class="col-sm-1  control-label">Nome</label>
                 <div class="col-sm-11">
                     <input type="text" class="form-control" name="nome" value="{{ $membro['nome']}}">
                 </div>  
             </div> 
-
             <div class="form-group">
                 <label class="col-sm-1  control-label">Sexo</label>
                 <div class="col-sm-11">
@@ -45,6 +46,8 @@
                         </div>
                     </div>   
                 </div>  
+
+
 
 
             
@@ -154,43 +157,38 @@
                 </div>  
             </div>  
 
-            <div class="form-panel">
-                <h4 class="mb"><i class="fa fa-angle-right"></i>Celula</h4>
-                <div class="form-group">
-                    <label class="col-sm-1  control-label">Celula Participante</label>
-                    <div class="col-sm-11">
-                        <select type="tipo" class="form-control"  name="fk_celula">
-                            <option value="1">Celula Deus Vivo</option>
-                            <option value="2">Celula Amor Paterno</option>
-                            <option value="3">Celula novos Discipulos</option>
-                        </select>
-                    </div>  
-                </div> 
-            </div>   
-
-
-            <div class="form-panel">
-                <h4 class="mb"><i class="fa fa-angle-right"></i>Hierarquia</h4>
-                <div class="form-group">
-                    <label class="col-sm-1  control-label">Tipo de membro</label>
-                    <div class="col-sm-11">
-                        <select type="tipo" class="form-control" name="tipo">
-                            <option value="membro">Membro</option>
-                            <option value="lider">Lider</option>
-                            <option value="pastor">Pastor</option>
-                        </select>
-                    </div>  
-                </div> 
-            </div>   
+            <h4 class="mb"><i class="fa fa-angle-right"></i>Celula</h4>
+            <div class="form-group">
+                <label class="col-sm-1  control-label">Celula Participante</label>
+                <div class="col-sm-11">
+                    <select type="tipo" class="form-control"  name="fk_celula">
+                        <option value="1">Celula Deus Vivo</option>
+                        <option value="2">Celula Amor Paterno</option>
+                        <option value="3">Celula novos Discipulos</option>
+                    </select>
+                </div>  
+            </div> 
+ 
+            <h4 class="mb"><i class="fa fa-angle-right"></i>Hierarquia</h4>
+            <div class="form-group">
+                <label class="col-sm-1  control-label">Tipo de membro</label>
+                <div class="col-sm-11">
+                    <select type="tipo" class="form-control" name="tipo">
+                        <option value="membro">Membro</option>
+                        <option value="lider">Lider</option>
+                        <option value="pastor">Pastor</option>
+                    </select>
+                </div>  
+            </div> 
         </div>   
+        
 
-   
-        <div class="form-panel">
+        <div class="form-panel barra-botoes">
             <div class="form-group">
                 <div class="col-sm-11 grupo_btn_cadastro">
                     <button type="submit" class="btn btn-danger">Cancelar</button>
                     <button type="submit" class="btn btn-warning">Limpar</button>
-                    <button type="submit" class="btn btn-success">{{ $messageButton }}</button>
+                    <button class="btn btn-success">{{ $messageButton }}</button>
                 </div>  
             </div> 
         </div>  
@@ -200,7 +198,6 @@
     </div>
   </div><!-- col-lg-12-->      	
 </div><!-- /row -->
-
 
 
 <script type="text/javascript" src="/dashboard_layout/js/jquery.js"></script>
@@ -220,6 +217,7 @@
 
     
 </script>
+
 
 
 
