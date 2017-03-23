@@ -61,7 +61,7 @@ class PostViewController extends Controller
     public function savePost(Request $request)
     {
         
-        return view('posts_cadastrar');
+        //return view('posts_cadastrar');
 
         // $input = $request->all();
 
@@ -72,7 +72,7 @@ class PostViewController extends Controller
         ]);
 
         $imageName = time().'.'.$request->image->getClientOriginalExtension();
-        $request->image->move(public_path('img'), $imageName);
+        $request->image->move(public_path('images/eventos'), $imageName);
         
 
 
