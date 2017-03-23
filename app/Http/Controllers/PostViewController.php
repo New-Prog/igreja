@@ -21,11 +21,7 @@ class PostViewController extends Controller
    
     }
 
-    // public function VemNiMimView()
-    // {
-    //     return view('blog');
-    // }
-    
+
     public function allPosts()
     {
 
@@ -64,17 +60,21 @@ class PostViewController extends Controller
 
     public function savePost(Request $request)
     {
-        $input = $request->all();
-
-        $post = $this->post->savepost($input);
-
-        if (!$post)
-        {
-            return Response::json(['response' => 'post não encontrado'], 400);
-        } 
         
-        $posts = $this->post->allPosts();
-        return view('posts_consultar')->with('posts', $posts);
+        return view('posts_cadastrar');
+
+        // $input = $request->all();
+
+        
+        
+       $this->validate($request, [
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+
+        $imageName = time().'.'.$request->image->getClientOriginalExtension();
+        $request->image->move(public_path('img'), $imageName);
+        
+
 
     }
 

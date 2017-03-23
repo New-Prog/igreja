@@ -8,7 +8,7 @@ class Post extends Model
 {
 	protected $table = 'posts';
 
-    protected $fillable = ['nome', 'descricao', 'tipo'];
+    // protected $fillable = ['nome', 'descricao', 'tipo'];
     
 
     public function allPosts()
@@ -18,15 +18,15 @@ class Post extends Model
      
     public function savePost($arr)
     {
-        $input = $arr;
+        // $input = $arr;
         
-        $post = new Post();
+        // $post = new Post();
         
-        $post->fill($input);
+        // $post->fill($input);
 
-        $post->save();
+        // $post->save();
 
-        return $post;
+        // return $post;
         
     }
     
