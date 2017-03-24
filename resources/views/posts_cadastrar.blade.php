@@ -2,6 +2,8 @@
 
 @section('conteudo')
 <?php
+    //dd($_SERVER);
+    
     $post = array(
         'nome' =>'a' ,'descricao'=>'a','tipo'=>'a'
     );
