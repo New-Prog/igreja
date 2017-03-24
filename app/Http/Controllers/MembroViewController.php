@@ -37,7 +37,7 @@ class MembroViewController extends Controller
      */
     public function index()
     {
-        return view('view_membros');
+        return view('view_membros')->renderSections()['conteudo'];
     }
     
     public function allMembros()
@@ -48,7 +48,7 @@ class MembroViewController extends Controller
         {
             return Response::json(['response' => 'Membro não encontrado'], 400);
         }    
-        return view('membros_consultar')->with('membros', $membro);
+        return view('membros_consultar')->with('membros', $membro)->renderSections()['conteudo'];
    
     }
     public function getMembro($id)

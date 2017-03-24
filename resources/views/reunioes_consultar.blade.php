@@ -36,4 +36,15 @@
             </div><!-- /content-panel -->
         </div><!-- /col-md-12 -->
     </div><!-- /row -->
+
+<div class="form-panel barra-botoes">
+    <div class="form-group">
+        <div class="col-sm-11 grupo_btn_cadastro">
+            <a class="btn_link" href="/reunioes/cadastrar">
+                <button class="btn btn-success btn_link">Cadastrar Nova Reunião</button>
+            <a>
+        </div>  
+    </div> 
+</div>  
+
 @stop   
