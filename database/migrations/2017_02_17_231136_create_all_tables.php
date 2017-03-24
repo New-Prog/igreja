@@ -40,12 +40,13 @@ class CreateAllTables extends Migration
         // });
         
         Schema::create('posts', function (Blueprint $table) {
-
             $table->increments('id');
-            
+            $table->string('data', 255);
             $table->string('nome', 255);
             $table->string('descricao', 255);
             $table->string('tipo', 255);
+            $table->string('link_imagem', 255);
+            $table->string('link', 255);
             $table->timestamps();
 
         });
@@ -60,11 +61,13 @@ class CreateAllTables extends Migration
         
         Schema::create('reunioes', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('descricao', 255);
             $table->string('tema')->nullable();
-            $table->string('cep', 20);
+            $table->date('data')->nullable();
+            $table->string('cep', 30);
             $table->string('logradouro', 255);
-            $table->string('numero', 20);
-            $table->string('complemento', 20);
+            $table->string('numero', 30);
+            $table->string('complemento', 20)->nullable();
             $table->string('bairro', 100);
             $table->string('cidade', 100);
             $table->string('estado', 100);

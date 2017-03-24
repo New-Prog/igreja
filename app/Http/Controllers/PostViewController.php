@@ -32,7 +32,7 @@ class PostViewController extends Controller
             return Response::json(['response' => ''], 400);
         }
 
-        return Response::json($post, 200);
+        return 
     }
     public function viewPosts()
     {
@@ -61,21 +61,27 @@ class PostViewController extends Controller
     public function savePost(Request $request)
     {
         
-        //return view('posts_cadastrar');
-
-        // $input = $request->all();
-
-        
-        
        $this->validate($request, [
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'image' => 'required|image|mimes:jpeg,pdf,png,jpg,gif,svg|max:2048',
         ]);
 
         $imageName = time().'.'.$request->image->getClientOriginalExtension();
+        
         $request->image->move(public_path('images/eventos'), $imageName);
         
-
-
+        $arr_ins = array(
+            'nome'        => $request->nome, 
+            'descricao'   => $request->descricao, 
+            'tipo'        => $request->tipo, 
+            'link_imagem' => public_path('images/eventos/'.$imageName), 
+            'link'        => $request->link, 
+            'data'        => $request->data, 
+        );
+        
+        $post = $this->savePost($arr_ins);
+    
+        return view('posts_cadastrar')->with('post', $post);
+        
     }
 
 
