@@ -51,6 +51,8 @@ Route::group(['prefix' => 'membros'], function () {
     Route::get('/consultar', 'MembroViewController@allMembros')->name('allMembros'); // Get all members
     Route::get('/alterar/{id}', 'MembroViewController@alterarMembro')->name('alterarMembro'); // Get all members
     Route::post('/up/{id}', 'MembroViewController@updateMembro')->name('updateMembro'); // update member
+    Route::get('/del/{id}', 'MembroViewController@deleteMembro')->name('deleteMembro'); // update member     
+
 
 });
 //*****************//
@@ -64,9 +66,9 @@ Route::group(['prefix' => 'celulas'], function () {
     Route::get('/cadastrar' , 'CelulaViewController@viewCelula')->name('viewCelula');
     Route::post('/cadastrar/save', 'CelulaViewController@saveCelula')->name('saveCelula'); // save member
     Route::get('/consultar', 'CelulaViewController@allCelulas')->name('allCelulas'); // Get all members
-    Route::get('/alterar/{id}', 'CelulaViewController@alterarMembro')->name('alterarMembro'); // Get all members
+    Route::get('/alterar/{id}', 'CelulaViewController@alterarCelula')->name('alterarMembro'); // Get all members
     Route::post('/up/{id}', 'CelulaViewController@updateMembro')->name('updateMembro'); // update member     
-    Route::post('/del/{id}', 'CelulaViewController@deleteMembro')->name('deleteMembro'); // update member     
+    Route::get('/del/{id}', 'CelulaViewController@deleteMembro')->name('deleteMembro'); // update member     
 });
 //*****************//
 //* FIM - CELULAS *//

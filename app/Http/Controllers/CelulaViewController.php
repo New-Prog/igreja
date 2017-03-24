@@ -80,8 +80,17 @@ class CelulaViewController extends Controller
         return Response::json($celula, 200);
     }
     public function alterarCelula($id, Request $request)
-    {
+    {   
         return false;
+        #TODO /// jeferson desenvolver
+        $celula = $this->celula->getcelula($id);
+        
+        if (!$celula)
+        {
+            //return Response::json(['response' => 'celula não encontrado'], 400);
+        }
+    
+        return view('celulas_cadastrar')->with('celula', $celula)->renderSections()['conteudo'];
     }
             /**
      * Remove the specified resource from storage.

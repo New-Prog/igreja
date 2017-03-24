@@ -1,7 +1,9 @@
 @extends('layouts.dashboard.layout')
 
 @section('conteudo')
+
 <?php 
+
     if(!isset($membro)){ 
         $actionForm = "/membros/cadastrar/salvar";
         $messageButton = "Cadastrar";
@@ -148,9 +150,9 @@
                 <label class="col-sm-1  control-label">Celula Participante</label>
                 <div class="col-sm-11">
                     <select type="tipo" class="form-control"  name="fk_celula">
-                        <option value="1">Celula Deus Vivo</option>
-                        <option value="2">Celula Amor Paterno</option>
-                        <option value="3">Celula novos Discipulos</option>
+                        @foreach ($celulas as $celula)
+                            <option value="{{ $celula['id'] }}">{{ $celula['nome'] }}</option>
+                        @endforeach
                     </select>
                 </div>  
             </div> 
