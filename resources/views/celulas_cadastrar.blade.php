@@ -43,11 +43,12 @@
                 <h4 class="mb"><i class="fa fa-angle-right"></i>Líder</h4>
                 <div class="form-group">
                     <div class="col-sm-11">
-                        <select  class="form-control" name="name">
-                        @foreach($liders as $lider)
-                            <option value="{{$lider->id}}">{{$lider->nome}}</option>
-                        @endforeach
-                        </select>
+                        <input type="text" class="form-control" name="lider">
+                        {{-- <select  class="form-control" name="name">
+                            @foreach($liders as $lider)
+                                <option value="{{$lider->id}}">{{$lider->nome}}</option>
+                            @endforeach
+                        </select> --}}
                     </div>  
                 </div> 
             </div>   
