@@ -20,47 +20,32 @@
                   </li>
 
                   <li class="sub-menu">
-                      <a href="javascript:;" >
+                      <a class="menu-item" href="/membros/consultar" >
                           <i class="glyphicon glyphicon-user"></i>
                           <span>Membros</span>
 
                       </a>
-                      <ul class="sub">
-                          <li><a  href="/membros/cadastrar">Cadastrar</a></li>
-                          <li><a  href="/membros/consultar">Consultar</a></li>
-                      </ul>
                   </li>
 
-
                 <li class="sub-menu">
-                      <a href="/celulas/consultar" >
+                      <a class="menu-item" href="/celulas/consultar" >
                           <i class="fa fa-tasks"></i>
                           <span>Celulas</span>
                       </a>
                   </li>
 
                   <li class="sub-menu">
-                      <a href="javascript:;" >
+                      <a class="menu-item" href="/reunioes/consultar" >
                           <i class="fa fa-book"></i>
                           <span>Reuniões</span>
-
                       </a>
-                      <ul class="sub">
-                          <li><a  href="/reunioes/cadastrar">Cadastrar</a></li>
-                          <li><a  href="/reunioes/consultar">Consultar</a></li>
-                      </ul>
                   </li>
 
                   <li class="sub-menu">
-                      <a href="javascript:;" >
+                      <a class="menu-item" href="/posts/consultar" >
                           <i class="fa fa-book"></i>
                           <span>Posts</span>
-
                       </a>
-                      <ul class="sub">
-                          <li><a  href="/posts/cadastrar">Cadastrar</a></li>
-                          <li><a  href="/posts/consultar">Consultar</a></li>
-                      </ul>
                   </li>
 
 
@@ -71,9 +56,9 @@
                           <span>Configurações</span>
                       </a>
                       <ul class="sub">
-                          <li><a  href="calendar.html">Calendar</a></li>
-                          <li><a  href="gallery.html">Gallery</a></li>
-                          <li><a  href="todo_list.html">Todo List</a></li>
+                         <li><a class="menu-item" href="calendar.html">Calendar</a></li>
+                         <li><a class="menu-item" href="gallery.html">Gallery</a></li>
+                         <li><a class="menu-item" href="todo_list.html">Todo List</a></li>
                       </ul>
                   </li>
 

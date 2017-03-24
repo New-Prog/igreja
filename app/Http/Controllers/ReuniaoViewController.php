@@ -33,7 +33,7 @@ class ReuniaoViewController extends Controller
         {
             return Response::json(['response' => ''], 400);
         }
-        return view('reunioes_consultar')->with('reunioes', $reuniao);
+        return view('reunioes_consultar')->with('reunioes', $reuniao)->renderSections()['conteudo'];
 
         // return Response::json($reuniao->with('celula')->get(), 200);
     }

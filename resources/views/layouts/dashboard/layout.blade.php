@@ -45,7 +45,7 @@
     <!--Conteudo content start-->
 
     <section id="main-content">
-        <section class="wrapper">
+        <section class="wrapper" id="conteudo-principal">
             @yield('conteudo')
         </section>
     </section>

@@ -1,4 +1,21 @@
-     <!--footer start-->
+   
+<?php 
+    if(!isset($membro)){ 
+        $actionForm = "/membros/cadastrar/salvar";
+        $messageButton = "Cadastrar";
+        $membro = null;
+    } else { 
+        $actionForm = "/membros/up/{$membro['id']}";
+        $messageButton = "Alterar";
+    }
+
+    if(!isset($mensagem)){
+        $mensagem = array();
+    }
+
+?>
+
+  <!--footer start-->
       <footer class="site-footer">
           <div class="text-center">
               2017 - New Prog Softwares
@@ -32,19 +49,22 @@
 	
 	<script type="text/javascript">
         $(document).ready(function () {
+            
+          
+            
         var unique_id = $.gritter.add({
             // (string | mandatory) the heading of the notification
-            title: 'Seja bem vindo ao Sistema New Prog!',
+            //title: 'Seja bem vindo ao Sistema New Prog!',
             // (string | mandatory) the text inside the notification
-            text: 'O sistema se encontra em fase de desenvolvimento. Existem funcionalidades que ainda não estão ativas.',
+            //text: 'O sistema se encontra em fase de desenvolvimento. Existem funcionalidades que ainda não estão ativas.',
             // (string | optional) the image to display on the left
-            image: '/dashboard_layout/img/ui-sam.jpg',
+            //image: '/dashboard_layout/img/ui-sam.jpg',
             // (bool | optional) if you want it to fade out on its own or just sit there
-            sticky: true,
+            //sticky: true,
             // (int | optional) the time you want it to be alive for before fading out
-            time: '',
+            //time: '',
             // (string | optional) the class name you want to apply to that specific message
-            class_name: 'my-sticky-class'
+            //class_name: 'my-sticky-class'
         });
 
         return false;
@@ -53,6 +73,21 @@
 	
 	<script type="application/javascript">
         $(document).ready(function () {
+
+            $(document).on('click', ".btn_link", function () {
+                event.preventDefault();
+                $('#conteudo-principal').load($(this).attr('href'));
+            });
+
+
+
+            $( ".menu-item" ).click(function( event ) {
+                event.preventDefault();
+                
+                $('#conteudo-principal').load($(this).attr('href'));
+
+            });
+
             $("#date-popover").popover({html: true, trigger: "manual"});
             $("#date-popover").hide();
             $("#date-popover").click(function (e) {
