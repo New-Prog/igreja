@@ -37,6 +37,10 @@ class ReuniaoViewController extends Controller
 
         // return Response::json($reuniao->with('celula')->get(), 200);
     }
+    public function viewReuniao()
+    {
+        return view('reunioes_cadastrar')->renderSections()['conteudo'];
+    }
 
     public function getReuniao($id)
     {
