@@ -52,7 +52,7 @@ class Reuniao extends Model
         
         // dd($id);
 
-        $reuniao = self::find($id);
+        $reuniao = $this->find($id);
            
         if (is_null($reuniao)) 
         {
