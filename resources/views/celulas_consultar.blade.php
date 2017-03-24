@@ -2,7 +2,7 @@
 
 @section('conteudo')
 <?php
-    //     // $actionForm = "/membros/cadastrar/salvar";
+    //     // $actionForm = "/celulas/cadastrar/salvar";
     // if(!isset($membro)){ 
     //     // $messageButton = "Cadastrar";
     //     // $membro = null;
@@ -33,8 +33,8 @@
                             <td class="hidden-phone">{{ $celula->lider }}</td>
                             <td>{{ $celula->descricao }}</td>
                             <td>
-                                <a href="/celulas/alterar/{{ $celula['id'] }}" alt="alterar"><button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button></a>
-                                <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
+                                <a class="btn_link" href="/celulas/alterar/{{ $celula['id'] }}" alt="alterar"><button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button></a>
+                                <a class="btn_link" href="/celulas/del/{{ $celula['id'] }}" alt="deletar" ><button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
                             </td>
                         </tr>
                     @endforeach

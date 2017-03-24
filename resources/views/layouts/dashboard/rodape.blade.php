@@ -79,12 +79,13 @@
                 $('#conteudo-principal').load($(this).attr('href'));
             });
 
+  
 
-
-            $( ".menu-item" ).click(function( event ) {
-                event.preventDefault();
-                
+            $(document).on('click', ".menu-item" , function( event ) {
+                event.stopImmediatePropagation();
+        
                 $('#conteudo-principal').load($(this).attr('href'));
+                return false
 
             });
 

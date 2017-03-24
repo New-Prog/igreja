@@ -51,6 +51,7 @@ Route::group(['prefix' => 'membros'], function () {
     Route::get('/consultar', 'MembroViewController@allMembros'); // Get all members
     Route::get('/alterar/{id}', 'MembroViewController@alterarMembro'); // Get all members
     Route::post('/up/{id}', 'MembroViewController@updateMembro'); // update member
+    Route::get('/del/{id}', 'MembroViewController@deleteMembro'); // update member     
 });
 //*****************//
 //* FIM - MEMBROS *//
@@ -66,8 +67,8 @@ Route::group(['prefix' => 'celulas'], function () {
     }); 
     Route::post('/cadastrar/save', 'CelulaViewController@saveCelula'); // save member
     Route::get('/consultar', 'CelulaViewController@allCelulas')->name('allCelulas'); // Get all members
-    Route::get('/alterar/{id}', 'CelulaViewController@alterarMembro'); // Get all members
-    Route::post('/up/{id}', 'CelulaViewController@updateMembro'); // update member     
+    Route::get('/alterar/{id}', 'CelulaViewController@alterarCelula'); // Get all members
+    Route::post('/up/{id}', 'CelulaViewController@updateCelula'); // update member     
     Route::post('/del/{id}', 'CelulaViewController@deleteMembro'); // update member     
 });
 //*****************//

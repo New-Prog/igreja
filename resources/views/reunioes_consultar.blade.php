@@ -24,8 +24,8 @@
                             <td class="hidden-phone">{{ $reuniao['tema'] }}</td>
                             <td>{{ $reuniao['created_at'] }}</td>
                             <td>
-                                <a href="/reunioes/alterar/{{ $reuniao['id'] }}" alt="alterar"><button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button></a>
-                                <a href="#" alt="alterar" ><button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button></a>
+                                <a class="btn_link" href="/reunioes/alterar/{{ $reuniao['id'] }}" alt="alterar"><button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button></a>
+                                <a class="btn_link" href="/reunioes/del/{{ $reuniao['id'] }}"    alt="deletar"><button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button></a>
                             </td>
                         </tr>
                     @endforeach

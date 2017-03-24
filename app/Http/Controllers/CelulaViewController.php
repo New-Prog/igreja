@@ -80,6 +80,10 @@ class CelulaViewController extends Controller
      
         return Response::json($celula, 200);
     }
+    public function alterarCelula($id, Request $request)
+    {
+        return false;
+    }
             /**
      * Remove the specified resource from storage.
      *

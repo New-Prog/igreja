@@ -24,8 +24,8 @@
                                 <td class="hidden-phone">{{ $membro['fk_celula'] }}</td>
                                 <td>{{ $membro['tipo'] }}</td>
                                 <td>
-                                    <a href="/membros/alterar/{{ $membro['id'] }}" alt="alterar"><button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button></a>
-                                    <a href="#" alt="alterar" ><button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button></a>
+                                    <a class="btn_link" href="/membros/alterar/{{ $membro['id'] }}" alt="alterar"><button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button></a>
+                                    <a class="btn_link" href="/membros/del/{{ $membro['id'] }}" alt="deletar" ><button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button></a>
                                 </td>
                             </tr>
                         @endforeach

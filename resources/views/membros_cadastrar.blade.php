@@ -143,20 +143,6 @@
                 </div>  
             </div>  
 
-            <div class="form-group">
-                <label class="col-sm-1  control-label">Latitude</label>
-                <div class="col-sm-11">
-                    <input type="text" class="form-control" name="latitude" value="{{ $membro['latitude']}}">
-                </div>  
-            </div>  
-
-            <div class="form-group">
-                <label class="col-sm-1  control-label">Longitude</label>
-                <div class="col-sm-11">
-                    <input type="text" class="form-control" name="longitude" value="{{ $membro['longitude']}}">
-                </div>  
-            </div>  
-
             <h4 class="mb"><i class="fa fa-angle-right"></i>Celula</h4>
             <div class="form-group">
                 <label class="col-sm-1  control-label">Celula Participante</label>

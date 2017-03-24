@@ -102,7 +102,16 @@ class MembroViewController extends Controller
             //return Response::json(['response' => 'Membro não encontrado'], 400);
         }
         $id = $id - 1;
-        return view('membros_cadastrar')->with('membro', $membro[$id]);
+        return view('membros_cadastrar')->with('membro', $membro[$id])->renderSections()['conteudo'];
         
+    }
+    public function deleteMembro($id)
+    {
+        $this->membro->deleteMembro($id);
+        
+        $membros = $this->membro->with('celula')->get();
+        return view('membros_consultar')->with('membros', $membros)->renderSections()['conteudo'];
+
+        //return Redirect::route('allCelulas');
     }
 }
