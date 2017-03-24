@@ -28,7 +28,7 @@ class Membro extends Model
         return self::all();
     }
 
-    public function allLiders()
+    public static function allLiders()
     {   
         
         $membro = self::where('tipo' ,'lider')->get();

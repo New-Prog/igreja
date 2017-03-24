@@ -1,5 +1,6 @@
 <?php
 use Illuminate\Http\Request;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -50,7 +51,6 @@ Route::group(['prefix' => 'membros'], function () {
     Route::get('/consultar', 'MembroViewController@allMembros'); // Get all members
     Route::get('/alterar/{id}', 'MembroViewController@alterarMembro'); // Get all members
     Route::post('/up/{id}', 'MembroViewController@updateMembro'); // update member
-    // Route::get('/{id}', 'MembroViewController@getMembro'); // Get member specific
 });
 //*****************//
 //* FIM - MEMBROS *//
@@ -60,15 +60,15 @@ Route::group(['prefix' => 'membros'], function () {
 //* INI - CELULAS *//
 //*****************//
 Route::group(['prefix' => 'celulas'], function () {
+
     Route::get('/cadastrar', function() { 
 		return view('celulas_cadastrar')->renderSections()['conteudo'];
     }); 
-    // Route::get('/cadastrar', 'CelulaViewController@viewCelula'); // save member
     Route::post('/cadastrar/save', 'CelulaViewController@saveCelula'); // save member
-    Route::get('/consultar', 'CelulaViewController@allCelulas'); // Get all members
+    Route::get('/consultar', 'CelulaViewController@allCelulas')->name('allCelulas'); // Get all members
     Route::get('/alterar/{id}', 'CelulaViewController@alterarMembro'); // Get all members
     Route::post('/up/{id}', 'CelulaViewController@updateMembro'); // update member     
-    // Route::get('/{id}', 'MembroViewController@getMembro'); // Get member specific
+    Route::post('/del/{id}', 'CelulaViewController@deleteMembro'); // update member     
 });
 //*****************//
 //* FIM - CELULAS *//
@@ -83,8 +83,6 @@ Route::group(['prefix' => 'reunioes'], function () {
     }); 
 
     Route::get('/consultar', 'ReuniaoViewController@allReunioes'); // Abrir tela retornando a view
-    //Route::get('/consultar', 'ReuniaoViewController@viewReuniao'); // Abrir tela retornando a view
-    // Route::get('/cadastrar', 'ReuniaoViewController@saveReuniao'); //  
     Route::post('/cadastrar/save', 'ReuniaoViewController@saveReuniao'); // 
     Route::post('/alterar/{id}', 'ReuniaoViewController@alterarReuniao'); // 
 });
@@ -97,7 +95,6 @@ Route::group(['prefix' => 'posts'], function () {
         return view('posts_cadastrar')->renderSections()['conteudo'];
     }); 
     Route::get('/consultar', 'PostViewController@viewPosts'); // Abrir tela retornando a view
-    // Route::get('/cadastrar', 'ReuniaoViewController@saveReuniao'); //  
     Route::post('/cadastrar/save', 'PostViewController@savePost'); // 
     Route::post('/alterar/{id}', 'PostViewController@alterarPosts'); // 
 });

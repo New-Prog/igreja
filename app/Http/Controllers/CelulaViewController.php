@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 use App\Http\Requests;
 
 use App\Celula;
 
+use App\Membro;
 // use App\Http\Requests;
 use App\User;
 // use Request;
@@ -25,20 +27,19 @@ class CelulaViewController extends Controller
     public function allCelulas()
     {
         
-        $celula = $this->celula->with('membro')->get();
+        $celula = $this->celula->allCelulas();
         
         if (!$celula)
         {
             return Response::json(['response' => 'Célula não encontrada'], 400);
         }
-     
         return view('celulas_consultar')->with('celulas', $celula)->renderSections()['conteudo'];
     }
 
     public function viewCelula()
-    {
-  
+    {  
         return view('celulas_cadastrar')->renderSections()['conteudo'];
+
     }
 
     public function getCelula($id)
@@ -78,5 +79,17 @@ class CelulaViewController extends Controller
         }
      
         return Response::json($celula, 200);
+    }
+            /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function deleteMembro($id)
+    {
+        $this->celula->deleteMembro($id);
+        return Redirect::route('allCelulas');
+
     }
 }
