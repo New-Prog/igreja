@@ -14,6 +14,7 @@ Route::group(['middleware' => 'cors'], function() {
         Route::get('/{id}', 'CelulaController@getCelula'); // Get celula specific
         Route::post('', 'CelulaController@saveCelula'); // save celula
         Route::post('/up/{id}', 'CelulaController@updateCelula'); // update celula     
+        Route::post('/del/{id}', 'CelulaController@deleteMembro'); // update member     
     });
     
     Route::group(['prefix' => 'reunioes'], function () {
