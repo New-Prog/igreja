@@ -30,6 +30,7 @@ Route::auth();
 //**********************//
 //* FIM - TELA INICIAL *//
 //**********************//
+
 //********************//
 //* INI - DASHBOARD *//
 //*******************//
@@ -44,14 +45,13 @@ Route::get('/dashboard', function() {
 //* INI - MEMBROS *//
 //*****************//
 Route::group(['prefix' => 'membros'], function () {
-    Route::get('/cadastrar', function(){
-		return view('membros_cadastrar')->renderSections()['conteudo'];
-	}); 
-    Route::post('/cadastrar/salvar', 'MembroViewController@saveMembro'); // save member
-    Route::get('/consultar', 'MembroViewController@allMembros'); // Get all members
-    Route::get('/alterar/{id}', 'MembroViewController@alterarMembro'); // Get all members
-    Route::post('/up/{id}', 'MembroViewController@updateMembro'); // update member
-    Route::get('/del/{id}', 'MembroViewController@deleteMembro'); // update member     
+
+    Route::get('/cadastrar', 'MembroViewController@viewMembro')->name('viewCadastrar'); // Get all members
+    Route::post('/cadastrar/salvar', 'MembroViewController@saveMembro')->name('saveMembro'); // save member
+    Route::get('/consultar', 'MembroViewController@allMembros')->name('allMembros'); // Get all members
+    Route::get('/alterar/{id}', 'MembroViewController@alterarMembro')->name('alterarMembro'); // Get all members
+    Route::post('/up/{id}', 'MembroViewController@updateMembro')->name('updateMembro'); // update member
+
 });
 //*****************//
 //* FIM - MEMBROS *//
@@ -61,15 +61,12 @@ Route::group(['prefix' => 'membros'], function () {
 //* INI - CELULAS *//
 //*****************//
 Route::group(['prefix' => 'celulas'], function () {
-
-    Route::get('/cadastrar', function() { 
-		return view('celulas_cadastrar')->renderSections()['conteudo'];
-    }); 
-    Route::post('/cadastrar/save', 'CelulaViewController@saveCelula'); // save member
+    Route::get('/cadastrar' , 'CelulaViewController@viewCelula')->name('viewCelula');
+    Route::post('/cadastrar/save', 'CelulaViewController@saveCelula')->name('saveCelula'); // save member
     Route::get('/consultar', 'CelulaViewController@allCelulas')->name('allCelulas'); // Get all members
-    Route::get('/alterar/{id}', 'CelulaViewController@alterarCelula'); // Get all members
-    Route::post('/up/{id}', 'CelulaViewController@updateCelula'); // update member     
-    Route::post('/del/{id}', 'CelulaViewController@deleteMembro'); // update member     
+    Route::get('/alterar/{id}', 'CelulaViewController@alterarMembro')->name('alterarMembro'); // Get all members
+    Route::post('/up/{id}', 'CelulaViewController@updateMembro')->name('updateMembro'); // update member     
+    Route::post('/del/{id}', 'CelulaViewController@deleteMembro')->name('deleteMembro'); // update member     
 });
 //*****************//
 //* FIM - CELULAS *//
@@ -79,23 +76,22 @@ Route::group(['prefix' => 'celulas'], function () {
 //* INI  - REUNIOES *//
 //*****************//
 Route::group(['prefix' => 'reunioes'], function () {
-    Route::get('/cadastrar', function() { 
-        return view('reunioes_cadastrar')->renderSections()['conteudo'];
-    }); 
-
-    Route::get('/consultar', 'ReuniaoViewController@allReunioes'); // Abrir tela retornando a view
-    Route::post('/cadastrar/save', 'ReuniaoViewController@saveReuniao'); // 
-    Route::post('/alterar/{id}', 'ReuniaoViewController@alterarReuniao'); // 
+    Route::get('/cadastrar', 'ReuniaoViewController@viewReuniao')->name('viewReuniao'); // Abrir tela retornando a view
+    Route::post('/cadastrar/save', 'ReuniaoViewController@saveReuniao')->name('saveReuniao'); // 
+    Route::get('/consultar', 'ReuniaoViewController@allReunioes')->name('allReunioes'); // Abrir tela retornando a view
+    Route::post('/alterar/{id}', 'ReuniaoViewController@alterarReuniao')->name('alterarReuniao'); // 
+    Route::post('/up/{id}', 'ReuniaoViewController@updateReuniao')->name('updateMembro'); // update member     
+    Route::post('/del/{id}', 'ReuniaoViewController@deleteReuniao')->name('deleteMembro'); // update member     
 });
 
 //*****************//
 //* FIM  - REUNIOES *//
 //*****************//
 Route::group(['prefix' => 'posts'], function () {
-    Route::get('/cadastrar', function() { 
-        return view('posts_cadastrar')->renderSections()['conteudo'];
-    }); 
-    Route::get('/consultar', 'PostViewController@viewPosts'); // Abrir tela retornando a view
-    Route::post('/cadastrar/save', 'PostViewController@savePost'); // 
-    Route::post('/alterar/{id}', 'PostViewController@alterarPosts'); // 
+    Route::get('/cadastrar', 'PostViewController@viewPost')->name('viewPost'); // Abrir tela retornando a view
+    Route::post('/cadastrar/save', 'PostViewController@savePost')->name('savePost'); // 
+    Route::get('/consultar', 'PostViewController@allPosts')->name('allPosts'); // Abrir tela retornando a view
+    Route::post('/alterar/{id}', 'PostViewController@alterarPosts')->name('alterarPosts'); // 
+    Route::post('/up/{id}', 'PostViewController@updatePost')->name('updatePost'); // update member   
+    Route::post('/del/{id}', 'PostViewController@deletePost')->name('deletePost'); // update member      
 });

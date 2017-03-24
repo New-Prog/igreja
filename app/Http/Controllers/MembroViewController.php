@@ -40,6 +40,11 @@ class MembroViewController extends Controller
         return view('view_membros')->renderSections()['conteudo'];
     }
     
+    public function viewMembro()
+    {
+        return view('membros_cadastrar')->renderSections()['conteudo'];
+    }
+
     public function allMembros()
     {
         $membro = $this->membro->with('celula')->get();

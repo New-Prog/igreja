@@ -32,7 +32,8 @@ class PostViewController extends Controller
             return Response::json(['response' => ''], 400);
         }
 
-        return view('posts_consultar')->with('posts', $posts)->renderSections()['conteudo']; 
+
+        return view('posts_consultar')->with('posts', $posts)->renderSections()['conteudo'];
     }
     public function viewPosts()
     {
@@ -43,8 +44,7 @@ class PostViewController extends Controller
         {
             return Response::json(['response' => ''], 400);
         }
-
-        return view('posts_consultar')->with('posts', $posts)->renderSections()['conteudo'];
+        return view('posts_cadastrar')->renderSections()['conteudo'];
     }
     public function getPost($id)
     {

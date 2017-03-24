@@ -23,7 +23,6 @@ class CelulaViewController extends Controller
     {
         $this->celula = $celula;
     }
-
     public function allCelulas()
     {
         

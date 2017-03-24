@@ -74,4 +74,11 @@ class CelulaController extends Controller
      
         return Response::json($celula, 200);
     }
+
+    public function deleteMembro($id)
+    {
+        $this->celula->deleteMembro($id);
+        return Response::json('OK', 200);
+
+    }
 }
