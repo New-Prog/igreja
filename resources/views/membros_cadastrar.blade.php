@@ -178,8 +178,8 @@
             <div class="form-group">
                 <div class="col-sm-11 grupo_btn_cadastro">
                     <a href="/membros/consultar" class='btn btn-danger'>Cancelar</a>
-                    <!-- <button type="submit" class="btn btn-danger">Cancelar</button> -->
-                    <button type="submit" class="btn btn-warning">Limpar</button>
+                    <!-- <button id='btn_cancelar' type="button" class="btn btn-danger">Cancelar</button> -->
+                    <button id='btn_limpar' type="button" class="btn btn-warning">Limpar</button>
                     <button id="btn_enviar" class="btn btn-success">{{ $messageButton }}</button>
                 </div>  
             </div> 
@@ -196,11 +196,27 @@
 <script type="text/javascript" src="/js/jquery.mask.js"></script>
 <script>
 
-    $("#btn_enviar").on('click', function () {
-        $("#cep").val($("#cep").val().replace('-', ''));
-    }); 
 
     $(document).ready(function ($) { 
+
+        $(document).on('click', ".btn-danger" , function( event ) {
+            event.stopImmediatePropagation();
+            $('#conteudo-principal').load("/membros/consultar");
+            return false;
+        });
+
+        // $('#btn_cancelar').on('click', function () {
+        //     $(".menu-item [href='\\membros\\consultar']").trigger('click');
+        // });
+        $('#btn_limpar').on('click', function() {
+            $('input').val('');
+            $('select').val('');
+        });
+
+        $("#btn_enviar").on('click', function () {
+            $("#cep").val($("#cep").val().replace('-', ''));
+        }); 
+
         $("#cpf").mask('000.000.000-00', {reverse: true});
         $("#telefone").mask('(00)0000-0000', {reverse: false});
         $("#celular").mask('(00)00000-0000', {reverse: false});
