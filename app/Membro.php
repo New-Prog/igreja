@@ -95,7 +95,7 @@ class Membro extends Model
 
         return $membro;
     }    
-    
+
     public function deleteMembro($id)
     {
         $membro = self::find($id);

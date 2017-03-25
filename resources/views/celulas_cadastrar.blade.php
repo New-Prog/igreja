@@ -2,14 +2,13 @@
 
 @section('conteudo')
 <?php 
-    if(!isset($membro)){ 
+
+    if(!isset($celula)){ 
         $actionForm = "/celulas/cadastrar/save";
         $messageButton = "Cadastrar";
-        $membro = null;
     } else { 
-
-
         $actionForm = "/celulas/up/{$celula['id']}";
+        $celula = array();
         $messageButton = "Alterar";
     }
     
@@ -28,14 +27,14 @@
             <div class="form-group">
                 <label class="col-sm-1  control-label">Nome</label>
                 <div class="col-sm-11">
-                    <input type="text" class="form-control" name="nome">
+                    <input type="text" class="form-control" name="nome" >
                 </div>  
             </div> 
 
             <div class="form-group">
                 <label class="col-sm-1  control-label">Descrição</label>
                 <div class="col-sm-11">
-                    <input type="text" class="form-control" name="descricao">
+                    <input type="text" class="form-control" name="descricao"  >
                 </div>  
             </div>   
 
@@ -43,12 +42,8 @@
                 <h4 class="mb"><i class="fa fa-angle-right"></i>Líder</h4>
                 <div class="form-group">
                     <div class="col-sm-11">
-                        <input type="text" class="form-control" name="lider">
-                        {{-- <select  class="form-control" name="name">
-                            @foreach($liders as $lider)
-                                <option value="{{$lider->id}}">{{$lider->nome}}</option>
-                            @endforeach
-                        </select> --}}
+                        <input type="text" class="form-control" name="lider" >
+          
                     </div>  
                 </div> 
             </div>   

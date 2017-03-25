@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 use App\Http\Requests;
 
@@ -109,6 +110,8 @@ class MembroViewController extends Controller
         {
             //return Response::json(['response' => 'Membro não encontrado'], 400);
         }
+        $id = $id - 1;
+        return view('membros_cadastrar')->with('membro', $membro[$id])->renderSections()['conteudo'];
         
         return view('membros_cadastrar')->with('membro', $membro)->renderSections()['conteudo'];
         
@@ -116,9 +119,12 @@ class MembroViewController extends Controller
     public function deleteMembro($id)
     {
         $this->membro->deleteMembro($id);
+        return Redirect::route('allMembros');
         
         $membros = $this->membro->with('celula')->get();
         
         return view('membros_consultar')->with('membros', $membros)->renderSections()['conteudo'];
     }
+
+
 }
