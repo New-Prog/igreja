@@ -1,13 +1,7 @@
 @extends('layouts.dashboard.layout')
 
 @section('conteudo')
-<?php
-    //dd($_SERVER);
-    
-    $post = array(
-        'nome' =>'a' ,'descricao'=>'a','tipo'=>'axxxxx'
-    );
-?>
+
 <h3><i class="fa fa-angle-right"></i> Cadastro de Postagens</h3>
 <!-- BASIC FORM ELELEMNTS -->
 <div class="row mt">

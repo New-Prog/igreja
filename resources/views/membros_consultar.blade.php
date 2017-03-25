@@ -1,4 +1,3 @@
-
 @extends('layouts.dashboard.layout')
 
 @section('conteudo')
@@ -21,8 +20,8 @@
                         @foreach($membros as $membro)
                             <tr>
                                 <td><a href="basic_table.html#">{{ $membro['nome'] }}</a></td>
-                                <td class="hidden-phone">{{ $membro['fk_celula'] }}</td>
-                                <td>{{ $membro['tipo'] }}</td>
+                                <td class="hidden-phone">{{ ucfirst($membro['celula']['nome']) }}</td>
+                                <td>{{ ucfirst($membro['tipo']) }}</td>
                                 <td>
                                     <a class="btn_link" href="/membros/alterar/{{ $membro['id'] }}" alt="alterar"><button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button></a>
                                     <a class="btn_link" href="/membros/del/{{ $membro['id'] }}" alt="deletar" ><button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button></a>
