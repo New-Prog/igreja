@@ -45,13 +45,14 @@ class ReuniaoViewController extends Controller
     public function getReuniao($id)
     {
         $reuniao = $this->reuniao->getReuniao($id);
-        
+          
         if (!$reuniao)
         {
             return Response::json(['response' => ''], 400);
         }
-     
-        return Response::json( $reuniao->with('celula')->get(), 200);
+        return view('reunioes_cadastrar')->$reuniao->with('celula')->get()->renderSections()['conteudo'];        
+
+        // return Response::json( $reuniao->with('celula')->get(), 200);
     }
 
     public function saveReuniao(Request $request)
@@ -70,6 +71,20 @@ class ReuniaoViewController extends Controller
         return view('reunioes_consultar')->with('reunioes', $reunioes);
 
     }
+
+    public function alterarReuniao($id, Request $request)
+    {
+        $reuniao = Reuniao::find($id);
+        
+        if (!$reuniao)
+        {
+            // return Response::json(['response' => 'Célula não encontrada'], 400);
+        }
+
+        return view('reunioes_cadastrar')->with('reunioes', $reuniao)->renderSections()['conteudo'];
+        // return view('celulas_cadastrar')->with('celulas', $celula)->renderSections()['conteudo'];
+    }
+
 
     public function updateReuniao($id , Request $request)
     {

@@ -21,7 +21,17 @@ class PostViewController extends Controller
    
     }
 
+    public function viewPosts()
+    {
 
+        $posts = $this->post->allPosts();
+
+        if (!$posts)
+        {
+            return Response::json(['response' => ''], 400);
+        }
+        return view('posts_cadastrar')->renderSections()['conteudo'];
+    }
     public function allPosts()
     {
 
@@ -34,17 +44,6 @@ class PostViewController extends Controller
 
 
         return view('posts_consultar')->with('posts', $posts)->renderSections()['conteudo'];
-    }
-    public function viewPosts()
-    {
-
-        $posts = $this->post->allPosts();
-
-        if (!$posts)
-        {
-            return Response::json(['response' => ''], 400);
-        }
-        return view('posts_cadastrar')->renderSections()['conteudo'];
     }
     public function getPost($id)
     {

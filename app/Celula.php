@@ -65,7 +65,7 @@ class Celula extends Model
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function deleteMembro($id)
+    public function deleteCelula($id)
     {
         $celula = self::find($id);
         $celula->delete();

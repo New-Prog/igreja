@@ -32,7 +32,7 @@ class MembroViewController extends Controller
     
     /**
      * Display a listing of the resource.
-     *
+     *  
      * @return \Illuminate\Http\Response
      */
     public function index()
@@ -42,7 +42,7 @@ class MembroViewController extends Controller
     
     public function viewMembro()
     {
-        return view('membros_cadastrar')->renderSections()['conteudo'];
+        return view('membros_cadastrar')->with('celulas', Celula::all())->renderSections()['conteudo'];
     }
 
     public function allMembros()
@@ -64,7 +64,10 @@ class MembroViewController extends Controller
         {
             return Response::json(['response' => 'Membro não encontrado'], 400);
         }
-        return $membro;
+
+        return view('membros_consultar')->with('membros', $membro)->renderSections()['conteudo'];        
+
+        // return $membro;
     }
     public function saveMembro(Request $request)
     {
@@ -106,8 +109,8 @@ class MembroViewController extends Controller
         {
             //return Response::json(['response' => 'Membro não encontrado'], 400);
         }
-        $id = $id - 1;
-        return view('membros_cadastrar')->with('membro', $membro[$id])->renderSections()['conteudo'];
+        
+        return view('membros_cadastrar')->with('membro', $membro)->renderSections()['conteudo'];
         
     }
     public function deleteMembro($id)
@@ -115,8 +118,7 @@ class MembroViewController extends Controller
         $this->membro->deleteMembro($id);
         
         $membros = $this->membro->with('celula')->get();
+        
         return view('membros_consultar')->with('membros', $membros)->renderSections()['conteudo'];
-
-        //return Redirect::route('allCelulas');
     }
 }

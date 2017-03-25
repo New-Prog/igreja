@@ -47,9 +47,10 @@ Route::get('/dashboard', function() {
 Route::group(['prefix' => 'membros'], function () {
 
     Route::get('/cadastrar', 'MembroViewController@viewMembro')->name('viewCadastrar'); // Get all members
-    Route::post('/cadastrar/salvar', 'MembroViewController@saveMembro')->name('saveMembro'); // save member
     Route::get('/consultar', 'MembroViewController@allMembros')->name('allMembros'); // Get all members
     Route::get('/alterar/{id}', 'MembroViewController@alterarMembro')->name('alterarMembro'); // Get all members
+    Route::get('/del/{id}', 'CelulaViewController@deleteCelula')->name('deleteCelula'); // update member     
+    Route::post('/cadastrar/salvar', 'MembroViewController@saveMembro')->name('saveMembro'); // save member
     Route::post('/up/{id}', 'MembroViewController@updateMembro')->name('updateMembro'); // update member
 
 });
@@ -62,11 +63,11 @@ Route::group(['prefix' => 'membros'], function () {
 //*****************//
 Route::group(['prefix' => 'celulas'], function () {
     Route::get('/cadastrar' , 'CelulaViewController@viewCelula')->name('viewCelula');
-    Route::post('/cadastrar/save', 'CelulaViewController@saveCelula')->name('saveCelula'); // save member
     Route::get('/consultar', 'CelulaViewController@allCelulas')->name('allCelulas'); // Get all members
-    Route::get('/alterar/{id}', 'CelulaViewController@alterarMembro')->name('alterarMembro'); // Get all members
-    Route::post('/up/{id}', 'CelulaViewController@updateMembro')->name('updateMembro'); // update member     
-    Route::post('/del/{id}', 'CelulaViewController@deleteMembro')->name('deleteMembro'); // update member     
+    Route::get('/alterar/{id}', 'CelulaViewController@alterarCelula')->name('alterarCelula'); // Get all members
+    Route::get('/del/{id}', 'CelulaViewController@deleteCelula')->name('deleteCelula'); // update member     
+    Route::post('/up/{id}', 'CelulaViewController@updateCelula')->name('updateCelula'); // update member     
+    Route::post('/cadastrar/save', 'CelulaViewController@saveCelula')->name('saveCelula'); // save member
 });
 //*****************//
 //* FIM - CELULAS *//
@@ -79,9 +80,9 @@ Route::group(['prefix' => 'reunioes'], function () {
     Route::get('/cadastrar', 'ReuniaoViewController@viewReuniao')->name('viewReuniao'); // Abrir tela retornando a view
     Route::post('/cadastrar/save', 'ReuniaoViewController@saveReuniao')->name('saveReuniao'); // 
     Route::get('/consultar', 'ReuniaoViewController@allReunioes')->name('allReunioes'); // Abrir tela retornando a view
-    Route::post('/alterar/{id}', 'ReuniaoViewController@alterarReuniao')->name('alterarReuniao'); // 
-    Route::post('/up/{id}', 'ReuniaoViewController@updateReuniao')->name('updateMembro'); // update member     
-    Route::post('/del/{id}', 'ReuniaoViewController@deleteReuniao')->name('deleteMembro'); // update member     
+    Route::get('/alterar/{id}', 'ReuniaoViewController@alterarReuniao')->name('alterarReuniao'); // 
+    Route::post('/up/{id}', 'ReuniaoViewController@updateReuniao')->name('updateReuniao'); // update member     
+    Route::get('/del/{id}', 'ReuniaoViewController@deleteReuniao')->name('deleteReuniao'); // update member     
 });
 
 //*****************//
@@ -91,7 +92,7 @@ Route::group(['prefix' => 'posts'], function () {
     Route::get('/cadastrar', 'PostViewController@viewPost')->name('viewPost'); // Abrir tela retornando a view
     Route::post('/cadastrar/save', 'PostViewController@savePost')->name('savePost'); // 
     Route::get('/consultar', 'PostViewController@allPosts')->name('allPosts'); // Abrir tela retornando a view
-    Route::post('/alterar/{id}', 'PostViewController@alterarPosts')->name('alterarPosts'); // 
+    Route::get('/alterar/{id}', 'PostViewController@alterarPosts')->name('alterarPosts'); // 
     Route::post('/up/{id}', 'PostViewController@updatePost')->name('updatePost'); // update member   
-    Route::post('/del/{id}', 'PostViewController@deletePost')->name('deletePost'); // update member      
+    Route::get('/del/{id}', 'PostViewController@deletePost')->name('deletePost'); // update member      
 });
