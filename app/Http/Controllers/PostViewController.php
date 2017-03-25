@@ -33,7 +33,7 @@ class PostViewController extends Controller
         }
 
 
-        return view('posts_consultar')->with('posts', $posts)->renderSections()['conteudo'];
+        return view('posts_consultar')->with('posts', $post)->renderSections()['conteudo'];
     }
     public function viewPosts()
     {

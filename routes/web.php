@@ -89,7 +89,7 @@ Route::group(['prefix' => 'reunioes'], function () {
 //* FIM  - REUNIOES *//
 //*****************//
 Route::group(['prefix' => 'posts'], function () {
-    Route::get('/cadastrar', 'PostViewController@viewPost')->name('viewPost'); // Abrir tela retornando a view
+    Route::get('/cadastrar', 'PostViewController@viewPosts')->name('viewPost'); // Abrir tela retornando a view
     Route::post('/cadastrar/save', 'PostViewController@savePost')->name('savePost'); // 
     Route::get('/consultar', 'PostViewController@allPosts')->name('allPosts'); // Abrir tela retornando a view
     Route::post('/alterar/{id}', 'PostViewController@alterarPosts')->name('alterarPosts'); // 
