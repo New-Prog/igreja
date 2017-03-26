@@ -128,12 +128,15 @@ class MembroViewController extends Controller
     }
     public function alterarMembro($id)
     {        
-        $membro = $this->membro->getMembro($id);
+        
+        $membro = $this->membro->getMembro($id); 
+        // $membro = $this->membro->getMembro($id)->with('celula')->get();
         
         if (!$membro)
         {
             //return Response::json(['response' => 'Membro não encontrado'], 400);
         }
+        // dd($membro->nome);
         return view('membros_cadastrar')->with(['membro' => $membro, 'celulas' => Celula::all()])->renderSections()['conteudo'];
         
         // return view('membros_cadastrar')->with('membro', $membro)->renderSections()['conteudo'];

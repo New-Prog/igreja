@@ -128,28 +128,28 @@
             <div class="form-group">
                 <div class="col-sm-2">
                     <label class="control-label">Bairro</label>
-                    <input id='bairro' type="text" class="form-control" name="bairro" value="{{ $membro['bairro']}}">
+                    <input id='bairro' type="text" class="form-control" name="bairro" value="{{ $membro['bairro']}}" placeholder="Centro">
                 </div>  
 <!--             </div>  
             
             <div class="form-group"> -->
                 <div class="col-sm-4">
                     <label class="control-label">Cidade</label>
-                    <input id='cidade' type="text" class="form-control" name="cidade" value="{{ $membro['cidade']}}">
+                    <input id='cidade' type="text" class="form-control" name="cidade" value="{{ $membro['cidade']}}" placeholder="São Paulo">
                 </div>  
 <!--             </div>  
 
             <div class="form-group"> -->
                 <div class="col-sm-1">
                     <label class="control-label">Estado</label>
-                    <input id='estado' type="text" class="form-control" name="estado" value="{{ $membro['estado']}}">
+                    <input id='estado' type="text" class="form-control" name="estado" value="{{ $membro['estado']}}" placeholder="SP">
                 </div>  
             </div>  
 
             <div class="form-group">
                 <div class="col-sm-6">
                     <label class="control-label">Celula Participante</label>
-                    <select type="tipo" class="form-control"  name="fk_celula">
+                    <select id="tipo" class="form-control"  name="fk_celula">
                             <option value="">--Selecione--</option>
                         @foreach ($celulas as $celula)
                             <option <?= ($membro['fk_celula']==$celula['id']) ? 'selected' : ''?> value="{{ $celula['id'] }}">{{ $celula['nome'] }}</option>

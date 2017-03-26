@@ -16,7 +16,7 @@ class CreateCelulasTables extends Migration
     	Schema::create('celulas', function (Blueprint $table) {
     		$table->increments('id');
     		$table->string('nome');
-    		$table->integer('lider')->nullable();;
+    		$table->integer('lider')->nullable();
     		$table->timestamps();
     	});
     }

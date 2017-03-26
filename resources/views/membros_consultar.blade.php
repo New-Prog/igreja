@@ -1,18 +1,23 @@
 @extends('layouts.dashboard.layout')
 
 @section('conteudo')
-<div class="form-panel barra-botoes">
-    <div class="form-group">
-        <div class="col-sm-11 grupo_btn_cadastro">
-            <a class="btn_link" href="/membros/cadastrar">
-                <button class="btn btn-success btn_link">Cadastrar <span class="glyphicon glyphicon-plus"></span></button>
-
-            <a>
-        </div>  
-    </div> 
-</div>  
 <div class="row mt">
-    <div class="col-md-12">
+    <div class="col-md-2 col-md-offset-10 ">
+        <div class="form-panel barra-botoes textcenter" >
+            <!-- <div class="form-group"> -->
+                <!-- <div class=" grupo_btn_cadastro"> -->
+                    <a title='Adicionar novo membro' class="btn_link" href="/membros/cadastrar" style="margin: 0 auto !important">
+                        <button class="btn btn-success btn_link"><span title='Adicionar novo membro' class="glyphicon glyphicon-plus"></span></button>
+
+                    <a>
+                <!-- </div>   -->
+            <!-- </div>  -->
+        </div>  
+    </div>
+
+</div>
+<div class="row mt">
+    <div class="col-md-6 col-sm-offset-3">
         <div class="content-panel">
 
             <div class="row">
@@ -46,7 +51,7 @@
 </div>
 
 <div class="row mt">
-    <div class="col-md-12">
+    <div class="col-sm-12">
         <div class="content-panel">
             <table class="table table-striped table-advance table-hover">
               <h4><i class="fa fa-angle-right"></i> Membros </h4>
@@ -62,13 +67,13 @@
                 <tbody id='retorno'>
 
                     @foreach($membros as $membro)
-                        <tr>
-                            <td style='cursor:pointer' onclick="javascript: requestServer('api/membros/{{ $membro['id']}}', 'membro')"> {{ $membro['nome'] }}</td>
+                        <tr title="Detalhe do membro"style='cursor:pointer' onclick="javascript: requestServer('api/membros/{{ $membro['id']}}', 'membro')">
+                            <td > {{ $membro['nome'] }}</td>
                             <td class="hidden-phone"> {{ ucfirst($membro['celula']['nome']) }}</td>
                             <td>{{ ucfirst($membro['tipo']) }}</td>
                             <td>
-                                <a class="btn_link" href="/membros/alterar/{{ $membro['id'] }}" alt="alterar"><button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button></a>
-                                <a class="btn_link" href="/membros/del/{{ $membro['id'] }}" alt="deletar" ><button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button></a>
+                                <a class="btn_link" href="/membros/alterar/{{ $membro['id'] }}" alt="alterar"><button title='alterar' class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button></a>
+                                <a class="btn_link" href="/membros/del/{{ $membro['id'] }}" alt="deletar" ><button title='deletar'class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button></a>
                             </td>
                         </tr>
                     @endforeach
@@ -116,13 +121,13 @@ $(document).ready(function () {
                 var html  = '';
                 membro = data;
                 for (var i in membro) {
-                    html += "<tr>"
-                                +"<td style='cursor:pointer' onclick=\"javascript: requestServer('api/membros/"+ membro[i].id+"', 'membro')\"> "+membro[i].nome+"</td>"
+                    html += "<tr title='Detalhe do membro' style='cursor:pointer' onclick=\"javascript: requestServer('api/membros/"+ membro[i].id+"', 'membro')\">"
+                                +"<td> "+membro[i].nome+"</td>"
                                 +"<td class='hidden-phone'> "+membro[i].celula.nome+"</td>"
                                 +"<td>"+membro[i].tipo+"</td>"
                                 +"<td>"
-                                    +"<a class='btn_link' href='/membros/alterar/"+membro[i].id+"' alt='alterar'><button class='btn btn-primary btn-xs'><i class='fa fa-pencil'></i></button></a> "
-                                    +"<a class='btn_link' href='/membros/del/"+membro[i].id+"' alt='deletar' ><button class='btn btn-danger btn-xs'><i class='fa fa-trash-o '></i></button></a>"
+                                    +"<a class='btn_link'  href='/membros/alterar/"+membro[i].id+"' alt='alterar'><button title='alterar' class='btn btn-primary btn-xs'><i class='fa fa-pencil'></i></button></a> "
+                                    +"<a class='btn_link' href='/membros/del/"+membro[i].id+"' alt='deletar' ><button  title='deletar' class='btn btn-danger btn-xs'><i class='fa fa-trash-o '></i></button></a>"
                                 +"</td>"
                             +"</tr>";
                 }
