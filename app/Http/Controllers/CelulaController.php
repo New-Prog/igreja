@@ -50,7 +50,7 @@ class CelulaController extends Controller
     public function saveCelula(Request $request)
     {   
         $input = $request->all();
-
+		
         $celula = $this->celula->saveCelula($input);
         if (!$celula) {
             Response::json(['response' => 'Celula não encontrado'], 400);   
