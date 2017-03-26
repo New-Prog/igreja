@@ -6,9 +6,13 @@
     if(!isset($celula)){ 
         $actionForm = "/celulas/cadastrar/save";
         $messageButton = "Cadastrar";
+        $celula_nome =  $celula_id = $celula_lider = '';
     } else { 
         $actionForm = "/celulas/up/{$celula['id']}";
         $messageButton = "Alterar";
+        $celula_nome  = $celula['nome'];
+        $celula_id    = $celula['id'];
+        $celula_lider = $celula['lider'];
     }
     
 ?>
@@ -25,7 +29,7 @@
                 
                 <div class="col-sm-6">
                 	<label>Nome</label>
-                    <input type="text" class="form-control" name="nome" value="{{$celula['nome']}}">
+                    <input type="text" class="form-control" name="nome" value="{{$celula_nome}}">
                 </div>  
                 <div class="col-sm-6">
                  	<label>Líder</label>
@@ -33,7 +37,7 @@
                     <select class="form-control" name="lider" >
                        <option value="">--Selecione--</option>
                         @foreach ($lideres as $lider)
-                            <option <?= ($celula['nome'] == $lider['id']) ? 'selected' : '' ?> value="{{ $lider['id'] }}"> {{ $lider['nome'] }}</option>
+                            <option <?= ($celula_lider == $lider['id']) ? 'selected' : '' ?> value="{{ $lider['id'] }}"> {{ $lider['nome'] }}</option>
                         @endforeach
                     </select>          
                 </div> 
@@ -41,8 +45,8 @@
         <div class="form-panel barra-botoes">
             <div class="form-group">
                 <div class="col-sm-11 grupo_btn_cadastro">
-                    <button type="submit" class="btn btn-danger">Cancelar</button>
-                    <button type="submit" class="btn btn-warning">Limpar</button>
+                    <button type="button" class="btn btn-danger">Cancelar</button>
+                    <button type="button" class="btn btn-warning">Limpar</button>
                     <button class="btn btn-success">{{ $messageButton }}</button>
                 </div>  
             </div> 
