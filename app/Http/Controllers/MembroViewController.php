@@ -73,7 +73,8 @@ class MembroViewController extends Controller
     public function saveMembro(Request $request)
     {
         $input = $request->all();
-
+		
+		$input['fk_celula'] = !$input['fk_celula'] ? null : $input['fk_celula']; 
         $membro = $this->membro->saveMembro($input);
 
         if (!$membro)
@@ -87,8 +88,8 @@ class MembroViewController extends Controller
     public function updateMembro($id , Request $request)
     {
         $input = $request->all();
-        // dd($input, $id);
-        // return Response::json(['input' => $input, 'id' => $id], 400);
+        
+        $input['fk_celula'] = !$input['fk_celula'] ? null : $input['fk_celula'];
         
         $membro = $this->membro->updateMembro($id , $input);
         

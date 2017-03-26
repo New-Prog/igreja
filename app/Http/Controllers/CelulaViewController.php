@@ -18,10 +18,12 @@ use Response;
 class CelulaViewController extends Controller
 {
     protected $celula;
+    protected $membros;
+    
 
     public function __construct(Celula $celula)
     {
-        $this->celula = $celula;
+        $this->celula   = $celula;
     }
     public function allCelulas()
     {
@@ -36,8 +38,8 @@ class CelulaViewController extends Controller
     }
 
     public function viewCelula()
-    {  
-        return view('celulas_cadastrar')->renderSections()['conteudo'];
+    {
+        return view('celulas_cadastrar')->with('lideres', Membro::allLiders())->renderSections()['conteudo'];
 
     }
 
@@ -56,7 +58,9 @@ class CelulaViewController extends Controller
     public function saveCelula(Request $request)
     {   
         $input = $request->all();
-
+        
+        $input['lider'] = !$input['lider'] ? null : $input['lider'];
+        
         $celula = $this->celula->saveCelula($input);
         
         $celulas = $this->celula->with('membro')->get();
@@ -83,6 +87,7 @@ class CelulaViewController extends Controller
     }
     public function alterarCelula($id, Request $request)
     {
+    	
         $celula = Celula::find($id);
         
         if (!$celula)
@@ -90,7 +95,7 @@ class CelulaViewController extends Controller
             return Response::json(['response' => 'Célula não encontrada'], 400);
         }
 
-        return view('celulas_cadastrar')->with('celulas', $celula)->renderSections()['conteudo'];
+        return view('celulas_cadastrar')->with(['celula'=>$celula, 'lideres'=> Membro::allLiders()] )->renderSections()['conteudo'];
     }
             /**
      * Remove the specified resource from storage.

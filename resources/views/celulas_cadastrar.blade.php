@@ -8,13 +8,10 @@
         $messageButton = "Cadastrar";
     } else { 
         $actionForm = "/celulas/up/{$celula['id']}";
-        $celula = array();
         $messageButton = "Alterar";
     }
     
 ?>
-<h3><i class="fa fa-angle-right"></i> Cadastro de Células</h3>
-
 <!-- BASIC FORM ELELEMNTS -->
 <div class="row mt">
   <div class="col-lg-12">
@@ -25,28 +22,22 @@
             <h4 class="mb"><i class="fa fa-angle-right"></i> Nova Célula</h4>
                 
             <div class="form-group">
-                <label class="col-sm-1  control-label">Nome</label>
-                <div class="col-sm-11">
-                    <input type="text" class="form-control" name="nome" >
+                
+                <div class="col-sm-6">
+                	<label>Nome</label>
+                    <input type="text" class="form-control" name="nome" value="{{$celula['nome']}}">
                 </div>  
-            </div> 
-
-            <div class="form-group">
-                <label class="col-sm-1  control-label">Descrição</label>
-                <div class="col-sm-11">
-                    <input type="text" class="form-control" name="descricao"  >
-                </div>  
-            </div>   
-
-            <div class="form-panel">
-                <h4 class="mb"><i class="fa fa-angle-right"></i>Líder</h4>
-                <div class="form-group">
-                    <div class="col-sm-11">
-                        <input type="text" class="form-control" name="lider" >
-          
-                    </div>  
+                <div class="col-sm-6">
+                 	<label>Líder</label>
+                    
+                    <select class="form-control" name="lider" >
+                       <option value="">--Selecione--</option>
+                        @foreach ($lideres as $lider)
+                            <option <?= ($celula['nome'] == $lider['id']) ? 'selected' : '' ?> value="{{ $lider['id'] }}"> {{ $lider['nome'] }}</option>
+                        @endforeach
+                    </select>          
                 </div> 
-            </div>   
+            </div>  
         <div class="form-panel barra-botoes">
             <div class="form-group">
                 <div class="col-sm-11 grupo_btn_cadastro">
