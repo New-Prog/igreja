@@ -22,13 +22,17 @@
         <div class="form-panel">
 
             <div class="form-group">
-                <div class="col-sm-6 ">
+                <div class="col-sm-4 ">
                     <label class="control-label">Nome:</label>
                     <input type="text" class="form-control" name="nome" value="{{ $membro['nome']}}" placeholder="EX: João">
                 </div>  
-                <div class="col-sm-6">
+                <div class="col-sm-4">
                     <label class="control-label">E-mail:</label>
                     <input id="email" type="text" class="form-control" name="email" value="{{ $membro['email']}}" placeholder="EX: joao@ibvn.com.br">
+                </div>
+                <div class="col-sm-4">
+                    <label class="control-label">Data de Nascimento:</label>
+                    <input id="dt_nasc" type="text" class="form-control" name="dt_nasc" value="{{ $membro['dt_nasc']}}" placeholder="EX: 10/10/2000">
                 </div>       
              </div>  
             <div class="form-group">
@@ -51,7 +55,7 @@
                 </div>   
                 <div class="col-sm-2">
                 <label class="control-label">Estado Civil</label>
-                    <select type="tipo" class="form-control">
+                    <select type="tipo" class="form-control" name="estado_civil" id="estado_civil">
                         <option <?= $membro['estado_civil'] == 'solteiro' ? 'selected' : '' ?> value="solteiro">Solteiro(a)</option>
                         <option <?= $membro['estado_civil'] == 'casado' ? 'selected' : '' ?> value="casado">Casado(a)</option>
                         <option <?= $membro['estado_civil'] == 'divorciado' ? 'selected' : '' ?> value="divorciado">Divorciado(a)</option>
