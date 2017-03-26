@@ -5,8 +5,17 @@ gap-top5 {
 gap-top10 {
 	margin-top: 10px;
 }
-
+.pad-top0 {
+	padding-top: 0px;
+}
 .row {
 	margin-top: 10px;
 }
 
+.pull-right {
+	float: right;
+}
+
+.pad-left10 {
+	padding-left: 10px;
+}

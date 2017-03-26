@@ -29,7 +29,7 @@
                 
                 <div class="col-sm-6">
                 	<label>Nome</label>
-                    <input type="text" class="form-control" name="nome" value="{{$celula_nome}}">
+                    <input type="text" class="form-control" name="nome" value="{{$celula_nome}}" required="true">
                 </div>  
                 <div class="col-sm-6">
                  	<label>Líder</label>
@@ -42,18 +42,22 @@
                     </select>          
                 </div> 
             </div>  
-        <div class="form-panel barra-botoes">
-            <div class="form-group">
-                <div class="col-sm-11 grupo_btn_cadastro">
-                    <button type="button" class="btn btn-danger">Cancelar</button>
-                    <button type="button" class="btn btn-warning">Limpar</button>
+        <div class="form-panel">
+			<div class="row">
+                <div class="col-sm-12 col-xs-12">
+                    <a href="/celulas/consultar" class='btn btn-danger'>Cancelar</a>
+                    <button type="button" id="btn-limpar" class="btn btn-warning">Limpar</button>
                     <button class="btn btn-success">{{ $messageButton }}</button>
                 </div>  
-            </div> 
+             </div>
+ 
         </div>  
         
     </form>
 
   </div><!-- col-lg-12-->      	
 </div><!-- /row -->
+
+<<script type="text/javascript" src="{!! asset('js/celula_cadastrar.js') !!}" ></script>
+
 @stop
