@@ -1,7 +1,6 @@
 <?php
-
-Route::get('/dashboard', function() {
-	return view('dashboard');
+Route::get('/', function() {
+	return view('principal');
 });
 
 foreach (glob(__DIR__ . '/*/*.php') as $file) {

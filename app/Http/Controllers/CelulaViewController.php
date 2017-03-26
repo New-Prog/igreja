@@ -75,15 +75,17 @@ class CelulaViewController extends Controller
     public function updateCelula($id, Request $request)
     {
         $input = $request->all();
-
+        $input['lider'] = !$input['lider'] ? null : $input['lider'];
+        
         $celula = $this->celula->updateCelula($id, $input);
         
         if (!$celula)
         {
             return Response::json(['response' => 'Célula não encontrada'], 400);
         }
-     
-        return Response::json($celula, 200);
+        
+        return view('celulas_consultar')->with('celulas', Celula::all());
+        
     }
     public function alterarCelula($id, Request $request)
     {
@@ -105,8 +107,9 @@ class CelulaViewController extends Controller
      */
     public function deleteCelula($id)
     {
-        $this->celula->deleteMembro($id);
-        return Redirect::route('allCelulas');
+        $this->celula->deleteCelula($id);
+        //return view('celulas_consultar')->with('celulas', Celula::all());
+        return redirect()->route('allCelulas');
 
     }
 }
