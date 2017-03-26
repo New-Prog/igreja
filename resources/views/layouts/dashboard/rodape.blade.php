@@ -45,8 +45,9 @@
 
     <!--script for this page-->
     <script src="/dashboard_layout/js/sparkline-chart.js"></script>    
-	<script src="/dashboard_layout/js/zabuto_calendar.js"></script>	
-	
+    <script src="/dashboard_layout/js/zabuto_calendar.js"></script> 
+    
+    <script src="/js/modals.js"></script>
 	<script type="text/javascript">
         $(document).ready(function () {
             

@@ -46,7 +46,7 @@
  -->
 
             <div class="form-group">
-                <div class="col-sm-6">
+                <div class="col-sm-4">
                     <label class="control-label">CPF:</label>
                     <input id="cpf" type="text" class="form-control" name="cpf" value="{{ $membro['cpf']}}">
                 </div>  
@@ -146,10 +146,9 @@
                 </div>  
             </div>  
 
-            <h4 class="mb"><i class="fa fa-angle-right"></i>Celula</h4>
             <div class="form-group">
-                <label class="col-sm-1  control-label">Celula Participante</label>
-                <div class="col-sm-11">
+                <div class="col-sm-6">
+                    <label class="control-label">Celula Participante</label>
                     <select type="tipo" class="form-control"  name="fk_celula">
                             <option value="">--Selecione--</option>
                         @foreach ($celulas as $celula)
@@ -157,12 +156,11 @@
                         @endforeach
                     </select>
                 </div>  
-            </div> 
+<!--             </div> 
  
-            <h4 class="mb"><i class="fa fa-angle-right"></i>Hierarquia</h4>
-            <div class="form-group">
-                <label class="col-sm-1  control-label">Tipo de membro</label>
-                <div class="col-sm-11">
+            <div class="form-group"> -->
+                <div class="col-sm-6">
+                    <label class="control-label">Tipo de membro</label>
                     <select type="tipo" class="form-control" name="tipo">
                         <option value="">--Selecione--</option>
                         <option <?= $membro['tipo'] == 'membro' ? 'selected' : '' ?> value="membro">Membro</option>
@@ -205,9 +203,6 @@
             return false;
         });
 
-        // $('#btn_cancelar').on('click', function () {
-        //     $(".menu-item [href='\\membros\\consultar']").trigger('click');
-        // });
         $('#btn_limpar').on('click', function() {
             $('input').val('');
             $('select').val('');
@@ -215,6 +210,7 @@
 
         $("#btn_enviar").on('click', function () {
             $("#cep").val($("#cep").val().replace('-', ''));
+            $("#cpf").val($("#cpf").val().replace('.', '').replace('.', '').replace('-', ''));
         }); 
 
         $("#cpf").mask('000.000.000-00', {reverse: true});
