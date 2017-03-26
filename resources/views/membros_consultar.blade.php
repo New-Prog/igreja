@@ -59,7 +59,7 @@
                     <th>Ações</th>
                 </tr>
                 </thead>
-                <tbody>
+                <tbody id='retorno'>
 
                     @foreach($membros as $membro)
                         <tr>
@@ -84,7 +84,7 @@ $(document).ready(function () {
     $("#filtro").on('change', function () {
         var html = '';
         if($(this).val() == 'cpf' || $(this).val() == 'nome') {
-            html = "<input type='text' class='form-control' name='conteudo_filtro'>";
+            html = "<input type='text' class='form-control' name='conteudo_filtro' id='conteudo_filtro'>";
             $("#retorno_filtro").html(html);
             $("#retorno_filtro").closest('div.row').removeClass('hidden');
             $("#btn_pesquisar").closest('div.row').removeClass('hidden');
@@ -109,22 +109,45 @@ $(document).ready(function () {
             $("#btn_pesquisar").closest('div.row').addClass('hidden');
         }
     });
+    $("#btn_pesquisar").on('click', function() {
+        $.post( "/membros/getEspecifico", 
+            { filtro: $('#filtro').val(), conteudo_filtro: $('#conteudo_filtro').val() },
+            function(data) {
+                var html  = '';
+                membro = data;
+                for (var i in membro) {
+                    html += "<tr>"
+                                +"<td style='cursor:pointer' onclick=\"javascript: requestServer('api/membros/"+ membro[i].id+"', 'membro')\"> "+membro[i].nome+"</td>"
+                                +"<td class='hidden-phone'> "+membro[i].celula.nome+"</td>"
+                                +"<td>"+membro[i].tipo+"</td>"
+                                +"<td>"
+                                    +"<a class='btn_link' href='/membros/alterar/"+membro[i].id+"' alt='alterar'><button class='btn btn-primary btn-xs'><i class='fa fa-pencil'></i></button></a> "
+                                    +"<a class='btn_link' href='/membros/del/"+membro[i].id+"' alt='deletar' ><button class='btn btn-danger btn-xs'><i class='fa fa-trash-o '></i></button></a>"
+                                +"</td>"
+                            +"</tr>";
+                }
 
-    function requestServer(url, tipo) {
-        $.get( url, function(data) {
-            if(tipo == 'membro') {
-                var  html = "<strong>Nome: </strong> " + data.nome     + "<br>"
-                + "<strong>E-mail: </strong>"          + data.email    + "<br>"
-                + "<strong>CPF: </strong>"             + data.cpf      + "<br>"
-                + "<strong>Tel: </strong>"             + data.telefone + "<br>"
-                + "<strong>Celular: </strong>"         + data.telefone;
-            } 
-            modal.alerta('Detalhe do membro', html);
+                $("#retorno").html(html);
+            },
+            'json'
+        );
+    });
 
-        }, 'json');
 
-    }
 });
+function requestServer(url, tipo) {
+    $.get( url, function(data) {
+        if(tipo == 'membro') {
+            var  html = "<strong>Nome: </strong> " + data.nome     + "<br>"
+            + "<strong>E-mail: </strong>"          + data.email    + "<br>"
+            + "<strong>CPF: </strong>"             + data.cpf      + "<br>"
+            + "<strong>Tel: </strong>"             + data.telefone + "<br>"
+            + "<strong>Celular: </strong>"         + data.telefone;
+        } 
+        modal.alerta('Detalhe do membro', html);
+
+    }, 'json');
+}
 </script>
 
 

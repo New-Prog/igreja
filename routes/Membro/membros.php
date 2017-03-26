@@ -9,6 +9,7 @@ Route::group(['prefix' => 'membros'], function () {
 	Route::post('/cadastrar/salvar', 'MembroViewController@saveMembro')->name('saveMembro'); // save member
 	Route::post('/up/{id}', 'MembroViewController@updateMembro')->name('updateMembro'); // update member
 	Route::get('/del/{id}', 'MembroViewController@deleteMembro')->name('deleteMembro'); // update member
+	Route::post('/getEspecifico', 'MembroViewController@getMembroEspecifico')->name('getMembroEspecifico'); // update member
 
 
 });

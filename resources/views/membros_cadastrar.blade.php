@@ -48,7 +48,7 @@
             <div class="form-group">
                 <div class="col-sm-4">
                     <label class="control-label">CPF:</label>
-                    <input id="cpf" type="text" class="form-control" name="cpf" value="{{ $membro['cpf']}}">
+                    <input id="cpf" type="text" class="form-control" name="cpf" value="{{ $membro['cpf']}}" placeholder="000.000.000-00">
                 </div>  
                 <div class="col-sm-2">
                     <label class=" control-label">Sexo</label>
@@ -100,25 +100,25 @@
             <div class="form-group">
                 <div class="col-sm-2">
                     <label class="control-label">CEP:</label>
-                    <input id="cep" type="text" class="form-control" name="cep" value="{{ $membro['cep']}}">
+                    <input id="cep" type="text" class="form-control" name="cep" value="{{ $membro['cep']}}" placeholder="00000-000">
                 </div>  
 <!--             </div>  
 
             <div class="form-group"> -->
                 <div class="col-sm-5">
                    <label class="control-label">Logradouro</label>
-                    <input type="text" class="form-control" name="logradouro" value="{{ $membro['logradouro']}}">
+                    <input id='logradouro' type="text" class="form-control" name="logradouro" value="{{ $membro['logradouro']}}" placeholder="Rua xxxxx">
                 </div>  
 <!--             </div> 
 
             <div class="form-group"> -->
                 <div class="col-sm-1">
                     <label class="control-label">Numero</label>
-                    <input type="text" class="form-control" name="numero" value="{{ $membro['numero']}}">
+                    <input id='numero' type="text" class="form-control" name="numero" value="{{ $membro['numero']}}" placeholder="132">
                 </div>  
                 <div class="col-sm-4">
                     <label class="control-label">Complemento</label>
-                    <input type="text" class="form-control" name="complemento" value="{{ $membro['complemento']}}">
+                    <input id='complemento' type="text" class="form-control" name="complemento" value="{{ $membro['complemento']}}">
                 </div>  
             </div>   
 
@@ -128,21 +128,21 @@
             <div class="form-group">
                 <div class="col-sm-2">
                     <label class="control-label">Bairro</label>
-                    <input type="text" class="form-control" name="bairro" value="{{ $membro['bairro']}}">
+                    <input id='bairro' type="text" class="form-control" name="bairro" value="{{ $membro['bairro']}}">
                 </div>  
 <!--             </div>  
             
             <div class="form-group"> -->
                 <div class="col-sm-4">
                     <label class="control-label">Cidade</label>
-                    <input type="text" class="form-control" name="cidade" value="{{ $membro['cidade']}}">
+                    <input id='cidade' type="text" class="form-control" name="cidade" value="{{ $membro['cidade']}}">
                 </div>  
 <!--             </div>  
 
             <div class="form-group"> -->
                 <div class="col-sm-1">
                     <label class="control-label">Estado</label>
-                    <input type="text" class="form-control" name="estado" value="{{ $membro['estado']}}">
+                    <input id='estado' type="text" class="form-control" name="estado" value="{{ $membro['estado']}}">
                 </div>  
             </div>  
 
@@ -161,7 +161,7 @@
             <div class="form-group"> -->
                 <div class="col-sm-6">
                     <label class="control-label">Tipo de membro</label>
-                    <select type="tipo" class="form-control" name="tipo">
+                    <select id="tipo" class="form-control" name="tipo">
                         <option value="">--Selecione--</option>
                         <option <?= $membro['tipo'] == 'membro' ? 'selected' : '' ?> value="membro">Membro</option>
                         <option <?= $membro['tipo'] == 'lider'  ? 'selected' : '' ?> value="lider">Lider</option>
@@ -196,7 +196,15 @@
 
 
     $(document).ready(function ($) { 
+        $('#cep').on('blur', function (data) {
+            $.get( "http://api.postmon.com.br/v1/cep/"+$(this).val(), function(data) {
+                $('#bairro').val(data.bairro);
+                $('#cidade').val(data.cidade);
+                $('#estado').val(data.estado);
+                $('#logradouro').val(data.logradouro);
 
+            });
+        });
         $(document).on('click', ".btn-danger" , function( event ) {
             event.stopImmediatePropagation();
             $('#conteudo-principal').load("/membros/consultar");

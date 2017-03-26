@@ -66,11 +66,39 @@ class Membro extends Model
         
     }
 
+    public function getMembroByCPF($cpf)
+    {
+
+        $membro = self::where('cpf' ,$cpf)->with('celula')->get();
+        
+        if (is_null($membro))
+        {
+            return false;
+        }
+            
+        return $membro;
+        
+    }
+    
+    public function getMembroByNome($nome)
+    {
+
+        $membro = self::where('nome' ,$nome)->with('celula')->get();
+        
+        if (is_null($membro))
+        {
+            return false;
+        }
+            
+        return $membro;
+        
+    }
+
     public function getMembroByCelula($id)
     {
 
-        $membro = self::where('fk_celula' ,$id)->get();
-        
+        $membro = self::where('fk_celula',$id)->with('celula')->get();
+        // dd($membro);
         if (is_null($membro))
         {
             return false;

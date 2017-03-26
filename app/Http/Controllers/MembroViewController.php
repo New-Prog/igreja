@@ -85,6 +85,29 @@ class MembroViewController extends Controller
         $membros = $this->membro->with('celula')->get();
         return view('membros_consultar')->with('membros', $membros);       
     }
+
+    public function getMembroEspecifico(Request $request)
+    {
+        // dd($request->filtro);
+        switch ($request->filtro) {
+            case 'cpf':
+                $membro = $this->membro->getMembroByCPF(trim($request->conteudo_filtro));
+                break;
+            case 'nome':
+                $membro = $this->membro->getMembroByNome($request->conteudo_filtro);
+                break;
+            case 'fk_celula':
+                $membro = $this->membro->getMembroByCelula($request->conteudo_filtro);
+        }
+        // dd($membro);
+        // $membros = $membro->with('celula')->get();
+        
+        return Response::json($membro, 200);
+        
+
+        // return view('membros_consultar')->with('membros', $membros);       
+    }
+
     public function updateMembro($id , Request $request)
     {
         $input = $request->all();
