@@ -11,6 +11,8 @@ use App\Http\Requests;
 use App\Reuniao;
 use App\Celula;
 use Response;
+use App\User;
+
 
 
 
@@ -18,6 +20,8 @@ class ReuniaoViewController extends Controller
 {
 	
     protected $reuniao;
+    protected $celula;
+
 
     public function __construct(Reuniao $reuniao)
     {
@@ -27,19 +31,20 @@ class ReuniaoViewController extends Controller
 
     public function allReunioes()
     {
-        $reuniao = $this->reuniao->allReunioes();
+        $reuniao = $this->reuniao->with('celula')->get();
 
         if (!$reuniao)
         {
             return Response::json(['response' => ''], 400);
         }
+
         return view('reunioes_consultar')->with('reunioes', $reuniao)->renderSections()['conteudo'];
 
         // return Response::json($reuniao->with('celula')->get(), 200);
     }
     public function viewReuniao()
     {
-        return view('reunioes_cadastrar')->renderSections()['conteudo'];
+        return view('reunioes_cadastrar')->with('celulas', Celula::all())->renderSections()['conteudo'];
     }
 
     public function getReuniao($id)
@@ -72,17 +77,14 @@ class ReuniaoViewController extends Controller
 
     }
 
-    public function alterarReuniao($id, Request $request)
+    public function alterarReuniao($id)
     {
-        $reuniao = Reuniao::find($id);
-        
+        $reuniao = $this->reuniao->getReuniao($id); 
         if (!$reuniao)
         {
             // return Response::json(['response' => 'Célula não encontrada'], 400);
         }
-
-        return view('reunioes_cadastrar')->with('reunioes', $reuniao)->renderSections()['conteudo'];
-        // return view('celulas_cadastrar')->with('celulas', $celula)->renderSections()['conteudo'];
+        return view('reunioes_cadastrar')->with(['reuniao'=>$reuniao, 'celulas' => Celula::all()])->renderSections()['conteudo'];
     }
 
 

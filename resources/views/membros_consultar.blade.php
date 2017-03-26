@@ -3,7 +3,7 @@
 @section('conteudo')
 
 <div class="row mt">
-    <div class="col-md-12">
+    <div class="col-md-6 col-sm-offset-3">
         <div class="content-panel">
 
             <div class="row">
@@ -30,7 +30,7 @@
 </div>
 
 <div class="row mt">
-    <div class="col-md-12">
+    <div class="col-sm-12">
         <div class="content-panel">
             <table class="table table-striped table-advance table-hover">
               <h4><i class="fa fa-angle-right"></i> Membros <a class="btn_link btn btn-success pull-right" href="/membros/cadastrar"> Novo<span class="glyphicon glyphicon-plus"></span></a> </h4>
@@ -46,13 +46,13 @@
                 <tbody id='retorno'>
 
                     @foreach($membros as $membro)
-                        <tr>
-                            <td style='cursor:pointer' onclick="javascript: requestServer('api/membros/{{ $membro['id']}}', 'membro')"> {{ $membro['nome'] }}</td>
+                        <tr title="Detalhe do membro"style='cursor:pointer' onclick="javascript: requestServer('api/membros/{{ $membro['id']}}', 'membro')">
+                            <td > {{ $membro['nome'] }}</td>
                             <td class="hidden-phone"> {{ ucfirst($membro['celula']['nome']) }}</td>
                             <td>{{ ucfirst($membro['tipo']) }}</td>
                             <td>
-                                <a class="btn_link" href="/membros/alterar/{{ $membro['id'] }}" alt="alterar"><button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button></a>
-                                <a class="btn_link" href="/membros/del/{{ $membro['id'] }}" alt="deletar" ><button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button></a>
+                                <a class="btn_link" href="/membros/alterar/{{ $membro['id'] }}" alt="alterar"><button title='alterar' class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button></a>
+                                <a class="btn_link" href="/membros/del/{{ $membro['id'] }}" alt="deletar" ><button title='deletar'class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button></a>
                             </td>
                         </tr>
                     @endforeach
@@ -103,13 +103,13 @@ $(document).ready(function () {
                 var html  = '';
                 membro = data;
                 for (var i in membro) {
-                    html += "<tr>"
-                                +"<td style='cursor:pointer' onclick=\"javascript: requestServer('api/membros/"+ membro[i].id+"', 'membro')\"> "+membro[i].nome+"</td>"
+                    html += "<tr title='Detalhe do membro' style='cursor:pointer' onclick=\"javascript: requestServer('api/membros/"+ membro[i].id+"', 'membro')\">"
+                                +"<td> "+membro[i].nome+"</td>"
                                 +"<td class='hidden-phone'> "+membro[i].celula.nome+"</td>"
                                 +"<td>"+membro[i].tipo+"</td>"
                                 +"<td>"
-                                    +"<a class='btn_link' href='/membros/alterar/"+membro[i].id+"' alt='alterar'><button class='btn btn-primary btn-xs'><i class='fa fa-pencil'></i></button></a> "
-                                    +"<a class='btn_link' href='/membros/del/"+membro[i].id+"' alt='deletar' ><button class='btn btn-danger btn-xs'><i class='fa fa-trash-o '></i></button></a>"
+                                    +"<a class='btn_link'  href='/membros/alterar/"+membro[i].id+"' alt='alterar'><button title='alterar' class='btn btn-primary btn-xs'><i class='fa fa-pencil'></i></button></a> "
+                                    +"<a class='btn_link' href='/membros/del/"+membro[i].id+"' alt='deletar' ><button  title='deletar' class='btn btn-danger btn-xs'><i class='fa fa-trash-o '></i></button></a>"
                                 +"</td>"
                             +"</tr>";
                 }

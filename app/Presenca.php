@@ -41,7 +41,7 @@ class Presenca extends Model
     
     public function getPresenca($id)
     {
-        $presenca = self::find($id);
+        $presenca = self::($id);
         
         if (is_null($presenca))
         {
