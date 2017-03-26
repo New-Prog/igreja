@@ -36,7 +36,6 @@
         <!--Cabecalho end-->
 
         <!--Menu start-->
-        @include('layouts/menu')
         <!--Menu end-->
 
         <!--Conteudo content start-->
