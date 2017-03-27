@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use GuzzleHttp\Psr7\Request;
 
 class Celula extends Model
 {
@@ -19,15 +20,23 @@ class Celula extends Model
         return self::all();
     }
 
-    public function saveCelula($arr)
+    public function saveCelula($input)
     {
-
-        $input = $arr;
-
-        $celula = new Celula();
+		$celula = new Celula();
+     
         $celula->fill($input); // Mass assignment
+        
         $celula->save();
-
+        
+        if($input['lider']) {
+        	$lider = Membro::find($input['lider']);
+        	
+        	$lider->fill(['fk_celula' => $celula->id]);
+        	
+        	$lider->save();
+        }
+        
+        
         return $celula;
     }
 
@@ -54,8 +63,17 @@ class Celula extends Model
         $input = $request;
 
         $celula->fill($input); // Mass assignment
-
+		
         $celula->save();
+        
+        if($input['lider']) {
+        	$lider = Membro::find($input['lider']);
+        	
+        	$lider->fill(['fk_celula' => $celula->id]);
+        	
+        	$lider->save();
+        }
+
 
         return $celula;
     }
@@ -65,11 +83,19 @@ class Celula extends Model
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function deleteMembro($id)
+    public function deleteCelula($id)
     {
         $celula = self::find($id);
+        
+        $membros = Membro::where('fk_celula',$id);
+        
+        if($membros) {
+        	$membros->update(['fk_celula' => null]);
+        }
+        
         $celula->delete();
-        return;
+        
+        return true;
     }
 
 }

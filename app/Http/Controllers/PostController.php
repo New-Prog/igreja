@@ -21,11 +21,6 @@ class PostController extends Controller
    
     }
 
-    // public function VemNiMimView()
-    // {
-    //     return view('blog');
-    // }
-    
     public function allPosts()
     {
 

@@ -23,7 +23,7 @@
     <link href="/dashboard_layout/css/style-responsive.css" rel="stylesheet">
 
     <script src="/dashboard_layout/js/chart-master/Chart.js"></script>
-    
+    <script type="text/javascript" src="/dashboard_layout/js/jquery.js"></script>
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>

@@ -1,4 +1,3 @@
-/*
  * Gritter for jQuery
  * http://www.boedesign.com/
  *

@@ -1,166 +1,113 @@
-
-
-var obj_list_membros = {};
-
-function gravarPost() {
-
-	// if($('#autor').val() == '') {
-	// 	alert('Preencha o autor corretamente');
-	// 	$('#autor').focus();
-	// 	return false;
-	// }
-
-	// if($('#titulo').val().lenth < 5) {
-	// 	alert('Preencha o titulo corretamente');
-	// 	$('#titulo').focus();
-	// 	return false;
-	// }
-
-	// if($('#descricao').val().lenth < 5) {
-	// 	alert('Preencha a descricao corretamente');
-	// 	$('#descricao').focus();
-	// 	return false;
-	// }
-
-	var data = {
-		id                     : $("#id").val(),
-		membro_cpf             : $("#membro_cpf").val(),
-		membro_nome            : $("#membro_nome").val(),
-		membro_sobrenome       : $("#membro_sobrenome").val(),
-		membro_rg              : $("#membro_rg").val(),
-		membro_data_nascimento : $("#membro_data_nascimento").val(),
-		membro_cep             : $("#membro_cep").val(),
-		membro_endereco        : $("#membro_endereco").val(),
-		membro_telefone_1      : $("#membro_telefone_1").val(),
-		membro_telefone_2      : $("#membro_telefone_2").val(),
-		membro_id_celula       : $("#membro_id_celula").val(),
-		membro_tipo            : $("#membro_tipo").val(),
-		_token                 : $('#_token').val()
-
-		// autor: $('#membro_').val(),
-		// titulo: $('#titulo').val(),
-		// descricao:$('#descricao').val(),
-	};
-
-
-	link = '/membros/save';
-
-	if ($('#deonde').val() == 'alterado') {
-		link = "/membros/update";
-	} 
-
-	console.log('data: ', data);
-
-	$.post(link, data, function(data) {
-		if(data.OK) {
-
-	  		swal({   title: "OK!",   text: "Membro "+ $('#deonde').val() +" com sucesso!",   type: "success",   confirmButtonText: "OK" });
-	  		$('.close').trigger('click');
-
-	  	} else {
-	  		swal({   title: "Erro!",   text: data.error,   type: "error",   confirmButtonText: "OK" });
-	  	}
-	  	$('#autor, #titulo, #descricao').val("");
-	}, 'json');
-}
-
-$('#cadastrar').on('click', function() {
-	gravarPost();
-});
-
-function requestServer(dados) {
-    
-    var  url = dados.url;
-    var  type = dados.type;
-    var  data = dados.data;
-
-	return $.ajax({
-		url: url,
-		type: type,
-		data: data,
-		dataType: 'json',
-		timeout: 5000,
-		async: false,
-		error: function(response) {
-			console.log(response, 'ERRO AJAX  ');
-		},
-		success: function(resp) {
-            console.log(resp);
-			return resp;
-		}
-	});
-}   
-function montarListaMembros(data) {
-    var html='';
-	obj_list_membros = data;
-
-	console.log("Lista de membros: ", obj_list_membros);
-	var count = 0;
-    for(var i in data) { 
-        html += "<tr id=" + data[i].id + " data-data="+ data[i] +" >" +
-                "   <td>" + data[i].membro_nome +" "+  data[i].membro_sobrenome + "</td>" +
-                "   <td>" + data[i].membro_cpf + "</td>" +
-                "   <td>" + data[i].membro_id_celula + "</td>" +
-                "   <td class='text-center'><span onclick=\"javascript: alterarMembro("+count+")\" style='cursor:pointer' class='glyphicon glyphicon-search' data-toggle='modal' data-target='#myModal'></span></td>" +
-
-                "</tr>";
-
-    	count++;
-    }
-
-    $("#retorno").removeClass("hidden");
-    $("#retorno tbody").html(html);
-} 
-
-$("#pesquisar").on('click',function() {
-    var dados = {
-        url : '/listarMembros', 
-        type : 'GET', 
-        data : {
-            tipo_pesquisa: $("select[name='tipo_pesquisa']:checked").val(), 
-            conteudo_pesquisa: $("input[name='conteudo_pesquisa']").val()
-       },
-    }
-
-	var response = JSON.parse(requestServer(dados).responseText);
-    console.log(response);
-	montarListaMembros(response);
-});
-var acoes_cad_modal = function() {
-
-	// LIMPA TODAS AS INPUTS DA TELA 
-	$("#deonde").val('cadastrado');
-	$("#id").val('');
-	$("[id^=membro_]").val("");
-};
-
-function alterarMembro(id_linha) {
-	// PREENCHENDO DADOS DA TELA CONFORME VIR DO BD
+(function() {
+	'use strict';
 	
-	$("#deonde").val('alterado');
+	$('#cep').on('blur', preecherCampos);
+	
+	function request(url, data, type) {
+		
+		return $.ajax({
+			url: url,
+			type: type,
+			dataType: 'json',
+			data: data,
+			timeout: 10000
+		});
+	}
+	
+	
+	function preecherCampos(event) {
+		var cep = $(event.target).val()
+		
+		var url = "http://api.postmon.com.br/v1/cep/" + cep;
+		
+		request(url, null, 'GET')
+			.done(function(response) {
+	            $('#bairro').val(response.bairro);
+	            $('#cidade').val(response.cidade);
+	            $('#estado').val(response.estado);
+	            $('#logradouro').val(response.logradouro);
+			})
+			.fail(function(response) {
+				alert('Ocorreu um erro ao pegar o CEP');
+			});
+	}
+	
 
-	$("#id").val(obj_list_membros[id_linha].id);
-	$("#membro_cpf").val(obj_list_membros[id_linha].membro_cpf);
-	$("#membro_nome").val(obj_list_membros[id_linha].membro_nome);
-	$("#membro_sobrenome").val(obj_list_membros[id_linha].membro_sobrenome);
-	$("#membro_rg").val(obj_list_membros[id_linha].membro_rg);
-	$("#membro_data_nascimento").val(obj_list_membros[id_linha].membro_data_nascimento);
-	$("#membro_cep").val(obj_list_membros[id_linha].membro_cep);
-	$("#membro_endereco").val(obj_list_membros[id_linha].membro_endereco);
-	$("#membro_telefone_1").val(obj_list_membros[id_linha].membro_telefone_1);
-	$("#membro_telefone_2").val(obj_list_membros[id_linha].membro_telefone_2);
-	$("#membro_id_celula").val(obj_list_membros[id_linha].membro_id_celula);
-	$("#membro_tipo").val(obj_list_membros[id_linha].membro_tipo);
+    $(document).on('click', ".btn-danger" , function( event ) {
+        event.stopImmediatePropagation();
+        $('#conteudo-principal').load("/membros/consultar");
+        return false;
+    });
 
-}
+    $('#btn_limpar').on('click', function() {
+        $('input').val('');
+        $('select').val('');
+    });
+
+    $("#btn_enviar").on('click', function (event) {
+    	var idCampoAtual;// Variavel de controle.
+    	try {	    	
+    		//INI - Validações campos de membros
+    		event.preventDefault();
+	        //CPF
+	        var cpf = $("#cpf").val().replace(/\.|\-/gi, '');
+    		idCampoAtual = $("#cpf");
+    		if (validarCPF(cpf) == false) throw "CPF Inválido!";
+	        idCampoAtual.val(cpf);
+
+    		// CEP
+    		var cep = $("#cep").val().replace('-', '');
+	        if (cep == '' || cep.length != 8 ) throw "CEP Inválido";
+	        $("#cep").val(cep);
+	        
+	        
+	    	var data = $("#dt_nasc").val();
+	        data = data.split('/');
+
+	        $("#data_nasc").val(data[2]+"-"+data[1]+"-"+data[0]);
+
+	        $('form').submit();
+
+    	} catch ($e) {	
+    		idCampoAtual.focus();
+    		alert($e);
+    	}
+
+    }); 
+
+    $("#cpf").mask('000.000.000-00', {reverse: true});
+    $("#dt_nasc").mask('00/00/0000', {reverse: true});
+    $("#telefone").mask('(00)0000-0000', {reverse: false});
+    $("#celular").mask('(00)00000-0000', {reverse: false});
+    $("#cep").mask('00000-000', {reverse: false});
+    $('#email').mask("A", {
+        translation: {
+            "A": { pattern: /[\w@\-.+]/, recursive: true }
+        }
+    });
+	
+	function validarCPF(strCPF) {
+	    var Soma;
+	    var Resto;
+	    Soma = 0;
+		if (strCPF == "00000000000") return false;
+	    
+		for (var i=1; i<=9; i++) Soma = Soma + parseInt(strCPF.substring(i-1, i)) * (11 - i);
+		Resto = (Soma * 10) % 11;
+		
+	    if ((Resto == 10) || (Resto == 11))  Resto = 0;
+	    if (Resto != parseInt(strCPF.substring(9, 10)) ) return false;
+		
+		Soma = 0;
+	    for (var i = 1; i <= 10; i++) Soma = Soma + parseInt(strCPF.substring(i-1, i)) * (12 - i);
+	    Resto = (Soma * 10) % 11;
+		
+	    if ((Resto == 10) || (Resto == 11))  Resto = 0;
+	    if (Resto != parseInt(strCPF.substring(10, 11) ) ) return false;
+	    return true;
+	}
+})();
 
 
-$("select").on('change', function() {
-    var _this = $(this); 
-    if (_this.val() != 'todos') {
-        $('.escondido').css('display', 'block');
-    } else {
-        $('.escondido').css('display', 'none');
-        $('.escondido input').val('');
-    }
-});
+
+

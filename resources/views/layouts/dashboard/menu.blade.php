@@ -47,10 +47,7 @@
                           <span>Posts</span>
                       </a>
                   </li>
-
-
-
-                  <li class="sub-menu">
+  <!--                 <li class="sub-menu">
                       <a href="javascript:;" >
                           <i class="fa fa-cogs"></i>
                           <span>Configurações</span>
@@ -60,7 +57,7 @@
                          <li><a class="menu-item" href="gallery.html">Gallery</a></li>
                          <li><a class="menu-item" href="todo_list.html">Todo List</a></li>
                       </ul>
-                  </li>
+                  </li> -->
 
               </ul>
               <!-- sidebar menu end-->

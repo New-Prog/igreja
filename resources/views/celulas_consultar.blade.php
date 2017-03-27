@@ -22,7 +22,6 @@
                     <tr>
                         <th><i class="fa fa-bullhorn"></i> Nome da Célula</th>
                         <th class="hidden-phone"><i class="fa fa-question-circle"></i> Líder</th>
-                        <th><i class="fa fa-bookmark"></i>Descrição</th>
                         <th></th>
                     </tr>
                     </thead>
@@ -31,7 +30,6 @@
                         <tr>
                             <td><a href="basic_table.html#">{{ $celula->nome }}</a></td>
                             <td class="hidden-phone">{{ $celula->lider }}</td>
-                            <td>{{ $celula->descricao }}</td>
                             <td>
                                 <a class="btn_link" href="/celulas/alterar/{{ $celula['id'] }}" alt="alterar"><button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button></a>
                                 <a class="btn_link" href="/celulas/del/{{ $celula['id'] }}" alt="deletar" ><button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>

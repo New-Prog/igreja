@@ -62,7 +62,7 @@
                 <div class="row">
                     <div class="col-md-7" id="cel">
 
-                        <div class="logo wow fadeInDown"> 
+                        <div class="logo wow fadeInDown">
                         <!--<a href=""><img src="images/logo.png" alt="logo"></a>-->
                         </div>
 
@@ -104,7 +104,7 @@
                                     <button type="button" class="btn btn-warning btn-block btn-lg" id="btnEnviar">Sim, quero conhecer!</button>
                                 </div>
                                 <p class="privacy text-center">
-       
+
                                 </p>
                             </form>
                         </div>
@@ -132,7 +132,7 @@
                       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut ullamcorper eu dui in efficitur. Quisque vehicula malesuada enim, sit amet pharetra nunc placerat eu. Nam vulputate in lectus id ultricies. Cras porttitor placerat scelerisque. Maecenas lacinia vestibulum eleifend. Mauris a enim accumsan odio vehicula suscipit a id leo. Phasellus erat lectus, scelerisque sit amet diam vel, posuere venenatis sapien. Duis suscipit elit quis magna suscipit facilisis. Nunc fermentum metus eget velit condimentum sollicitudin. Mauris justo ex, rutrum non posuere quis, fermentum quis diam. Integer varius commodo metus, sed sollicitudin justo convallis id. Cras vestibulum molestie augue fermentum malesuada.</p>
 
                       <p>Ut euismod nec erat vel faucibus. Suspendisse laoreet tincidunt est eu sodales. Nam consequat rhoncus nulla a mattis. Cras viverra nec erat at tincidunt. Proin pulvinar in diam quis tincidunt. Vivamus ornare posuere neque, nec condimentum est vulputate in. Nunc mattis nisi a orci maximus ullamcorper. Sed dapibus vel turpis quis volutpat. Integer eleifend turpis id velit elementum, sed volutpat risus aliquet. Vestibulum porta neque quis consectetur congue. Fusce scelerisque neque vel odio elementum porta. Nam ut diam non velit dictum faucibus.
-                    
+
                         <p>Nam facilisis pretium erat sit amet ultrices. Nullam ac felis ornare, tincidunt est id, molestie tellus. Aenean ut leo congue, fringilla lorem ut, malesuada velit. Aenean rhoncus, velit molestie dictum volutpat, nunc massa euismod est, et bibendum nunc augue ac urna. Maecenas iaculis ut tellus non scelerisque. Quisque egestas, justo ac semper viverra, nisl metus consectetur velit, sed bibendum dui lacus sed enim. Fusce id nunc vel odio eleifend ullamcorper. Nunc malesuada, elit et porta consequat, ex justo feugiat arcu, vitae dignissim nibh nunc sed metus. Proin sed neque vitae nibh hendrerit viverra. Nulla facilisi. Phasellus dolor magna, accumsan a pellentesque quis, feugiat eu sapien. Nulla aliquet purus et mauris viverra porta. Sed ut ante cursus, sagittis ligula lacinia, varius ex. Curabitur vitae fermentum elit. Aenean ac nulla sed risus tincidunt tincidunt.</p>
 
                       <i class="glyphicon glyphicon-thumbs-up pull-right" style="color:blue;font-size:24px!important;cursor:pointer;"></i></p>
@@ -147,7 +147,7 @@
                       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut ullamcorper eu dui in efficitur. Quisque vehicula malesuada enim, sit amet pharetra nunc placerat eu. Nam vulputate in lectus id ultricies. Cras porttitor placerat scelerisque. Maecenas lacinia vestibulum eleifend. Mauris a enim accumsan odio vehicula suscipit a id leo. Phasellus erat lectus, scelerisque sit amet diam vel, posuere venenatis sapien. Duis suscipit elit quis magna suscipit facilisis. Nunc fermentum metus eget velit condimentum sollicitudin. Mauris justo ex, rutrum non posuere quis, fermentum quis diam. Integer varius commodo metus, sed sollicitudin justo convallis id. Cras vestibulum molestie augue fermentum malesuada.</p>
 
                       <p>Ut euismod nec erat vel faucibus. Suspendisse laoreet tincidunt est eu sodales. Nam consequat rhoncus nulla a mattis. Cras viverra nec erat at tincidunt. Proin pulvinar in diam quis tincidunt. Vivamus ornare posuere neque, nec condimentum est vulputate in. Nunc mattis nisi a orci maximus ullamcorper. Sed dapibus vel turpis quis volutpat. Integer eleifend turpis id velit elementum, sed volutpat risus aliquet. Vestibulum porta neque quis consectetur congue. Fusce scelerisque neque vel odio elementum porta. Nam ut diam non velit dictum faucibus.
-                    
+
                         <p>Nam facilisis pretium erat sit amet ultrices. Nullam ac felis ornare, tincidunt est id, molestie tellus. Aenean ut leo congue, fringilla lorem ut, malesuada velit. Aenean rhoncus, velit molestie dictum volutpat, nunc massa euismod est, et bibendum nunc augue ac urna. Maecenas iaculis ut tellus non scelerisque. Quisque egestas, justo ac semper viverra, nisl metus consectetur velit, sed bibendum dui lacus sed enim. Fusce id nunc vel odio eleifend ullamcorper. Nunc malesuada, elit et porta consequat, ex justo feugiat arcu, vitae dignissim nibh nunc sed metus. Proin sed neque vitae nibh hendrerit viverra. Nulla facilisi. Phasellus dolor magna, accumsan a pellentesque quis, feugiat eu sapien. Nulla aliquet purus et mauris viverra porta. Sed ut ante cursus, sagittis ligula lacinia, varius ex. Curabitur vitae fermentum elit. Aenean ac nulla sed risus tincidunt tincidunt.</p>
                       <p><i class="glyphicon glyphicon-thumbs-up pull-right" style="color:blue;font-size:24px!important;cursor:pointer;"></i></p>
                     </div>

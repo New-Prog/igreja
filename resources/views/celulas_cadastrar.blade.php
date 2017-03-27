@@ -6,15 +6,16 @@
     if(!isset($celula)){ 
         $actionForm = "/celulas/cadastrar/save";
         $messageButton = "Cadastrar";
+        $celula_nome =  $celula_id = $celula_lider = '';
     } else { 
         $actionForm = "/celulas/up/{$celula['id']}";
-        $celula = array();
         $messageButton = "Alterar";
+        $celula_nome  = $celula['nome'];
+        $celula_id    = $celula['id'];
+        $celula_lider = $celula['lider'];
     }
     
 ?>
-<h3><i class="fa fa-angle-right"></i> Cadastro de Células</h3>
-
 <!-- BASIC FORM ELELEMNTS -->
 <div class="row mt">
   <div class="col-lg-12">
@@ -25,40 +26,38 @@
             <h4 class="mb"><i class="fa fa-angle-right"></i> Nova Célula</h4>
                 
             <div class="form-group">
-                <label class="col-sm-1  control-label">Nome</label>
-                <div class="col-sm-11">
-                    <input type="text" class="form-control" name="nome" >
+                
+                <div class="col-sm-6">
+                	<label>Nome</label>
+                    <input type="text" class="form-control" name="nome" value="{{$celula_nome}}" required="true">
                 </div>  
-            </div> 
-
-            <div class="form-group">
-                <label class="col-sm-1  control-label">Descrição</label>
-                <div class="col-sm-11">
-                    <input type="text" class="form-control" name="descricao"  >
-                </div>  
-            </div>   
-
-            <div class="form-panel">
-                <h4 class="mb"><i class="fa fa-angle-right"></i>Líder</h4>
-                <div class="form-group">
-                    <div class="col-sm-11">
-                        <input type="text" class="form-control" name="lider" >
-          
-                    </div>  
+                <div class="col-sm-6">
+                 	<label>Líder</label>
+                    
+                    <select class="form-control" name="lider" >
+                       <option value="">--Selecione--</option>
+                        @foreach ($lideres as $lider)
+                            <option <?= ($celula_lider == $lider['id']) ? 'selected' : '' ?> value="{{ $lider['id'] }}"> {{ $lider['nome'] }}</option>
+                        @endforeach
+                    </select>          
                 </div> 
-            </div>   
-        <div class="form-panel barra-botoes">
-            <div class="form-group">
-                <div class="col-sm-11 grupo_btn_cadastro">
-                    <button type="submit" class="btn btn-danger">Cancelar</button>
-                    <button type="submit" class="btn btn-warning">Limpar</button>
+            </div>  
+        <div class="form-panel">
+			<div class="row">
+                <div class="col-sm-12 col-xs-12">
+                    <a href="/celulas/consultar" class='btn btn-danger'>Cancelar</a>
+                    <button type="button" id="btn-limpar" class="btn btn-warning">Limpar</button>
                     <button class="btn btn-success">{{ $messageButton }}</button>
                 </div>  
-            </div> 
+             </div>
+ 
         </div>  
         
     </form>
 
   </div><!-- col-lg-12-->      	
 </div><!-- /row -->
+
+<<script type="text/javascript" src="{!! asset('js/celula_cadastrar.js') !!}" ></script>
+
 @stop

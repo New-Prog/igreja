@@ -18,10 +18,12 @@ use Response;
 class CelulaViewController extends Controller
 {
     protected $celula;
+    protected $membros;
+    
 
     public function __construct(Celula $celula)
     {
-        $this->celula = $celula;
+        $this->celula   = $celula;
     }
     public function allCelulas()
     {
@@ -36,15 +38,15 @@ class CelulaViewController extends Controller
     }
 
     public function viewCelula()
-    {  
-        return view('celulas_cadastrar')->renderSections()['conteudo'];
+    {
+        return view('celulas_cadastrar')->with('lideres', Membro::allLiders())->renderSections()['conteudo'];
 
     }
 
     public function getCelula($id)
     {
-        $celula = $this->celula->getCelula($id);
-   
+        $celula = Celula::find($id);
+        
         if (!$celula)
         {
             return Response::json(['response' => 'Célula não encontrada'], 400);
@@ -56,9 +58,13 @@ class CelulaViewController extends Controller
     public function saveCelula(Request $request)
     {   
         $input = $request->all();
-
+        
+        $input['lider'] = !$input['lider'] ? null : $input['lider'];
+        
         $celula = $this->celula->saveCelula($input);
+        
         $celulas = $this->celula->with('membro')->get();
+        
         if (!$celula) {
             Response::json(['response' => 'Celula não encontrado'], 400);   
         }
@@ -69,28 +75,29 @@ class CelulaViewController extends Controller
     public function updateCelula($id, Request $request)
     {
         $input = $request->all();
-
+        $input['lider'] = !$input['lider'] ? null : $input['lider'];
+        
         $celula = $this->celula->updateCelula($id, $input);
         
         if (!$celula)
         {
             return Response::json(['response' => 'Célula não encontrada'], 400);
         }
-     
-        return Response::json($celula, 200);
+        
+        return view('celulas_consultar')->with('celulas', Celula::all());
+        
     }
     public function alterarCelula($id, Request $request)
-    {   
-        return false;
-        #TODO /// jeferson desenvolver
-        $celula = $this->celula->getcelula($id);
+    {
+    	
+        $celula = Celula::find($id);
         
         if (!$celula)
         {
-            //return Response::json(['response' => 'celula não encontrado'], 400);
+            return Response::json(['response' => 'Célula não encontrada'], 400);
         }
-    
-        return view('celulas_cadastrar')->with('celula', $celula)->renderSections()['conteudo'];
+
+        return view('celulas_cadastrar')->with(['celula'=>$celula, 'lideres'=> Membro::allLiders()] )->renderSections()['conteudo'];
     }
             /**
      * Remove the specified resource from storage.
@@ -98,10 +105,11 @@ class CelulaViewController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function deleteMembro($id)
+    public function deleteCelula($id)
     {
-        $this->celula->deleteMembro($id);
-        return Redirect::route('allCelulas');
+        $this->celula->deleteCelula($id);
+        //return view('celulas_consultar')->with('celulas', Celula::all());
+        return redirect()->route('allCelulas');
 
     }
 }

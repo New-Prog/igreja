@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-
-
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -52,7 +50,7 @@ class CelulaController extends Controller
     public function saveCelula(Request $request)
     {   
         $input = $request->all();
-
+		
         $celula = $this->celula->saveCelula($input);
         if (!$celula) {
             Response::json(['response' => 'Celula não encontrado'], 400);   
