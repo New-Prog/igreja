@@ -857,8 +857,8 @@ ul.top-menu > li > a:hover, ul.top-menu > li > a:focus {
 /* LINE ICONS CONFIGURATION */
 
 .mtbox {
-	margin-top: 80px;
-	margin-bottom: 40px;
+    margin-top: 14px;
+    margin-bottom: 0px;
 }
 
 .box1 {
@@ -2273,5 +2273,49 @@ label {
 .site-min-height {
     min-height: 900px;
 }
+.foto{ 
+    display: inline-block;
+    padding: 10px;
+}
 
+.membro-descricao{ 
+    display: inline-block;
+    width: 400px;
+}
 
+.membro-card{
+    padding: 13px;
+    border: 1px solid rgba(128, 128, 128, 0.34);
+    margin: 4px 0px;
+    display: inline-flex;
+}
+.sexo {
+    display: inline-block;
+}
+.nome {
+    font-size: 15px;
+    font-weight: bold;
+}
+.idade {
+    display: inline-block;
+}
+
+#ultimos-membros {
+   
+}
+.pedido-oracao {
+    width: 398px;
+    height: 94px;
+    overflow: hidden;
+    display: inline-block;
+}
+
+.dashboard-dados {
+    margin-top: -3px;
+}
+
+.map {
+    overflow: hidden;
+    height: 390px;
+    width: 496px;
+}
