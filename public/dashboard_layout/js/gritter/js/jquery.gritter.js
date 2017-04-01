@@ -1,5 +1,4 @@
-/*
- * Gritter for jQuery
+/* * Gritter for jQuery
  * http://www.boedesign.com/
  *
  * Copyright (c) 2012 Jordan Boesch

@@ -5,11 +5,12 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 
 use Request;
+/*
 use Hash;
 use Exception;
 
 use Illuminate\Support\Facades\DB;
-
+*/
 use App\Celula;
 
 class Membro extends Model
@@ -93,8 +94,21 @@ class Membro extends Model
         return $membro;
         
     }
-
-    public function getMembroByCelula($id)
+    public static function getMembroByCelulaAPI($id)
+    {
+    	
+    	$membro = self::where('fk_celula',$id);
+    	// dd($membro);
+    	if (is_null($membro))
+    	{
+    		return false;
+    	}
+    	
+    	return $membro;
+    	
+    }
+    
+    public static function getMembroByCelula($id)
     {
 
         $membro = self::where('fk_celula',$id)->with('celula')->get();

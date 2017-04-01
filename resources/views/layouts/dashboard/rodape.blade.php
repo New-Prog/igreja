@@ -49,11 +49,11 @@
     
     <script src="/js/modals.js"></script>
 	<script type="text/javascript">
-        $(document).ready(function () {
+        // $(document).ready(function () {
             
           
             
-        var unique_id = $.gritter.add({
+        // var unique_id = $.gritter.add({
             // (string | mandatory) the heading of the notification
             //title: 'Seja bem vindo ao Sistema New Prog!',
             // (string | mandatory) the text inside the notification
@@ -66,16 +66,16 @@
             //time: '',
             // (string | optional) the class name you want to apply to that specific message
             //class_name: 'my-sticky-class'
-        });
+        // });
 
-        return false;
-        });
+        // return false;
+        // });
 	</script>
 	
 	<script type="application/javascript">
         $(document).ready(function () {
 
-            $(document).on('click', ".btn_link", function () {
+            $(document).on('click', ".btn_link", function (event) {
                 event.preventDefault();
                 $('#conteudo-principal').load($(this).attr('href'));
             });
@@ -83,11 +83,11 @@
   
 
             $(document).on('click', ".menu-item" , function( event ) {
+                event.preventDefault();
                 event.stopImmediatePropagation();
         
                 $('#conteudo-principal').load($(this).attr('href'));
-                return false
-
+                // return false;
             });
 
             $("#date-popover").popover({html: true, trigger: "manual"});

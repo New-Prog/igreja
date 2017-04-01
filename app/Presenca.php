@@ -8,15 +8,20 @@ class Presenca extends Model
 {
     protected $table = 'presencas';
 
-    protected $fillable = ['presente'];
+    protected $fillable = ['presente','fk_reuniao', 'fk_membro'];
     
     public function reuniao() 
     {
-        return $this->HasMany('App\Reuniao','fk_reuniao' );   
+    	
+        //return $this->HasMany('App\Reuniao','fk_reuniao' );
+        
+    	return $this->belongsTo('App\Reuniao','fk_reuniao');
     }    
     public function membro() 
     {
-        return $this->HasMany('App\Membro','fk_membro' );   
+    	
+    	return $this->belongsTo('App\Membro','fk_membro');
+        //return $this->HasMany('App\Membro','fk_membro' );   
     }
 
         public function allPresencas()
@@ -24,7 +29,7 @@ class Presenca extends Model
         return self::all(); 
     }
      
-    public function savePresenca($arr)
+    public static function savePresenca($arr)
     {
 
         $input = $arr;
@@ -39,9 +44,11 @@ class Presenca extends Model
         
     }
     
-    public function getPresenca($id)
+    public function getPresencaByReuniao($id_membro)
     {
-        $presenca = self::($id);
+    	
+    	
+    	$presenca = self::where("fk_reuniao", $id_membro);
         
         if (is_null($presenca))
         {
@@ -50,6 +57,19 @@ class Presenca extends Model
         
         return $presenca;
         
+    }
+    
+    public function getPresencaByMembro($id_membro)
+    {
+    	$presenca = self::where("fk_membro", $id_membro)->with(['reuniao', 'membro'])->get();
+    	
+    	if (is_null($presenca))
+    	{
+    		return false;
+    	}
+    	
+    	return $presenca;
+    	
     }
     
     public function updatePresenca($id, $arr_up_presenca)
