@@ -94,7 +94,20 @@ class Membro extends Model
         return $membro;
         
     }
-
+    public static function getMembroByCelulaAPI($id)
+    {
+    	
+    	$membro = self::where('fk_celula',$id);
+    	// dd($membro);
+    	if (is_null($membro))
+    	{
+    		return false;
+    	}
+    	
+    	return $membro;
+    	
+    }
+    
     public static function getMembroByCelula($id)
     {
 

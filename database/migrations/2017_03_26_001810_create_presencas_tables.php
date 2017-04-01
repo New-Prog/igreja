@@ -11,9 +11,9 @@ class CreatePresencasTables extends Migration {
 	public function up() {
 		Schema::create ( 'presencas', function (Blueprint $table) {
 			$table->integer ( 'fk_reuniao' )->unsigned ();
-			$table->foreign ( 'fk_reuniao' )->references ( 'id' )->on ( 'reunioes' )->onDelete ( 'cascade' );
+			$table->foreign ( 'fk_reuniao' )->references ( 'id' )->on ( 'reunioes' );
 			$table->integer ( 'fk_membro' )->unsigned ();
-			$table->foreign ( 'fk_membro' )->references ( 'id' )->on ( 'membros' )->onDelete ( 'cascade' );
+			$table->foreign ( 'fk_membro' )->references ( 'id' )->on ( 'membros' );
 			$table->boolean ( 'presente' )->default ( false );
 			$table->timestamps ();
 			$table->primary ( [ 
