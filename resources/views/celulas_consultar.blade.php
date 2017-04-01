@@ -11,12 +11,38 @@
     //     $messageButton = "Alterar";
     // }
 ?>  
+<div class="row mt">
+    <div class="col-md-12">
+        <div class="content-panel">
+
+            <div class="row">
+                 <div class="col-sm-4 ">
+                    <div class="form-group">
+                        <select class="form-control" name="filtro" id="filtro">
+                            <option value="">--Buscar por--</option>
+                            <option value="lider">Líder</option>
+                            <option value="nome">Nome</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-4 ">
+                	
+                </div>
+                <div class="col-sm-2 ">
+                	<button class="btn 	btn-primary btn-block" id="btn_pesquisar">Pesquisar</button>
+                </div>
+
+            </div>
+        </div>
+    </div>  
+</div>
+
     <form method="post" name="teste" >
     <div class="row mt">
         <div class="col-md-12">
             <div class="content-panel">
                 <table class="table table-striped table-advance table-hover">
-                  <h4><i class="fa fa-angle-right"></i> Célula </h4>
+                  <h4><i class="fa fa-angle-right"></i> Célula <a class="btn btn_link btn-success pull-right" href="/celulas/cadastrar">Novo<span class="glyphicon glyphicon-plus"></span><a></h4>
                   <hr>
                     <thead>
                     <tr>
@@ -46,9 +72,7 @@
     <div class="form-panel barra-botoes">
     <div class="form-group">
         <div class="col-sm-11 grupo_btn_cadastro">
-            <a class="btn_link" href="/celulas/cadastrar">
-                <button class="btn btn-success btn_link">Cadastrar Nova Célula</button>
-            <a>
+            
         </div>  
     </div> 
 </div>  

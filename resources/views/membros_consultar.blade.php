@@ -3,7 +3,7 @@
 @section('conteudo')
 
 <div class="row mt">
-    <div class="col-md-6 col-sm-offset-3">
+    <div class="col-md-12">
         <div class="content-panel">
 
             <div class="row">

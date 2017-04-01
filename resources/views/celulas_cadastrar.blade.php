@@ -44,10 +44,12 @@
             </div>  
         <div class="form-panel">
 			<div class="row">
-                <div class="col-sm-12 col-xs-12">
-                    <a href="/celulas/consultar" class='btn btn-danger'>Cancelar</a>
-                    <button type="button" id="btn-limpar" class="btn btn-warning">Limpar</button>
-                    <button class="btn btn-success">{{ $messageButton }}</button>
+                <div class="col-sm-12 col-xs-12 ">
+                	<div class="pull-right">
+	                    <a href="/celulas/consultar" class='btn btn-danger'>Cancelar</a>
+	                    <button type="button" id="btn-limpar" class="btn btn-warning">Limpar</button>
+	                    <button class="btn btn-success">{{ $messageButton }}</button>
+                    </div>
                 </div>  
              </div>
  
