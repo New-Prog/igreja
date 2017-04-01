@@ -28,7 +28,7 @@
             <div class="form-group">
                 <div class="col-sm-6">
                 <label class="control-label">Tema:</label>
-                    <input id="tema" type="text" class="form-control" value="{{ $celula['tema'] }}" name="tema">
+                    <input id="tema" type="text" class="form-control" value="{{ $reuniao['tema'] }}" name="tema">
                 </div>  
 <!--             </div>   
 
@@ -127,7 +127,7 @@
     $(document).ready(function ($) { 
         $('#cep').on('blur', function (data) {
             $.get( "http://api.postmon.com.br/v1/cep/"+$(this).val(), function(data) {
-                $('#bairro').val(data.bairro);
+                $('#bairro').val(data.bairro); 
                 $('#cidade').val(data.cidade);
                 $('#estado').val(data.estado);
                 $('#logradouro').val(data.logradouro);

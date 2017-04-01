@@ -37,14 +37,14 @@ class PresencaController extends Controller
 
     public function getPresenca($id)
     {
-        $presenca = $this->presenca->getPresenca($id);
+        $presenca = $this->presenca->getPresencaByReuniao($id);
         
         if (!$presenca)
         {
             return Response::json(['response' => ''], 400);
         }
      
-        return Response::json( $presenca->with(['reuniao', 'celula'])->get(), 200);
+        return Response::json( $presenca->with(['reuniao', 'membro'])->get(), 200);
     }
 
     public function savePresenca(Request $request)
