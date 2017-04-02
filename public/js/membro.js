@@ -53,7 +53,7 @@
 	        var cpf = $("#cpf").val().replace(/\.|\-/gi, '');
     		idCampoAtual = $("#cpf");
     		if (validarCPF(cpf) == false) throw "CPF Inválido!";
-	        idCampoAtual.val(cpf);
+    		$("#cpf").val(cpf);
 
     		// CEP
     		var cep = $("#cep").val().replace('-', '');

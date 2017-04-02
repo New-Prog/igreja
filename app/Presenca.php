@@ -29,7 +29,7 @@ class Presenca extends Model
         return self::all(); 
     }
      
-    public static function savePresenca($arr)
+    public function savePresenca($arr)
     {
 
         $input = $arr;

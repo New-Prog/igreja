@@ -9,8 +9,10 @@ class Reuniao extends Model
     protected $table = 'reunioes';
 
     protected $fillable =
-    ['descricao', 'tema', 'cep','logradouro','numero','complemento',
-    'bairro','cidade','estado','latitude','logitude', 'fk_celula', 'data'];
+    [
+    	'descricao', 'tema', 'cep','logradouro','numero','complemento',
+     	'bairro','cidade','estado','latitude','logitude', 'fk_celula', 'data'		
+    ];
     
     public function celula() 
     {
@@ -47,11 +49,21 @@ class Reuniao extends Model
         
     }
     
+    
+    public static function getReuniaoByCelula($id)
+    {
+    	
+    	$reuniao = self::where('fk_celula',$id)->with('celula')->get();
+    	if (is_null($reuniao))
+    	{
+    		return false;
+    	}
+    	
+    	return $reuniao;
+    	
+    }
     public function updateReuniao($id , $request)
     {
-        
-        // dd($id);
-
         $reuniao = $this->find($id);
            
         if (is_null($reuniao)) 
@@ -60,10 +72,17 @@ class Reuniao extends Model
         }
        
         $input = $request;
-        
         $reuniao->fill($input); // Mass assignment
         $reuniao->save();
 
         return $reuniao;
+    }
+    public function deleteReuniao($id)
+    {
+    	$reuniao = self::find($id);
+    	
+    	$reuniao->delete();
+    	
+    	return;
     }
 }

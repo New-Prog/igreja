@@ -2,11 +2,39 @@
 @extends('layouts.dashboard.layout')
 
 @section('conteudo')
+
+	<div class="row mt">
+	    <div class="col-md-12">
+	        <div class="content-panel">
+	
+	            <div class="row">
+	                 <div class="col-sm-4 ">
+	                    <div class="form-group">
+	                        <select class="form-control" name="filtro" id="filtro">
+	                            <option value="">--Buscar por--</option>
+	                            <option value="fk_celula">Célula</option>
+	                        </select>
+	                    </div>
+	                </div>
+	                <div class="col-sm-4 ">
+	                   	<div id="retorno_filtro" class="form-group"></div>
+	                </div>
+	                <div class="col-sm-2 ">
+	                	<button class="btn 	btn-primary btn-block" id="btn_pesquisar">Pesquisar</button>
+	                </div>
+	
+	            </div>
+	        </div>
+	    </div>  
+	</div>
+
+
+
     <div class="row mt">
         <div class="col-md-12">
             <div class="content-panel">
                 <table class="table table-striped table-advance table-hover">
-                  <h4><i class="fa fa-angle-right"></i> Reunioes </h4>
+                  <h4><i class="fa fa-angle-right"></i> Reuniões <a class="btn_link btn btn-success pull-right" href="/reunioes/cadastrar"> Novo<span class="glyphicon glyphicon-plus"></span></a> </h4>
                   <hr>
                     <thead>
                     <tr>
@@ -16,9 +44,13 @@
                         <th>Ações</th>
                     </tr>
                     </thead>
-                    <tbody>
+                    <tbody id='retorno'>
 
                     @foreach($reunioes as $reuniao)
+                    	<?php 
+	                    	$data = explode('-', $reuniao['data']);
+	                    	$reuniao['data'] = $data[2]."/".$data[1]."/".$data[0];
+                    	?>
                         <tr>
                             <td><a href="basic_table.html#">{{ $reuniao['celula']['nome'] }}</a></td>
                             <td class="hidden-phone">{{ $reuniao['tema'] }}</td>
@@ -38,14 +70,61 @@
         </div><!-- /col-md-12 -->
     </div><!-- /row -->
 
-<div class="form-panel barra-botoes">
-    <div class="form-group">
-        <div class="col-sm-11 grupo_btn_cadastro">
-            <a class="btn_link" href="/reunioes/cadastrar">
-                <button class="btn btn-success btn_link">Cadastrar Nova Reunião</button>
-            <a>
-        </div>  
-    </div> 
-</div>  
+
+<script type="text/javascript">
+$(document).ready(function () {
+    $("#filtro").on('change', function () {
+        var html = '';
+    	if ($(this).val() == 'fk_celula') {
+            var celulas;
+            $.get( "/api/celulas", function(data) {
+                   
+                celulas = data;
+
+                html = "<select class='form-control' name='conteudo_filtro' id='conteudo_filtro'>";
+                html  +=  "<option value=''>--Selecione--</option>";
+                for(var i in celulas) {
+                    html  +=  "<option value="+celulas[i].id+">"+ celulas[i].nome +"</option>";
+                }
+                html += "</select>";
+                $("#retorno_filtro").html(html);
+                //$("#retorno_filtro").closest('div.row').removeClass('hidden');
+                //$("#btn_pesquisar").closest('div.row').removeClass('hidden');
+                
+            }, 'json'); 
+        } else {
+            $("#retorno_filtro").val('').closest('div.row').addClass('hidden');
+            $("#btn_pesquisar").closest('div.row').addClass('hidden');
+        }
+    });
+    $("#btn_pesquisar").on('click', function() {
+        $.post( "/reunioes/getEspecifico", 
+            { filtro: $('#filtro').val(), conteudo_filtro: $('#conteudo_filtro').val() },
+            function(data) {
+                var html  = '';
+                reuniao = data;
+                console.log
+                for (var i in reuniao) {
+                    html += "<tr style='cursor:pointer'>"
+                                +"<td> "+reuniao[i].celula.nome+"</td>"
+                                +"<td class='hidden-phone'> "+reuniao[i].tema+"</td>"
+                                +"<td>"+reuniao[i].data+"</td>"
+                                +"<td>"
+                                +    "<a class='btn_link' href='/reunioes/alterar/"+reuniao[i].id+"' alt='alterar'><button class='btn btn-primary btn-xs'><i class='fa fa-pencil'></i></button></a>"
+                                +    "<a class='btn_link' href='/reunioes/del/"+reuniao[i].id +"'    alt='deletar'><button class='btn btn-danger btn-xs'><i class='fa fa-trash-o '></i></button></a>"
+                                +    "<a class='btn_link' href='/presencas/alt/"+reuniao[i].id+"' alt='presencas'><button class='btn btn-info btn-xs'><i class='fa fa-check-square'></i></button></a>"
+                                +"</td>"
+                            +"</tr>";
+                }
+
+                $("#retorno").html(html);
+            },
+            'json'
+        );
+    });
+
+
+});
+</script>
 
 @stop   

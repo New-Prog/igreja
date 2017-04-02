@@ -7,4 +7,6 @@ Route::group(['prefix' => 'reunioes'], function () {
 	Route::get('/alterar/{id}', 'ReuniaoViewController@alterarReuniao')->name('alterarReuniao'); //
 	Route::post('/up/{id}', 'ReuniaoViewController@updateReuniao')->name('updateReuniao'); // update member
 	Route::get('/del/{id}', 'ReuniaoViewController@deleteReuniao')->name('deleteReuniao'); // update member
+	Route::post('/getEspecifico', 'ReuniaoViewController@getReuniaoEspecifico')->name('getReuniaoEspecifico'); // update member
 });
+

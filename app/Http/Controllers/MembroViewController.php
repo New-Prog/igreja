@@ -16,32 +16,18 @@ class MembroViewController extends Controller
 {
     protected $membro;
     protected $celula;
-
-      /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function __construct(Membro $membro)
     {
         $this->membro = $membro;
     }
-    
-    /**
-     * Display a listing of the resource.
-     *  
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         return view('view_membros')->renderSections()['conteudo'];
     }
-    
     public function viewMembro()
     {
         return view('membros_cadastrar')->with('celulas', Celula::all())->renderSections()['conteudo'];
     }
-
     public function allMembros()
     {
         $membro = $this->membro->with('celula')->get();
@@ -81,7 +67,6 @@ class MembroViewController extends Controller
         $membros = $this->membro->with('celula')->get();
         return view('membros_consultar')->with('membros', $membros);       
     }
-
     public function getMembroEspecifico(Request $request)
     {
         // dd($request->filtro);
@@ -103,7 +88,6 @@ class MembroViewController extends Controller
 
         // return view('membros_consultar')->with('membros', $membros);       
     }
-
     public function updateMembro($id , Request $request)
     {
         $input = $request->all();

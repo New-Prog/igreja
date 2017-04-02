@@ -71,31 +71,21 @@ class ReuniaoController extends Controller
 	        
 	        foreach ($membros as $membro) {
 	        	
-	        	$response = $presenca->savePresenca([
+	        	$presenca->savePresenca([
 	        		'fk_reuniao' => $reuniao->id,
 	        		'fk_membro' => $membro->id,
 	        		'presente' => false,
 	        	]);
+
+	        	unset($arr_tmp);
 	        	
-	        	$response = filter_var($response, FILTER_VALIDATE_BOOLEAN);
-	        	
-	        	if ($response === false) {
+	        	if (!$presenca) {
 					
-					$presencas = Presenca::where('fk_reuniao', $reuniao->id);
-					
-					foreach ($presencas as $presencaErro) {
-					
-						Presenca::delete($presencaErro->id);
-						
-					}
-					
+					Presenca::where('fk_reuniao', $reuniao->id)->delete();
 					Reuniao::delete($reuniao->id);
-					
 					throw new Exception("Não foi possivel cadastrar nova reunião.", 400);
 					
-				}
-				
-	        	unset($arr_tmp);
+				}	
 	        }
 	        
 	        return Response::json($reuniao->with(['reuniao', 'membro'])->get(), 200);
