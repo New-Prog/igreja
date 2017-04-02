@@ -34,13 +34,9 @@ class Presenca extends Model
 
         $input = $arr;
         
-        $presenca = new Presenca();
-        
-        $presenca->fill($input);
+        $this->fill($input);
 
-        $presenca->save();
-
-        return $presenca;
+        return $this->save();
         
     }
     
@@ -72,19 +68,24 @@ class Presenca extends Model
     	
     }
     
-    public function updatePresenca($id, $arr_up_presenca)
-    {
-        $presenca = self::find($id);
-        
+    public function updatePresenca($arr_up_presenca)
+    {	
+    	
+    	$presenca = self::where('fk_reuniao', $arr_up_presenca['fk_reuniao'])
+    						->where('fk_membro', $arr_up_presenca['fk_membro'])
+    						->update(['presente' => $arr_up_presenca['presente']]);
+    	
+//     	dd($presenca->fk_reuniao);
+    	
         if (is_null($presenca)) 
         {
             return false;
         }
           
-        $input = $arr_up_presenca;
+//         $input = $arr_up_presenca;
         
-        $presenca->fill($input); // Mass assignment
-        $presenca->save();
+//         $presenca->fill($input); // Mass assignment
+//         $presenca->save();
         
         return $presenca;
         

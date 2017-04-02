@@ -32,7 +32,7 @@ class PresencaController extends Controller
             return Response::json(['response' => ''], 400);
         }
 
-        return Response::json($presenca->with(['reuniao', 'celula'])->get(), 200);
+        return Response::json($presenca->with(['reuniao', 'membro'])->get(), 200);
     }
 
     public function getPresenca($id)
@@ -58,7 +58,7 @@ class PresencaController extends Controller
             return Response::json(['response' => 'presenca não encontrado'], 400);
         } 
         
-        return Response::json($presenca->with(['reuniao', 'celula'])->get(), 200);        
+        return Response::json($presenca->with(['reuniao', 'membro'])->get(), 200);        
 
     }
 
@@ -75,7 +75,7 @@ class PresencaController extends Controller
             return Response::json(['response' => ''], 400);
         } 
 
-        return Response::json($presenca->with(['reuniao', 'celula'])->get(), 200);        
+        return Response::json($presenca->with(['reuniao', 'membro'])->get(), 200);        
     }
 
 

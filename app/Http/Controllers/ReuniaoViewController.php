@@ -4,18 +4,12 @@ namespace App\Http\Controllers;
 
 
 use Illuminate\Http\Request;
+use Response;
 
-use Illuminate\Support\Facades\Validator;
-
-use App\Http\Requests;
 use App\Reuniao;
 use App\Celula;
 use App\Membro;
 use App\Presenca;
-use Response;
-use App\User;
-
-
 
 
 class ReuniaoViewController extends Controller
@@ -114,5 +108,64 @@ class ReuniaoViewController extends Controller
 
         return Response::json($reuniao->with('celula')->get(), 200);        
     }    
+    public function deleteReuniao($id)
+    {
+    	$this->reuniao->deleteReuniao();
+    	
+    	$presencas = Presenca::where('fk_reuniao', $reuniao->id);
+    	
+    	foreach ($presencas as $presencaErro) {
+    		
+    		Presenca::delete($presencaErro->id);
+    		
+    	}
+    	
+    	Reuniao::delete($id);
+    	
+    	
+    	try {
+    		
+    		
+    		$membros = Membro::getMembroByCelulaAPI($id);
+    		
+    		$presenca = new Presenca();
+    		
+    		foreach ($membros as $membro) {
+    			
+    			$response = $presenca->savePresenca([
+    					'fk_reuniao' => $reuniao->id,
+    					'fk_membro' => $membro->id,
+    					'presente' => false,
+    			]);
+    			
+    			$response = filter_var($response, FILTER_VALIDATE_BOOLEAN);
+    			
+    			if ($response === false) {
+    				
+
+    				
+    				throw new Exception("Não foi possivel cadastrar nova reunião.", 400);
+    				
+    			}
+    			
+    			unset($arr_tmp);
+    		}
+    		
+    		return Response::json($reuniao->with(['reuniao', 'membro'])->get(), 200);
+    		
+    	} catch (Exception $e) {
+    		
+    		return Response::json(['response' => $e->getMessage()], $e->getCode());
+    		
+    	}
+    	
+
+    	
+    	
+    	
+    	return Redirect::route('all');
+    }
+    
+    
 
 }

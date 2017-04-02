@@ -3,9 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
 
-use App\Http\Requests;
 use App\Post;
 use Response;
 
@@ -76,4 +74,4 @@ class PostController extends Controller
 
         return Response::json($post, 200);        
     }
-}
+}  
