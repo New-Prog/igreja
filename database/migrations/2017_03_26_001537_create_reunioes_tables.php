@@ -21,7 +21,7 @@ class CreateReunioesTables extends Migration
     		$table->string('cep', 30);
     		$table->string('logradouro', 255);
     		$table->string('numero', 30);
-    		$table->string('complemento', 20)->nullable();
+    		$table->string('complemento', 100)->nullable();
     		$table->string('bairro', 100);
     		$table->string('cidade', 100);
     		$table->string('estado', 100);

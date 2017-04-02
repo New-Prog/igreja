@@ -21,13 +21,6 @@ class PostViewController extends Controller
 
     public function viewPosts()
     {
-
-        $posts = $this->post->allPosts();
-
-        if (!$posts)
-        {
-            return Response::json(['response' => ''], 400);
-        }
         return view('posts_cadastrar')->renderSections()['conteudo'];
     }
     public function allPosts()

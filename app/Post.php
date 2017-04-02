@@ -13,26 +13,23 @@ class Post extends Model
 
     public function allPosts()
     {
-        return self::all(); 
+        return $this->all(); 
     }
      
     public function savePost($arr)
     {
         $input = $arr;
-        $post = new Post();
-        $post->fill($input);
-        $post->save();
         
-        return $post;
+        $this->fill($input);
         
+        return $this->save();
     }
     
     public function getPost($id)
     {
-        $post = self::find($id);
+        $post = $this->find($id);
         
-        if (is_null($post))
-        {
+        if (is_null($post)) {
             return false;
         }
         

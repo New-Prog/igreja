@@ -29,21 +29,17 @@ class Presenca extends Model
         return self::all(); 
     }
      
-    public static function savePresenca($arr)
+    public function savePresenca($arr)
     {
-
         $input = $arr;
         
         $this->fill($input);
 
-        return $this->save();
-        
+        return $this->save();   
     }
     
     public function getPresencaByReuniao($id_membro)
-    {
-    	
-    	
+    {	
     	$presenca = self::where("fk_reuniao", $id_membro);
         
         if (is_null($presenca))

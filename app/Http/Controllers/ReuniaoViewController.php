@@ -67,8 +67,7 @@ class ReuniaoViewController extends Controller
         $membros = Membro::getMembroByCelula($input['fk_celula']);
         
         foreach ($membros as $membro) {
-            // 
-        	$presenca = new Presenca();
+            $presenca = new Presenca();
         	$arr_tmp['fk_reuniao'] = $reuniao->id;
         	$arr_tmp['fk_membro' ] = $membro->id;
         	$arr_tmp['presente'  ] = false;
@@ -140,12 +139,8 @@ class ReuniaoViewController extends Controller
     			
     			$response = filter_var($response, FILTER_VALIDATE_BOOLEAN);
     			
-    			if ($response === false) {
-    				
-
-    				
+    			if ($response === false) {    				
     				throw new Exception("Não foi possivel cadastrar nova reunião.", 400);
-    				
     			}
     			
     			unset($arr_tmp);
