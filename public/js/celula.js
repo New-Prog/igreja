@@ -11,7 +11,7 @@
 		} else if(valor == 'nome'){
 			mostrarFiltro();
 		}else if(valor == 'todos'){
-			pesquisar();
+			//pesquisar();
 			$('#div_conteudo').html("");
 		} else {
 			$('#div_conteudo').html("");
@@ -44,13 +44,13 @@
 	}
 	
 	function montarCelulas(response) {
-		console.log(response);
+		
 		var html = "";
 		for(var i in response) {
-				
+			var nome_lider = (!response[i].lider) ? "" : response[i].lider.nome;  
             html += "<tr>"+
 	            		"<td>"+response[i].nome+"</a></td>"+
-	            		"<td class='hidden-phone'>"+response[i].lider.nome+"</td>"+
+	            		"<td class='hidden-phone'>"+nome_lider+"</td>"+
 	            		"<td>"+
 	            		"<a class='btn_link' href='/celulas/alterar/"+response[i].id+"' alt='alterar'><button class='btn btn-primary btn-xs'><i class='fa fa-pencil'></i></button></a>"+
 	            		"<a class='btn_link' href='/celulas/del/"+response[i].id+"' alt='deletar' ><button class='btn btn-danger btn-xs'><i class='fa fa-trash-o '></i></button>"+

@@ -58,13 +58,14 @@ class CelulaViewController extends Controller
     
     public function allCelulas()
     {
-        $celula = $this->celula->with('lider')->get();
+        $celulas = $this->celula->with('lider')->get();
         
-        if (!$celula)
+        if (!$celulas)
         {
             return Response::json(['response' => 'Célula não encontrada'], 400);
         }
-        return view('celulas_consultar')->with('celulas', $celula)->renderSections()['conteudo'];
+        
+        return view('celulas_consultar')->with(['celulas'=> json_encode($celulas)])->renderSections()['conteudo'];
 
     }
 
@@ -137,6 +138,8 @@ class CelulaViewController extends Controller
      */
     public function deleteCelula($id)
     {
+    	Membro::where('fk_celula', $id)->update(['fk_celula'=> null]);
+    	
         $this->celula->deleteCelula($id);
         //return view('celulas_consultar')->with('celulas', Celula::all());
         return redirect()->route('allCelulas');

@@ -39,7 +39,7 @@
             
             <div class="row" style="margin-top:10px" >
                 <div class="col-md-12" id="midia">
-                    
+                    <input type="file" name="image" />
                 </div>
             </div>
 

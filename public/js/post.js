@@ -15,8 +15,6 @@
 			break;
 			case 'imagem':
 				var input = $('<input/>').attr({'type': 'file','name':'imagem'});
-				console.log(input);
-				return;
 				$('#midia').html(input);
 			break;
 		}

@@ -1,3 +1,6 @@
+<?php
+use function GuzzleHttp\json_decode;
+?>
 @extends('layouts.dashboard.layout')
 
 @section('conteudo')
@@ -41,10 +44,17 @@
                     </tr>
                     </thead>
                     <tbody id='body-table'>
-                    @foreach($celulas as $celula)
+					<?php 
+					$celulas = json_decode($celulas, true);
+					?>
+                    @foreach($celulas as $key => $celula)
+                    <?php
+                    	$nome_lider = (!$celula['lider']) ? '' : $celula['lider']['nome']
+                    ?>
+
                         <tr>
                             <td><a href="basic_table.html#">{{ $celula['nome'] }}</a></td>
-                            <td class="hidden-phone">{{ $celula['lider']}}</td>
+                            <td class="hidden-phone">{{ $nome_lider}}</td>
                             <td>
                                 <a class="btn_link" href="/celulas/alterar/{{ $celula['id'] }}" alt="alterar"><button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button></a>
                                 <a class="btn_link" href="/celulas/del/{{ $celula['id'] }}" alt="deletar" ><button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
