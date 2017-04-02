@@ -14,10 +14,10 @@ class Celula extends Model
     {
         return $this->hasMany('App\Membro', 'fk_celula');
     }
-
-    public function allCelulas()
+    
+    public function lider() 
     {
-        return self::all();
+    	return $this->belongsTo('App\Membro', 'lider');
     }
 
     public function saveCelula($input)
@@ -42,16 +42,22 @@ class Celula extends Model
 
     public function getCelula($id)
     {
-        $celula = self::find($id);
-
-        if (is_null($celula))
-        {
-            return false;
-        }
-
-        return $celula;
-
+        return self::find($id);
     }
+    
+    
+    public function getCelulaByLider($id_lider)
+    {
+    	return $this->where('lider', $id_lider)->with('lider')->get();
+    }
+    
+    
+    public function getCelulaByName($name) 
+    {
+    	return self::where('nome', 'like', "%{$name}%")->get();
+    }
+    
+    
     public function updateCelula($id, $request)
     {
         $celula = self::find($id);

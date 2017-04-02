@@ -7,4 +7,7 @@ Route::group(['prefix' => 'celulas'], function () {
 	Route::post('/cadastrar/save', 'CelulaViewController@saveCelula')->name('saveCelula'); // save member
 	Route::post('/up/{id}', 'CelulaViewController@updateCelula')->name('updateCelula'); // update member
 	Route::get('/del/{id}', 'CelulaViewController@deleteCelula')->name('deleteCelula'); // update member
+	
+	Route::get('/get/filter', 'CelulaViewController@getCelulasByFilter');
+	Route::get('/get/lideres', 'CelulaViewController@getLideres');
 });
