@@ -4,16 +4,17 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
-
-use App\Http\Requests;
+use Illuminate\Support\Facades\App;
 
 use App\Celula;
-
 use App\Membro;
-// use App\Http\Requests;
-use App\User;
-// use Request;
 use Response;
+
+
+//use App\Http\Requests;
+// use App\Http\Requests;
+//use App\User;
+// use Request;
 
 class CelulaViewController extends Controller
 {
@@ -25,16 +26,46 @@ class CelulaViewController extends Controller
     {
         $this->celula   = $celula;
     }
+    
+    public function getCelulasByFilter(Request $request) {
+    	$type = $request->get('type');
+    	
+    	$content = $request->get('content');
+    	
+    	$celulas = null;
+    	$celula = new Celula();
+    	
+    	if($type == 'lider') {
+    		$celulas = $celula->getCelulaByLider($content);
+    	} else if($type == 'nome'){
+    		$celulas = $celula->getCelulaByName($content);
+    	} else {
+    		$celulas = $this->celula->with('lider')->get();
+    	}
+
+    	return $celulas;
+    }
+    
+    public function getLideres()
+    {
+    	$response = [];
+    	$membros = Membro::allLiders();
+    	foreach ($membros as $membros) {
+    		array_push($response, ['id'=>$membros->id, 'nome'=>$membros->nome]);
+    	}
+    	return $response;
+    }
+    
     public function allCelulas()
     {
-        
-        $celula = $this->celula->allCelulas();
+        $celula = $this->celula->with('lider')->get();
         
         if (!$celula)
         {
             return Response::json(['response' => 'Célula não encontrada'], 400);
         }
         return view('celulas_consultar')->with('celulas', $celula)->renderSections()['conteudo'];
+
     }
 
     public function viewCelula()
@@ -88,8 +119,7 @@ class CelulaViewController extends Controller
         
     }
     public function alterarCelula($id, Request $request)
-    {
-    	
+    {	
         $celula = Celula::find($id);
         
         if (!$celula)

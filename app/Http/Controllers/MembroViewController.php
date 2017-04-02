@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
-use Response;
+
+use App\Http\Requests;
+
 use App\Membro;
 use App\Celula;
-
+use Response;
 
 
 class MembroViewController extends Controller
@@ -138,8 +140,14 @@ class MembroViewController extends Controller
     }
     public function deleteMembro($id)
     {
+    	Celula::where('lider', $id)->update(['lider'=> null]); 
+    	
         $this->membro->deleteMembro($id);
         return Redirect::route('allMembros');
+        
+        $membros = $this->membro->with('celula')->get();
+        
+        return view('membros_consultar')->with('membros', $membros)->renderSections()['conteudo'];
     }
 
 
