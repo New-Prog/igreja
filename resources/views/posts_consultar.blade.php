@@ -17,7 +17,6 @@
                     </tr>
                     </thead>
                     <tbody>
-
                     @foreach($posts as $post)
                         <tr>
                             <td><a href="basic_table.html#">{{ $post['nome'] }}</a></td>

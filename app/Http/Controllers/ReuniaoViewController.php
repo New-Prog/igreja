@@ -116,15 +116,41 @@ class ReuniaoViewController extends Controller
     	
     	return view('reunioes_consultar')->with('reunioes', $reuniao)->renderSections()['conteudo'];
     	
-//     	return Redirect::route('allReunioes');
-    }
+    	
+    	try {
+    		
+    		
+    		$membros = Membro::getMembroByCelulaAPI($id);
+    		
+    		$presenca = new Presenca();
+    		
+    		foreach ($membros as $membro) {
+    			
+    			$response = $presenca->savePresenca([
+    					'fk_reuniao' => $reuniao->id,
+    					'fk_membro' => $membro->id,
+    					'presente' => false,
+    			]);
+    			
+    			$response = filter_var($response, FILTER_VALIDATE_BOOLEAN);
+    			
+    			if ($response === false) {
+    				
 
-    public function getReuniaoEspecifico(Request $request)
-    {
-    	// dd($request->filtro);
-    	switch ($request->filtro) {
-    		case 'fk_celula':
-    			$reuniao = $this->reuniao->getReuniaoByCelula($request->conteudo_filtro);
+    				
+    				throw new Exception("Não foi possivel cadastrar nova reunião.", 400);
+    				
+    			}
+    			
+    			unset($arr_tmp);
+    		}
+    		
+    		return Response::json($reuniao->with(['reuniao', 'membro'])->get(), 200);
+    		
+    	} catch (Exception $e) {
+    		
+    		return Response::json(['response' => $e->getMessage()], $e->getCode());
+    		
     	}
     	return Response::json($reuniao, 200);
     }
