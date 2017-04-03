@@ -103,12 +103,15 @@ $(document).ready(function () {
             function(data) {
                 var html  = '';
                 reuniao = data;
-                console.log
                 for (var i in reuniao) {
-                    html += "<tr style='cursor:pointer'>"
+                    
+                    date = reuniao[i].data.split('-');
+                    data_atual = date[2]+"/"+date[1]+"/"+date[0];
+                    
+                	html += "<tr style='cursor:pointer'>"
                                 +"<td> "+reuniao[i].celula.nome+"</td>"
                                 +"<td class='hidden-phone'> "+reuniao[i].tema+"</td>"
-                                +"<td>"+reuniao[i].data+"</td>"
+                                +"<td>"+ data_atual +"</td>"
                                 +"<td>"
                                 +    "<a class='btn_link' href='/reunioes/alterar/"+reuniao[i].id+"' alt='alterar'><button class='btn btn-primary btn-xs'><i class='fa fa-pencil'></i></button></a>"
                                 +    "<a class='btn_link' href='/reunioes/del/"+reuniao[i].id +"'    alt='deletar'><button class='btn btn-danger btn-xs'><i class='fa fa-trash-o '></i></button></a>"
