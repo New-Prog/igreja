@@ -44,58 +44,47 @@ class ReuniaoController extends Controller
             return Response::json(['response' => ''], 400);
         }
         
-        return Response::json( $reuniao[$id - 1], 200);
-    }
-    
-
-    public function saveReuniao(Request $request)
-    {
-
-    	try {
-    	
-	    	$input = $request->all();
-	    	
-	    	if (empty($input['fk_reuniao'])) throw new Exception("Código da reunião não informado.", 400);
-	    	if (empty($input['fk_membro'])) throw new Exception("Código do membro não informado.", 400);
-	    		    	
-	        $reuniao = $this->reuniao->saveReuniao($input);
+        return Response::json( $reuniao, 200);
+	}
+	public function saveReuniao(Request $request) {
+		$input = $request->all ();
+		
+		if (empty ( $input ['fk_reuniao'] ))
+			Response::json(['response' => "Código da reunião não informado."], 400 );
+		if (empty ( $input ['fk_membro'] ))
+			Response::json(['response' => "Código do membro não informado."], 400 );
+			
+		$reuniao = $this->reuniao->saveReuniao( $input );
+		
+		if (! $reuniao) 
+			Response::json(['response' => "Reunião não cadastrada"], 400 );
+		
+			
+			
+		$membros = Membro::getMembroByCelulaAPI( $reuniao->fk_celula );
+		
+		
+		
+		foreach ( $membros as $membro ) {
+			dd($membro->id);
+			$presenca = new Presenca ();
+			$presenca->savePresenca ( [ 
+					'fk_reuniao' => $reuniao->id,
+					'fk_membro' => $membro->id,
+					'presente' => false 
+			] );
+			
+			unset ( $arr_tmp );
+			
+			if (! $presenca) {
+				
+				Presenca::where ( 'fk_reuniao', $reuniao->id )->delete ();
+				Reuniao::delete ( $reuniao->id );
+				Response::json(['response' => "Não foi possivel cadastrar nova reunião."], 400 );
+			}
+		}
 	        
-	        if (!$reuniao)
-	        {
-	        	throw new Exception("Reunião não cadastrada", 400);
-	        }
-	        
-	        $membros = Membro::getMembroByCelulaAPI($reuniao['fk_celula']);
-	        
-	        $presenca = new Presenca();
-	        
-	        foreach ($membros as $membro) {
-	        	
-	        	$presenca->savePresenca([
-	        		'fk_reuniao' => $reuniao->id,
-	        		'fk_membro' => $membro->id,
-	        		'presente' => false,
-	        	]);
-
-	        	unset($arr_tmp);
-	        	
-	        	if (!$presenca) {
-					
-					Presenca::where('fk_reuniao', $reuniao->id)->delete();
-					Reuniao::delete($reuniao->id);
-					throw new Exception("Não foi possivel cadastrar nova reunião.", 400);
-					
-				}	
-	        }
-	        
-	        return Response::json($reuniao->with(['reuniao', 'membro'])->get(), 200);
-	        
-    	} catch (Exception $e) {
-    		
-    		return Response::json(['response' => $e->getMessage()], $e->getCode());
-    		
-    	}
-
+        return Response::json($reuniao->with(['celula'])->get(), 200);
     }
 
     public function updateReuniao($id , Request $request)
@@ -111,6 +100,13 @@ class ReuniaoController extends Controller
         } 
 
         return Response::json($reuniao->with(['reuniao', 'membro'])->get(), 200);        
-    }    
+    }
+    
+    public function deleteReuniao($id)
+    {
+    	Presenca::where('fk_reuniao', $id)->delete();
+    	$this->reuniao->deleteReuniao($id);
+    	return Response::json(['response' => 'OK'], 200);
+    }
 
 }
