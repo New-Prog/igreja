@@ -47,44 +47,32 @@ class ReuniaoController extends Controller
         return Response::json( $reuniao, 200);
 	}
 	public function saveReuniao(Request $request) {
-		$input = $request->all ();
+		$input = $request->all();
+	
+		$reuniao = $this->reuniao->saveReuniao($input);
 		
-		if (empty ( $input ['fk_reuniao'] ))
-			Response::json(['response' => "Código da reunião não informado."], 400 );
-		if (empty ( $input ['fk_membro'] ))
-			Response::json(['response' => "Código do membro não informado."], 400 );
-			
-		$reuniao = $this->reuniao->saveReuniao( $input );
-		
-		if (! $reuniao) 
-			Response::json(['response' => "Reunião não cadastrada"], 400 );
-		
-			
-			
-		$membros = Membro::getMembroByCelulaAPI( $reuniao->fk_celula );
-		
-		
-		
-		foreach ( $membros as $membro ) {
-			dd($membro->id);
-			$presenca = new Presenca ();
-			$presenca->savePresenca ( [ 
-					'fk_reuniao' => $reuniao->id,
-					'fk_membro' => $membro->id,
-					'presente' => false 
-			] );
-			
-			unset ( $arr_tmp );
-			
-			if (! $presenca) {
-				
-				Presenca::where ( 'fk_reuniao', $reuniao->id )->delete ();
-				Reuniao::delete ( $reuniao->id );
-				Response::json(['response' => "Não foi possivel cadastrar nova reunião."], 400 );
-			}
+		if (!$reuniao)
+		{
+			return Response::json(['response' => 'reuniao não encontrado'], 400);
 		}
-	        
-        return Response::json($reuniao->with(['celula'])->get(), 200);
+		
+		$membros = Membro::getMembroByCelula($input['fk_celula']);
+		
+		foreach ($membros as $membro) {
+			
+			$presenca = new Presenca();
+			$tmp['fk_reuniao'] = $reuniao->id;
+			$tmp['fk_membro' ] = $membro->id;
+			$tmp['presente'  ] = false;
+			
+			$presenca->savePresenca($tmp);
+			
+			unset($tmp, $presenca);
+		}
+		
+		$reuniao = $this->reuniao->with('celula')->get();
+		
+		return Response::json($reuniao, 200);
     }
 
     public function updateReuniao($id , Request $request)
@@ -93,13 +81,12 @@ class ReuniaoController extends Controller
 
         $reuniao = $this->reuniao->updateReuniao($id, $input);
         
-
         if (!$reuniao)
         {
             return Response::json(['response' => ''], 400);
         } 
 
-        return Response::json($reuniao->with(['reuniao', 'membro'])->get(), 200);        
+        return Response::json($reuniao->with(['celula'])->get(), 200);        
     }
     
     public function deleteReuniao($id)
