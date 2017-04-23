@@ -37,9 +37,9 @@ class CelulaController extends Controller
 
     public function getCelula($id)
     {
-        $celula = $this->celula->getCelula($id);
+        $celula = $this->celula->getCelula($id)->load('membro');
    
-        
+
         if (!$celula)
         {
             return Response::json(['response' => 'Célula não encontrada'], 400);
