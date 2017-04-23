@@ -47,7 +47,21 @@ class CelulaController extends Controller
 
         return Response::json( $celula, 200);
     }
-
+    
+    public function getSoCelula($id)
+    {
+        $celula = $this->celula->getCelula($id);
+        
+        
+        if (!$celula)
+        {
+            return Response::json(['response' => 'Célula não encontrada'], 400);
+        }
+        
+        return Response::json( $celula, 200);
+    }
+    
+    
     public function saveCelula(Request $request)
     {   
         $input = $request->all();
@@ -57,7 +71,7 @@ class CelulaController extends Controller
             Response::json(['response' => 'Celula não encontrado'], 400);   
         }
 
-        return Response::json($celula->with('membro')->get(), 200);        
+        return Response::json($celula->load('membro'), 200);        
     }
         
     public function updateCelula($id, Request $request)
