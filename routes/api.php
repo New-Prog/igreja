@@ -5,7 +5,7 @@ Route::group(['middleware' => 'cors'], function() {
  
 	Route::post('login' , 'AuthController@login');
 
-	Route::group(['middleware' => 'jwt.auth'], function() {
+	//Route::group(['middleware' => 'jwt.auth'], function() {
 	    Route::group(['prefix' => 'membros'], function () {
 	        Route::get('', 'MembroController@allMembros'); // Get all members
 	        Route::get('/liders', 'MembroController@allLiders'); // Get all members
@@ -47,5 +47,5 @@ Route::group(['middleware' => 'cors'], function() {
 	        Route::post('/up/{id}', 'PostController@updatePost'); // update Post     
 	        Route::get('/del/{id}', 'PostController@deletePresenca'); // update member     
 	    });    
-	});
+	//});
 });
