@@ -1,8 +1,5 @@
-;(function(window, document, undefined) {
-  "use strict";
-  
-  <%= contents %>
-  
+(function(window, document, undefined) {
+  'use strict';
   /*
    * Use SweetAlert with RequireJS
    */

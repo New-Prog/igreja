@@ -18,7 +18,7 @@
                 </div>
                 
                 <div class="col-sm-6">
-                	<label for="descricao">TIpo</label>
+                	<label for="descricao">Tipo</label>
                     <select id="tipo" name="tipo" class="form-control" >
                     	<option>-- Selecione --</option>
                     	<option value="video">Vídeo</option>
@@ -33,6 +33,14 @@
 			    <div class="col-sm-12">
 			    	<label for="descricao">Descrição</label>
                     <textarea rows="" cols="15" class="form-control" name="descricao" id="descricao"></textarea>
+                </div>
+			</div>
+
+			<div class="row">
+			    <div class="col-sm-12">
+			    	<label for="descricao">Adicione o Link</label>
+			    	<input type="text" class="form-control" name="link" >
+                    
                 </div>
 			</div>
 

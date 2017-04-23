@@ -39,12 +39,13 @@ class CelulaController extends Controller
     {
         $celula = $this->celula->getCelula($id);
    
+        
         if (!$celula)
         {
             return Response::json(['response' => 'Célula não encontrada'], 400);
         }
 
-        return Response::json( $celula->with('membro')->get(), 200);
+        return Response::json( $celula, 200);
     }
 
     public function saveCelula(Request $request)

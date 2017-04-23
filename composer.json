@@ -13,7 +13,8 @@
 		"doctrine/dbal" : "^2.5",
 		"guzzlehttp/guzzle" : "^6.2",
 		"barryvdh/laravel-cors" : "^0.8.6",
-		"tymon/jwt-auth": "0.5.*"
+		"tymon/jwt-auth": "0.5.*",
+		"barryvdh/laravel-ide-helper": "^2.3"
 	},
 	"require-dev" : {
 		"fzaninotto/faker" : "~1.4",

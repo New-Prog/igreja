@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Request;
 /*
 use Hash;
-use Exception;
+use Exe o role ontem nem me ception;
 
 use Illuminate\Support\Facades\DB;
 */
