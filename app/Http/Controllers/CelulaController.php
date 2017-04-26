@@ -4,13 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Http\Requests;
-
 use App\Celula;
-
-// use App\Http\Requests;
-use App\User;
-// use Request;
 use Response;
 
 class CelulaController extends Controller
@@ -60,7 +54,6 @@ class CelulaController extends Controller
         
         return Response::json( $celula, 200);
     }
-    
     
     public function saveCelula(Request $request)
     {   
