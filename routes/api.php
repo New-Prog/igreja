@@ -40,7 +40,7 @@ Route::group(['middleware' => 'cors'], function() {
 	        Route::post('/up/{id}', 'PresencaController@updatePresenca'); // update Reuniao     
 	        Route::get('/del/{id}', 'PresencaController@deletePresenca'); // update member     
 	    });
-	    
+/*	    
 	    Route::group(['prefix' => 'posts'], function () {
 	        Route::get('', 'PostController@allPosts'); // Get all reunioes
 	        Route::get('/{id}', 'PostController@getPost'); // Get Post specific
@@ -48,5 +48,18 @@ Route::group(['middleware' => 'cors'], function() {
 	        Route::post('/up/{id}', 'PostController@updatePost'); // update Post     
 	        Route::get('/del/{id}', 'PostController@deletePresenca'); // update member     
 	    });    
-	//});
+*/
+    	Route::group(['prefix' => 'posts'], function () {
+    		Route::get('/cadastrar', 'PostViewController@viewPosts')->name('viewPost'); // Abrir tela retornando a view
+    	
+    		Route::post('/cadastrar/save', 'PostViewController@savePost')->name('savePost'); //
+    	
+    		Route::get('/consultar', 'PostController@allPosts');
+    	
+    		Route::get('/alterar/{id}', 'PostViewController@alterarPosts')->name('alterarPosts'); //
+    	
+    		Route::post('/up/{id}', 'PostViewController@updatePost')->name('updatePost'); // update member
+    	
+    		Route::get('/del/{id}', 'PostViewController@deletePost')->name('deletePost'); // update member
+    	});
 });
