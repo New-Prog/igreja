@@ -128,10 +128,6 @@ class MembroViewController extends Controller
     	
         $this->membro->deleteMembro($id);
         return Redirect::route('allMembros');
-        
-        $membros = $this->membro->with('celula')->get();
-        
-        return view('membros_consultar')->with('membros', $membros)->renderSections()['conteudo'];
     }
 
 

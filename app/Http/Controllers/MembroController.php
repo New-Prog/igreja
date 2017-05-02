@@ -82,13 +82,11 @@ class MembroController extends Controller
         } 
 
 
-        return Response::json($membro->with('celula')->get(), 200);        
+        return Response::json($membro->load('celula'), 200);        
     }
     public function updateMembro($id , Request $request)
     {
         $input = $request->all();
-        // dd($input, $id);
-        // return Response::json(['input' => $input, 'id' => $id], 400);
         
         $membro = $this->membro->updateMembro($id , $input);
         
@@ -97,7 +95,16 @@ class MembroController extends Controller
             return Response::json(['response' => 'Membro não encontrado'], 400);
         }
      
-        return Response::json($membro->with('celula')->get(), 200);
+        return Response::json($membro->load('celula'), 200);
         
     }
+    public function deleteMembro($id)
+    {
+        Celula::where('lider', $id)->update(['lider'=> null]); 
+        
+        $this->membro->deleteMembro($id);
+
+        return Response::json(['response' => 'OK'], 200);
+    }
+
 }
