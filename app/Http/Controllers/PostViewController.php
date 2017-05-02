@@ -63,7 +63,7 @@ class PostViewController extends Controller
             'nome'        => $request->nome, 
             'descricao'   => $request->descricao, 
             'tipo'        => $request->tipo, 
-            'link_imagem' => ($tipo == 'imagem') ? public_path('images/eventos/'.$imageName) : '', 
+            'link_imagem' => ($tipo == 'imagem') ? '/images/eventos/'.$imageName : '', 
             'link'        => $request->link, 
             'data'        => $request->data, 
         );
