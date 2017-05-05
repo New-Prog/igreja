@@ -9,6 +9,4 @@ Route::get('/forgot', function() {
 	return view('auth/passwords/email');
 });
 
-Route::get('/dashboard', function() {
-	return view('dashboard');
-});
+Route::get('/dashboard', 'DashboardController@home'); 

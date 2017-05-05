@@ -120,5 +120,11 @@ class ReuniaoViewController extends Controller
     	return Response::json($reuniao, 200);
     }
     
+    public function getInfosMapa () 
+    {
+        return $reuniao = $this->reuniao->with('celula')->get();
+    }
+
+
     
 }
