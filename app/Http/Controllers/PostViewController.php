@@ -6,16 +6,15 @@ use Illuminate\Http\Request;
 
 use App\Post;
 use Response;
-
-
+use Illuminate\Support\Facades\Input;
 
 class PostViewController extends Controller
 {
-    protected $post;
+    protected $model;
 
     public function __construct(Post $post)
     {
-        $this->post = $post;
+        $this->model = $post;
    
     }
 
@@ -23,10 +22,10 @@ class PostViewController extends Controller
     {
         return view('posts_cadastrar')->renderSections()['conteudo'];
     }
+
     public function allPosts()
     {
-
-        $post = $this->post->allPosts();
+        $post = $this->model->allPosts();
 
         if (!$post)
         {
@@ -35,10 +34,12 @@ class PostViewController extends Controller
 
 
         return view('posts_consultar')->with('posts', $post)->renderSections()['conteudo'];
+        
     }
+
     public function getPost($id)
     {
-        $post = $this->post->getPost($id);
+        $post = $this->model->getPost($id);
         
         if (!$post)
         {
@@ -50,28 +51,26 @@ class PostViewController extends Controller
 
     public function savePost(Request $request)
     {
-        
-       $this->validate($request, [
-            'image' => 'required|image|mimes:jpeg,pdf,png,jpg,gif,svg|max:2048',
-        ]);
 
-        $imageName = time().'.'.$request->image->getClientOriginalExtension();
-        
-        $request->image->move(public_path('images/eventos'), $imageName);
+    	$tipo = $request->input('tipo');
+    	
+    	if($tipo == 'imagem') {
+    		$imageName = time().'.'.$request->file('imagem')->getClientOriginalExtension();
+    		$request->file('imagem')->move(public_path('images/eventos'), $imageName);
+    	}
         
         $arr_ins = array(
             'nome'        => $request->nome, 
             'descricao'   => $request->descricao, 
             'tipo'        => $request->tipo, 
-            'link_imagem' => public_path('images/eventos/'.$imageName), 
+            'link_imagem' => ($tipo == 'imagem') ? '/images/eventos/'.$imageName : '', 
             'link'        => $request->link, 
             'data'        => $request->data, 
         );
         
-        $post = $this->savePost($arr_ins);
-    
+        $post = $this->model->create($arr_ins);
+    	
         return view('posts_cadastrar')->with('post', $post);
-        
     }
 
 
@@ -79,7 +78,7 @@ class PostViewController extends Controller
     {
         $input = $request->all();
 
-        $post = $this->post->updatePost($id, $input);
+        $post = $this->model->updatePost($id, $input);
         
 
         if (!$post)

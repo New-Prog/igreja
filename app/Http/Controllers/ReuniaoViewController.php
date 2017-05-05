@@ -7,6 +7,7 @@ use App\Reuniao;
 use App\Celula;
 use App\Membro;
 use App\Presenca;
+use App\Services\LocationService;
 
 
 class ReuniaoViewController extends Controller
@@ -46,9 +47,20 @@ class ReuniaoViewController extends Controller
     public function saveReuniao(Request $request)
     {
         $input = $request->all();
-
+        
+        $address = $input['logradouro'] . ' ' . $input['numero'];
+        
+        $address = str_replace(array(' ', ','), "+", $address);
+        
+        $location =  new LocationService();
+        
+        $cordinates = $location->getCordinates($address);
+		
+        $input['latitude'] = $cordinates['lat'];
+        $input['logitude'] = $cordinates['lng'];
+        
         $reuniao = $this->reuniao->saveReuniao($input);
-
+        
         if (!$reuniao)
         {
             return Response::json(['response' => 'reuniao não encontrado'], 400);

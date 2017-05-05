@@ -5,7 +5,7 @@ Route::group(['middleware' => 'cors'], function() {
  
 	Route::post('login' , 'AuthController@login');
 
-	Route::group(['middleware' => 'jwt.auth'], function() {
+	//Route::group(['middleware' => 'jwt.auth'], function() {
 
 	    Route::group(['prefix' => 'membros'], function () {
 	        Route::get('', 'MembroController@allMembros'); // Get all members
@@ -42,12 +42,24 @@ Route::group(['middleware' => 'cors'], function() {
 	        Route::get('/del/{id}', 'PresencaController@deletePresenca'); // update member     
 	    });
 	    
-	    Route::group(['prefix' => 'posts'], function () {
-	        Route::get('', 'PostController@allPosts'); // Get all reunioes
-	        Route::get('/{id}', 'PostController@getPost'); // Get Post specific
-	        Route::post('', 'PostController@savePost'); // save Post
-	        Route::post('/up/{id}', 'PostController@updatePost'); // update Post     
-	        Route::get('/del/{id}', 'PostController@deletePresenca'); // update member     
-	    });    
-	});
+    	Route::group(['prefix' => 'posts'], function () {
+    		Route::get('/cadastrar', 'PostViewController@viewPosts')->name('viewPost'); // Abrir tela retornando a view
+    	
+    		Route::post('/cadastrar/save', 'PostViewController@savePost')->name('savePost'); //
+    	
+    		Route::get('/consultar', 'PostController@allPosts');
+    	
+    		Route::get('/alterar/{id}', 'PostViewController@alterarPosts')->name('alterarPosts'); //
+    	
+    		Route::post('/up/{id}', 'PostViewController@updatePost')->name('updatePost'); // update member
+    	
+    		Route::get('/del/{id}', 'PostViewController@deletePost')->name('deletePost'); // update member
+    	});
+
+	//});
+    		Route::group(['prefix' => 'teste'], function () {
+    			Route::get('/getLocation', 'TesteController@getCordinates')->name('viewPost'); // Abrir tela retornando a view
+
+    		});
+
 });

@@ -46,10 +46,10 @@
                 <tbody id='retorno'>
 
                     @foreach($membros as $membro)
-                        <tr title="Detalhe do membro"style='cursor:pointer' onclick="javascript: requestServer('api/membros/{{ $membro['id']}}', 'membro')">
-                            <td > {{ $membro['nome'] }}</td>
-                            <td class="hidden-phone"> {{ ucfirst($membro['celula']['nome']) }}</td>
-                            <td>{{ ucfirst($membro['tipo']) }}</td>
+                        <tr title="Detalhe do membro"style='cursor:pointer' >
+                            <td onclick="javascript: requestServer('api/membros/{{ $membro['id']}}', 'membro')"> {{ $membro['nome'] }}</td>
+                            <td onclick="javascript: requestServer('api/membros/{{ $membro['id']}}', 'membro')" class="hidden-phone"> {{ ucfirst($membro['celula']['nome']) }}</td>
+                            <td onclick="javascript: requestServer('api/membros/{{ $membro['id']}}', 'membro')" >{{ ucfirst($membro['tipo']) }}</td>
                             <td>
                                 <a class="btn_link" href="/membros/alterar/{{ $membro['id'] }}" alt="alterar"><button title='alterar' class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button></a>
                                 <a class="btn_link" href="/membros/del/{{ $membro['id'] }}" alt="deletar" ><button title='deletar'class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button></a>

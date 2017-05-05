@@ -21,9 +21,8 @@ class PostController extends Controller
 
     public function allPosts()
     {
-
-        $post = $this->post->allPosts();
-
+        $post = $this->post->all();
+		
         if (!$post)
         {
             return Response::json(['response' => ''], 400);
