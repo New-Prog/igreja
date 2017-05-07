@@ -22,7 +22,6 @@ class PresencaController extends Controller
    
     }
 
-
     public function allPresencas()
     {
         $presenca = $this->presenca->allPresencas();
@@ -32,7 +31,7 @@ class PresencaController extends Controller
             return Response::json(['response' => ''], 400);
         }
 
-        return Response::json($presenca->with(['reuniao', 'membro'])->get(), 200);
+        return Response::json($presenca->load(['reuniao', 'membro']), 200);
     }
 
     public function getPresenca($id)
@@ -44,7 +43,7 @@ class PresencaController extends Controller
             return Response::json(['response' => ''], 400);
         }
      
-        return Response::json( $presenca->with(['reuniao', 'membro'])->get(), 200);
+        return Response::json($presenca, 200);
     }
 
     public function savePresenca(Request $request)
@@ -63,19 +62,18 @@ class PresencaController extends Controller
     }
 
 
-    public function updatepresenca($id , Request $request)
+    public function updatePresenca(Request $request)
     {
+
         $input = $request->all();
-
-        $presenca = $this->$presenca->updatepresenca($id, $input);
         
-
+        $presenca = $this->presenca->updatePresenca($input);
+        
         if (!$presenca)
         {
             return Response::json(['response' => ''], 400);
-        } 
-
-        return Response::json($presenca->with(['reuniao', 'membro'])->get(), 200);        
+        }
+        return Response::json($presenca, 200);
     }
 
 

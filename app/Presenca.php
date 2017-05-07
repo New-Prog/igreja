@@ -31,13 +31,13 @@ class Presenca extends Model
         
        $this->fill($arr)->save();
 
-        return $this->load(['reuniao', 'membro']);   
+        return $this;   
     }
     
     public function getPresencaByReuniao($id_membro)
     {	
 
-    	$presenca = $this->where("fk_reuniao", $id_membro)->with(['reuniao', 'membro'])->get();
+    	$presenca = $this->where("fk_reuniao", $id_membro);
         
         if (is_null($presenca))
         {
@@ -67,13 +67,12 @@ class Presenca extends Model
     	$presenca = self::where('fk_reuniao', $arr_up_presenca['fk_reuniao'])
     						->where('fk_membro', $arr_up_presenca['fk_membro'])
     						->update(['presente' => $arr_up_presenca['presente']]);
-    	
-        if (is_null($presenca)) 
+    	if (!$presenca) 
         {
             return false;
         }
           
-        return $presenca->load(['reuniao', 'membro']);
+        return $presenca;
         
     }
 

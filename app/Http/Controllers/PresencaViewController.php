@@ -7,8 +7,6 @@ use Illuminate\Support\Facades\Redirect;
 use App\Presenca;
 use Response;
 
-
-
 class PresencaViewController extends Controller
 {
  
@@ -21,7 +19,6 @@ class PresencaViewController extends Controller
 
 	public function getListaPresenca($id_reuniao)
 	{
-		
 		$presencas = $this->presenca->getPresencaByReuniao($id_reuniao);
 			
 		if (!$presencas)
@@ -32,17 +29,13 @@ class PresencaViewController extends Controller
 		return view('presencas_consultar')->with(['presencas' => $presencas->with(['reuniao', 'membro'])->get(), 'fk_reuniao' => $id_reuniao])->renderSections()['conteudo'];
 	}
 	
-	
-	
 	public function allPresencas()
 	{
 		$presenca = $this->presenca->allPresencas();
-		
 		if (!$presenca)
 		{
 			return Response::json(['response' => ''], 400);
 		}
-		
 		return Response::json($presenca->with(['reuniao', 'celula'])->get(), 200);
 	}
 	
@@ -72,32 +65,17 @@ class PresencaViewController extends Controller
 		return Response::json($presenca->with(['reuniao', 'membro'])->get(), 200);
 		
 	}
-	
-	
+
 	public function updatePresenca(Request $request)
 	{
-
 		$input = $request->all();
-		
+
 		$presenca = $this->presenca->updatePresenca($input);
 		
 		if (!$presenca)
 		{
 			return Response::json(['response' => ''], 400);
 		}
-		return;
-
+		return Response::json($presenca, 200);
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 }

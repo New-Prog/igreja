@@ -6,6 +6,4 @@ Route::group(['prefix' => 'presencas'], function () {
 	Route::get('/{id}', 'PresencaViewController@getPresenca')->name('getPresenca'); 
 	Route::post('', 'PresencaViewController@savePresenca')->name('savePresenca'); 
 	Route::post('/up/', 'PresencaViewController@updatePresenca')->name('updatePresenca'); 
-	Route::post('/del/{id}', 'PresencaViewController@deletePresenca')->name('deletePresenca'); 
-	
 });

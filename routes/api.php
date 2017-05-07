@@ -1,11 +1,8 @@
-<?php
-
-
+<?php 
 Route::group(['middleware' => 'cors'], function() {
- 
-	Route::post('login' , 'AuthController@login');
 
-	//Route::group(['middleware' => 'jwt.auth'], function() {
+	Route::post('login' , 'AuthController@login');
+    //Route::group(['middleware' => 'jwt.auth'], function() {
 
 	    Route::group(['prefix' => 'membros'], function () {
 	        Route::get('', 'MembroController@allMembros'); // Get all members

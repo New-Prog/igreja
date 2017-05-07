@@ -13,7 +13,7 @@ class Post extends Model
 
     public function allPosts()
     {
-        return $this->all(); 
+        return self::all(); 
     }
      
     public function savePost(array $arr)
