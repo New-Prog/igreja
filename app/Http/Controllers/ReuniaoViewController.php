@@ -55,9 +55,13 @@ class ReuniaoViewController extends Controller
         $location =  new LocationService();
         
         $cordinates = $location->getCordinates($address);
-		
+        
+        if(isset($cordinates['error_message'])) {
+        	return Response::json(['response' => 'Ocorreu um erro: '. $cordinates['error_message']], 400);
+        }
+        
         $input['latitude'] = $cordinates['lat'];
-        $input['logitude'] = $cordinates['lng'];
+        $input['longitude'] = $cordinates['lng'];
         
         $reuniao = $this->reuniao->saveReuniao($input);
         
