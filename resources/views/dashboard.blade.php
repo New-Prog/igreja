@@ -71,12 +71,13 @@
                         </div>
                     </div>
                 </div>
+                
                 <div class="col-lg-6">
                     <div class="content-panel">
-                        <h4><i class="fa fa-angle-right"></i> Mapa dos membros</h4>
+                        <h4><i class="fa fa-angle-right"></i> Mapa de reuniões pendentes</h4>
                         <div class="panel-body">
-                             <div class="map">
-                                <img src="http://cdn.newsapi.com.au/image/v1/0a0ceda4bda18e664ffac1a8fa86a7d1">
+                             <div class="map" id="map">
+                                <!--  <img src="http://cdn.newsapi.com.au/image/v1/0a0ceda4bda18e664ffac1a8fa86a7d1">-->
                             </div>
                         </div>
                     </div>
@@ -90,8 +91,8 @@
             </div>
         </div>
     </section>
-
-    
+ <!--  <script src="http://cdn.oesmith.co.uk/morris-0.4.3.min.js"></script>-->
+<script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
 
     <!-- js placed at the end of the document so the pages load faster -->
     <script src="dashboard_layout/js/jquery.js"></script>
@@ -103,15 +104,62 @@
 
     <!--common script for all pages-->
 	<script src="http://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
-	<script src="http://cdn.oesmith.co.uk/morris-0.4.3.min.js"></script>
-    <script src="dashboard_layout/js/common-scripts.js"></script>
+
+
 
     <!--script for this page-->
     <script src="dashboard_layout/js/graficos-dashboard.js"></script>
-	<<script type="text/javascript" src="js/mapa.js">
-<!--
+    <script src="dashboard_layout/js/common-scripts.js"></script>
+	<script type="text/javascript" src="js/mapa.js"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCo5xFM5H--dG9scIUhTmeT8d_Ut4C4-uo&callback=initMap"></script>
 
-//-->
+ 
+<script type="text/javascript">
+
+ultimosMemrosAdd();
+pedidosDeOracao();
+
+$(function(){
+    $('select.styled').customSelect();
+});
+
+
+function ultimosMemrosAdd(){
+  var membro = "";
+  membro += "<div class='membro-card'>";
+  membro += "<div class='foto'><img src='/dashboard_layout/img/ui-sam.jpg' class='img-circle' width='60'></div>";
+  membro += "<div class='membro-descricao'>";
+  membro += "  <div class='nome'>João Doria</div>";
+  membro += "  <div class='idade'>33 Anos</div>";
+  membro += "  <div class='sexo'>Masculino</div>";
+  membro += "  <div class='endereco'>Rua: Aurora Boreal, 123 - Nova Belem</div>";
+  membro += "</div>";
+  membro += "</div>";
+
+
+  ultimosMembros = membro;
+  ultimosMembros += membro;
+  ultimosMembros += membro;
+  $("#ultimos-membros").html(ultimosMembros);
+}
+
+function pedidosDeOracao(){
+  var pedido = "";
+  pedido += "<div class='membro-card'>";
+  pedido += "<div class='foto'><img src='/dashboard_layout/img/ui-sam.jpg' class='img-circle' width='60'></div>";
+  pedido += "<div class='pedido-oracao'>";
+  pedido += "  <div class='pedido-membro'>Maria das Dores</div>";
+  pedido += "  <div class='pedido-tipo'>Oração por doença</div>";
+  pedido += "  <div class='pedido-descricao'>Pastor, boa tarde. Venho pedir oração para mim pois estou sentidno fortes dores nas costas durante a semana. Já fui ao médico e nada foi identificado, tenho fé que só Deus pode me curar. Peço que apresente o pedido de oração a igreja no proximo culto.</div>";
+  pedido += "</div>";
+  pedido += "</div>";
+
+
+  pedidos = pedido;
+  pedidos += pedido;
+  pedidos += pedido;
+  $("#pedidos-de-oracao").html(pedidos);
+}
 </script>
 
 @stop

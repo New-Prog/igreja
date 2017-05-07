@@ -1,43 +1,75 @@
-  ultimosMemrosAdd();
-  pedidosDeOracao();
-      //custom select box
-      $(function(){
-          $('select.styled').customSelect();
+  
+	function request(url, data, type) {
+		
+		return $.ajax({
+			url: url,
+			type: type,
+			dataType: 'json',
+			data: data,
+			timeout: 10000
+		});
+	}
+  
+	function initMap() {
+	  
+      var uluru = {lat: -25.363, lng: 131.044};
+      var map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 4,
+        center: uluru
       });
+      
+      
+      //request
+      
+      
+      var marker = new google.maps.Marker({
+        position: uluru,
+        map: map
+      });
+	}
+	  //	REQUEST
+	  
+	  /*
+	  try{
+	    var bounds = new google.maps.LatLngBounds();
 
-      function ultimosMemrosAdd(){
-        var membro = "";
-        membro += "<div class='membro-card'>";
-        membro += "<div class='foto'><img src='/dashboard_layout/img/ui-sam.jpg' class='img-circle' width='60'></div>";
-        membro += "<div class='membro-descricao'>";
-        membro += "  <div class='nome'>João Doria</div>";
-        membro += "  <div class='idade'>33 Anos</div>";
-        membro += "  <div class='sexo'>Masculino</div>";
-        membro += "  <div class='endereco'>Rua: Aurora Boreal, 123 - Nova Belem</div>";
-        membro += "</div>";
-        membro += "</div>";
+	    map = new google.maps.Map(document.getElementById('map'), {
+	      scrollwheel: true,
+	      zoom: 14
+	    });
 
+	    var markers = [];
 
-        ultimosMembros = membro;
-        ultimosMembros += membro;
-        ultimosMembros += membro;
-        $("#ultimos-membros").html(ultimosMembros);
-      }
+	    for (var i = 0; i < response.length; i++) {
 
-      function pedidosDeOracao(){
-        var pedido = "";
-        pedido += "<div class='membro-card'>";
-        pedido += "<div class='foto'><img src='/dashboard_layout/img/ui-sam.jpg' class='img-circle' width='60'></div>";
-        pedido += "<div class='pedido-oracao'>";
-        pedido += "  <div class='pedido-membro'>Maria das Dores</div>";
-        pedido += "  <div class='pedido-tipo'>Oração por doença</div>";
-        pedido += "  <div class='pedido-descricao'>Pastor, boa tarde. Venho pedir oração para mim pois estou sentidno fortes dores nas costas durante a semana. Já fui ao médico e nada foi identificado, tenho fé que só Deus pode me curar. Peço que apresente o pedido de oração a igreja no proximo culto.</div>";
-        pedido += "</div>";
-        pedido += "</div>";
+	      var obj_lat_lng = response[i].gps_lat_lng;
 
+	      obj_localizacao.push(obj_lat_lng);
 
-        pedidos = pedido;
-        pedidos += pedido;
-        pedidos += pedido;
-        $("#pedidos-de-oracao").html(pedidos);
-      }
+	      var latlng = new google.maps.LatLng(obj_lat_lng.latitude, obj_lat_lng.longitude);
+
+	      var marker = new google.maps.Marker({
+	        icon: icon,
+	        map: map,
+	        position: latlng
+
+	      });
+	      addListeners(marker, response[i]);
+	      markers.push(marker);
+	      bounds.extend(latlng);
+	    }
+
+	    var mcOptions = {maxZoom: 15};
+
+	    var markerCluster = new MarkerClusterer(map, markers,mcOptions);
+
+	    map.fitBounds(bounds);
+
+	    insereLogMapa('T',obj_localizacao);
+	  } catch(err) {
+	    console.log(err);
+	    alert('Ocorreu um erro ao exibir o mapa');
+	    insereLogMapa('F');
+	  }
+	  */	
+	

@@ -26,8 +26,8 @@ class LocationService
 		];
 
 		$response = json_decode($this->client->request('GET', "https://maps.googleapis.com/maps/api/geocode/json?address={$address}&key={$this->key}")->getBody(), true);
-
-		return count($response['results']) > 0 ? $response['results'][0]['geometry']['location'] : [];
+		RETURN $response;
+		return count($response['results']) > 0 ? $response['results'][0]['geometry']['location'] : []	;
 	}
 
 	/**
