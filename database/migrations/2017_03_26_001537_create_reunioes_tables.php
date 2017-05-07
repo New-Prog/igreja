@@ -26,7 +26,7 @@ class CreateReunioesTables extends Migration
     		$table->string('cidade', 100);
     		$table->string('estado', 100);
     		$table->string('latitude', 255)->nullable();
-    		$table->string('logitude', 255)->nullable();
+    		$table->string('longitude', 255)->nullable();
     		$table->integer('fk_celula')->unsigned();
     		$table->foreign('fk_celula')->references('id')->on('celulas');
     		$table->timestamps();

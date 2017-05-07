@@ -49,6 +49,11 @@ Route::group(['middleware' => 'cors'], function() {
 	        Route::post('', 'PostController@savePost'); // 
 	        Route::post('/up/{id}', 'PostController@updatePost'); // 
     	});
+    	
+    	Route::group(['prefix' => 'mensagem'], function () {
+    		Route::post('', 'MensagemController@save'); //
+
+    	});
 
 	//});
 
