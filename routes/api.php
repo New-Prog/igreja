@@ -57,9 +57,5 @@ Route::group(['middleware' => 'cors'], function() {
     	});
 
 	//});
-    		Route::group(['prefix' => 'teste'], function () {
-    			Route::get('/getLocation', 'TesteController@getCordinates')->name('viewPost'); // Abrir tela retornando a view
-
-    		});
 
 });

@@ -1,10 +1,7 @@
 @extends('layouts.dashboard.layout')
 
 @section('conteudo')
-<?php 
-//var_dump($arr_dados);
 
-?>
 <h4><i class="fa fa-angle-right"></i> Resumo Semanal</h4>
 
     <div class="row mtbox">
