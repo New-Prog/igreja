@@ -125,6 +125,30 @@ $(function(){
 
 
 function ultimosMemrosAdd(){
+	request('/api/membros/ultimos', null, 'GET')
+	.done(function(response) {
+		var membro = "";
+	
+		for(var i in response) {
+			var sexo = response[i].sexo == 'm' ? 'Masculino' : 'Feminino';
+			var endereco = response[i].logradouro + ' '+ response[i].numero + ' - ' + response[i].bairro
+			  membro += "<div class='membro-card'>";
+			  membro += "<div class='foto'><img src='/dashboard_layout/img/ui-sam.jpg' class='img-circle' width='60'></div>";
+			  membro += "<div class='membro-descricao'>";
+			  membro += "  <div class='nome'>"+response[i].nome+"</div>";
+			  membro += "  <div class='idade'>"+response[i].dt_nasc+"</div>";
+			  membro += "  <div class='sexo'>"+sexo+"</div>";
+			  membro += "  <div class='endereco'>"+endereco+"</div>";
+			  membro += "</div>";
+			  membro += "</div>";
+
+		}
+		  $("#ultimos-membros").html(membro);
+	
+	})
+	.fail(function(response) {
+		console.log("ERRO AO CARREGAR A LISTA DE PEDIDOS DE ORAÇÃO - ", response);
+});
   var membro = "";
   membro += "<div class='membro-card'>";
   membro += "<div class='foto'><img src='/dashboard_layout/img/ui-sam.jpg' class='img-circle' width='60'></div>";

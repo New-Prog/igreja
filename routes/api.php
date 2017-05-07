@@ -7,10 +7,12 @@ Route::group(['middleware' => 'cors'], function() {
 	    Route::group(['prefix' => 'membros'], function () {
 	        Route::get('', 'MembroController@allMembros'); // Get all members
 	        Route::get('/liders', 'MembroController@allLiders'); // Get all members
+	        Route::get('/ultimos', 'MembroController@ultimos');
 	        Route::get('/{id}', 'MembroController@getMembro'); // Get member specific
 	        Route::post('', 'MembroController@saveMembro'); // save member
 	        Route::post('/up/{id}', 'MembroController@updateMembro'); // update member     
-	        Route::get('/del/{id}', 'MembroController@deleteMembro'); // update member     
+	        Route::get('/del/{id}', 'MembroController@deleteMembro'); // update member
+	         
 	    });
 	    
 	    Route::group(['prefix' => 'celulas'], function () {
@@ -49,9 +51,7 @@ Route::group(['middleware' => 'cors'], function() {
     	
     	Route::group(['prefix' => 'mensagem'], function () {
     		Route::post('', 'MensagemController@save'); //
-    		Route::get('', 'MensagemController@list'); //
-    		
-
+    		Route::get('', 'MensagemController@list'); //    		
     	});
 
 	//});
