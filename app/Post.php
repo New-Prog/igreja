@@ -16,13 +16,11 @@ class Post extends Model
         return $this->all(); 
     }
      
-    public function savePost($arr)
-    {
-        $input = $arr;
-        
-        $this->fill($input);
-        
-        return $this->save();
+    public function savePost(array $arr)
+    { 
+        $this->fill($arr)->save();
+
+        return $this;
     }
     
     public function getPost($id)

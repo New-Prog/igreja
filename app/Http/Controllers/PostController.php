@@ -44,8 +44,9 @@ class PostController extends Controller
 
     public function savePost(Request $request)
     {
-        $input = $request->all();
 
+        $input = $request->all();
+    
         $post = $this->post->savepost($input);
 
         if (!$post)

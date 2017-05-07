@@ -1,9 +1,7 @@
 <?php
-
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use GuzzleHttp\Psr7\Request;
 
 class Celula extends Model
 {
@@ -42,7 +40,7 @@ class Celula extends Model
 
     public function getCelula($id)
     {
-        return self::find($id);
+        return $this->find($id);
     }
     
     
@@ -54,13 +52,13 @@ class Celula extends Model
     
     public function getCelulaByName($name) 
     {
-    	return self::where('nome', 'like', "%{$name}%")->get();
+    	return $this->where('nome', 'like', "%{$name}%")->get();
     }
     
     
     public function updateCelula($id, $request)
     {
-        $celula = self::find($id);
+        $celula = $this->find($id);
 
         if (is_null($celula))
         {
@@ -91,7 +89,7 @@ class Celula extends Model
      */
     public function deleteCelula($id)
     {
-        $celula = self::find($id);
+        $celula = $this->find($id);
         
         $membros = Membro::where('fk_celula',$id);
         

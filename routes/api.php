@@ -43,17 +43,11 @@ Route::group(['middleware' => 'cors'], function() {
 	    });
 	    
     	Route::group(['prefix' => 'posts'], function () {
-    		Route::get('/cadastrar', 'PostViewController@viewPosts')->name('viewPost'); // Abrir tela retornando a view
-    	
-    		Route::post('/cadastrar/save', 'PostViewController@savePost')->name('savePost'); //
-    	
-    		Route::get('/consultar', 'PostController@allPosts');
-    	
-    		Route::get('/alterar/{id}', 'PostViewController@alterarPosts')->name('alterarPosts'); //
-    	
-    		Route::post('/up/{id}', 'PostViewController@updatePost')->name('updatePost'); // update member
-    	
-    		Route::get('/del/{id}', 'PostViewController@deletePost')->name('deletePost'); // update member
+
+	        Route::get('', 'PostController@allPosts'); // 
+	        Route::get('/{id}', 'PostController@getPost'); // 
+	        Route::post('', 'PostController@savePost'); // 
+	        Route::post('/up/{id}', 'PostController@updatePost'); // 
     	});
 
 	//});

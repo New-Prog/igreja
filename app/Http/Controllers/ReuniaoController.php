@@ -37,7 +37,7 @@ class ReuniaoController extends Controller
 
     public function getReuniao($id)
     {
-        $reuniao = $this->reuniao->getReuniao($id)->with('celula')->get();
+        $reuniao = $this->reuniao->getReuniao($id)->load('celula');
         
         if (!$reuniao)
         {
@@ -48,7 +48,7 @@ class ReuniaoController extends Controller
 	}
 	public function saveReuniao(Request $request) {
 		$input = $request->all();
-	
+
 		$reuniao = $this->reuniao->saveReuniao($input);
 		
 		if (!$reuniao)
