@@ -137,6 +137,7 @@ function ultimosMemrosAdd(){
 			  membro += "<div class='membro-descricao'>";
 			  membro += "  <div class='nome'>"+response[i].nome+"</div>";
 			  membro += "  <div class='idade'>"+response[i].dt_nasc+"</div>";
+			  membro += "  <div class='telefone'>"+response[i].telefone+"</div>";
 			  membro += "  <div class='sexo'>"+sexo+"</div>";
 			  membro += "  <div class='endereco'>"+endereco+"</div>";
 			  membro += "</div>";
@@ -148,23 +149,7 @@ function ultimosMemrosAdd(){
 	})
 	.fail(function(response) {
 		console.log("ERRO AO CARREGAR A LISTA DE PEDIDOS DE ORAÇÃO - ", response);
-});
-  var membro = "";
-  membro += "<div class='membro-card'>";
-  membro += "<div class='foto'><img src='/dashboard_layout/img/ui-sam.jpg' class='img-circle' width='60'></div>";
-  membro += "<div class='membro-descricao'>";
-  membro += "  <div class='nome'>João Doria</div>";
-  membro += "  <div class='idade'>33 Anos</div>";
-  membro += "  <div class='sexo'>Masculino</div>";
-  membro += "  <div class='endereco'>Rua: Aurora Boreal, 123 - Nova Belem</div>";
-  membro += "</div>";
-  membro += "</div>";
-
-
-  ultimosMembros = membro;
-  ultimosMembros += membro;
-  ultimosMembros += membro;
-  $("#ultimos-membros").html(ultimosMembros);
+	});
 }
 
 function pedidosDeOracao(){
