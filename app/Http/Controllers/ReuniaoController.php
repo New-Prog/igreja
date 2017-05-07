@@ -70,9 +70,7 @@ class ReuniaoController extends Controller
 			unset($tmp, $presenca);
 		}
 		
-		$reuniao = $this->reuniao->with('celula')->get();
-		
-		return Response::json($reuniao, 200);
+		return Response::json($reuniao->load('celula'), 200);
     }
 
     public function updateReuniao($id , Request $request)
@@ -86,7 +84,7 @@ class ReuniaoController extends Controller
             return Response::json(['response' => ''], 400);
         } 
 
-        return Response::json($reuniao->with(['celula'])->get(), 200);        
+        return Response::json($reuniao->load('celula'), 200);        
     }
     
     public function deleteReuniao($id)
