@@ -38,7 +38,7 @@
 			map.fitBounds(bounds);
 		})
 		.fail(function(response) {
- 
+			console.log("ERRO AO MONTAR OS MARCADORES - ", response);
 		});
       
 

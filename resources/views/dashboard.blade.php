@@ -144,21 +144,28 @@ function ultimosMemrosAdd(){
 }
 
 function pedidosDeOracao(){
-  var pedido = "";
-  pedido += "<div class='membro-card'>";
-  pedido += "<div class='foto'><img src='/dashboard_layout/img/ui-sam.jpg' class='img-circle' width='60'></div>";
-  pedido += "<div class='pedido-oracao'>";
-  pedido += "  <div class='pedido-membro'>Maria das Dores</div>";
-  pedido += "  <div class='pedido-tipo'>Oração por doença</div>";
-  pedido += "  <div class='pedido-descricao'>Pastor, boa tarde. Venho pedir oração para mim pois estou sentidno fortes dores nas costas durante a semana. Já fui ao médico e nada foi identificado, tenho fé que só Deus pode me curar. Peço que apresente o pedido de oração a igreja no proximo culto.</div>";
-  pedido += "</div>";
-  pedido += "</div>";
+	request('/api/mensagem', null, 'GET')
+	.done(function(response) {
+		var pedido = "";
 
+		for(var i in response) {
+			  pedido += "<div class='membro-card'>";
+			  pedido += "<div class='foto'><img src='/dashboard_layout/img/ui-sam.jpg' class='img-circle' width='60'></div>";
+			  pedido += "<div class='pedido-oracao'>";
+			  pedido += "  <div class='pedido-membro'><strong>Nome: </strong>"+response[i].nome+"</div>";
+			  pedido += "  <div class='pedido-membro'><strong>E-Mail: </strong>"+response[i].email+"</div>";
+			  pedido += "  <div class='pedido-membro'><strong>Telefone: </strong>"+response[i].telefone+"</div>";
+			  pedido += "  <div class='pedido-descricao'><strong>Descrição: </strong>"+response[i].descricao+"</div>";
+			  //pedido += "  <div class='pedido-descricao'>Pastor, boa tarde. Venho pedir oração para mim pois estou sentidno fortes dores nas costas durante a semana. Já fui ao médico e nada foi identificado, tenho fé que só Deus pode me curar. Peço que apresente o pedido de oração a igreja no proximo culto.</div>";
+			  pedido += "</div>";
+			  pedido += "</div>";
+		}
+		$("#pedidos-de-oracao").html(pedido);
 
-  pedidos = pedido;
-  pedidos += pedido;
-  pedidos += pedido;
-  $("#pedidos-de-oracao").html(pedidos);
+	})
+	.fail(function(response) {
+		console.log("ERRO AO CARREGAR A LISTA DE PEDIDOS DE ORAÇÃO - ", response);
+	});
 }
 </script>
 

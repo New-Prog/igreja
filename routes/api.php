@@ -52,6 +52,8 @@ Route::group(['middleware' => 'cors'], function() {
     	
     	Route::group(['prefix' => 'mensagem'], function () {
     		Route::post('', 'MensagemController@save'); //
+    		Route::get('', 'MensagemController@list'); //
+    		
 
     	});
 

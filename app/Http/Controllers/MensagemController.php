@@ -40,5 +40,9 @@ class MensagemController extends Controller
 		
 	}
 	
+	public function list(Request $request)
+	{
+		return $this->model->limit('3')->get();
+	}
 	
 }
