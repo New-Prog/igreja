@@ -9,6 +9,7 @@ use App\Reuniao;
 use App\Celula;
 use App\Presenca;
 use App\Membro;
+use App\Services\LocationService;
 
 
 class ReuniaoController extends Controller
@@ -48,7 +49,22 @@ class ReuniaoController extends Controller
 	}
 	public function saveReuniao(Request $request) {
 		$input = $request->all();
+		
+		$address = $input['logradouro'] . ' ' . $input['numero'];
+		
+		$address = str_replace(array(' ', ','), "+", $address);
+		
+		$location =  new LocationService();
+		
+		$cordinates = $location->getCordinates($address);
 
+		if(isset($cordinates['error_message'])) {
+			return Response::json(['response' => 'Ocorreu um erro: '. $cordinates['error_message']], 400);
+		}
+		
+		$input['latitude'] = $cordinates['lat'];
+		$input['longitude'] = $cordinates['lng'];
+		
 		$reuniao = $this->reuniao->saveReuniao($input);
 		
 		if (!$reuniao)

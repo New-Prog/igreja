@@ -11,7 +11,7 @@ class Reuniao extends Model
     protected $fillable =
     [
     	'descricao', 'tema', 'cep','logradouro','numero','complemento',
-     	'bairro','cidade','estado','latitude','logitude', 'fk_celula', 'data'		
+     	'bairro','cidade','estado','latitude','longitude', 'fk_celula', 'data'		
     ];
     
     public function celula() 
