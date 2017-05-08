@@ -54,6 +54,8 @@ Route::group(['middleware' => 'cors'], function() {
     		Route::get('', 'MensagemController@list'); //    		
     	});
 
+        Route::get('/dashboard/getdados', 'DashboardController@getDadosDashboard'); //    		
+
 	//});
 
 });

@@ -107,7 +107,7 @@ class MembroController extends Controller
         return Response::json(['response' => 'OK'], 200);
     }
     
-    public function ultimos(Request $request)
+    public function ultimos()
     {
     	return $this->membro->limit('3')->orderBy('id', 'desc')->get();
     }
