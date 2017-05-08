@@ -3,37 +3,28 @@
 @section('conteudo')
     <div class="row mtbox">
 
-        <div class="col-md-2 col-sm-1 col-md-offset-2 box0"> 
+        <div class="col-md-2 col-sm-1 col-md-offset-3 box0"> 
           <div class="box1">
             <span class="glyphicon glyphicon-user"></span>
-            <h3>+83</h3>
+            <h3 id="membros_cadastrados_label"></h3>
           </div>
-          <p>83 Membros novos cadastrados</p>
+          <p id="membros_cadastrados"></p>
         </div>
 
         <div class="col-md-2 col-sm-2 box0">
           <div class="box1">
             <span class="glyphicon glyphicon-home"></span>
-            <h3>48</h3>
+            <h3 id="reunioes_realizadas_label"></h3>
           </div>
-          <p>48 Reuniões de células foram realizadas</p>
-        </div>
-
-
-        <div class="col-md-2 col-sm-2 box0">
-          <div class="box1">
-            <span class="glyphicon glyphicon-book"></span>
-            <h3>123</h3>
-          </div>
-          <p>123 Membros frequentaram reuniões de células</p>
+          <p id="reunioes_realizadas"> </p>
         </div>
         
         <div class="col-md-2 col-sm-2 box0">  
           <div class="box1">
             <span class="glyphicon glyphicon-film"></span>
-            <h3>+10</h3>
+            <h3 id="ultimos_newfeed_label"></h3>
           </div>
-          <p>Foram postados 10 artigos no News Feed</p>
+          <p id="ultimos_newfeed"></p>
         </div>
 
       </div>
@@ -118,12 +109,31 @@
 
 ultimosMemrosAdd();
 pedidosDeOracao();
+preencheDados();
 
 $(function(){
     $('select.styled').customSelect();
 });
 
+function preencheDados() {
 
+	request('/api/dashboard/getdados', null, 'GET')
+	.done(function(response) {
+		$('#membros_cadastrados').html(response.qtd_membros_ult_sete_dias + " Membros novos cadastrados");
+		$('#reunioes_realizadas').html(response.qtd_reunioes_ult_sete_dias+ " Reuniões de células foram realizadas");
+		$('#ultimos_newfeed').html("Foram postados "+response.qtd_posts_ult_sete_dias + " artigos no News Feed");
+		$('#membros_cadastrados_label').html("+" + response.qtd_membros_ult_sete_dias);
+		$('#reunioes_realizadas_label').html(response.qtd_reunioes_ult_sete_dias);
+		$('#ultimos_newfeed_label').html("+"+response.qtd_posts_ult_sete_dias);
+
+		//GRÁFICO
+
+		
+	})
+	.fail(function(response) {
+		console.log("ERRO AO CARREGAR A LISTA DE PEDIDOS DE ORAÇÃO - ", response);
+	});
+}
 function ultimosMemrosAdd(){
 	request('/api/membros/ultimos', null, 'GET')
 	.done(function(response) {
@@ -138,7 +148,7 @@ function ultimosMemrosAdd(){
 			  membro += "  <div class='nome'>"+response[i].nome+"</div>";
 			  membro += "  <div class='idade'>"+response[i].dt_nasc+"</div>";
 			  membro += "  <div class='telefone'>"+response[i].telefone+"</div>";
-			  membro += "  <div class='sexo'>"+sexo+"</div>";
+			  //membro += "  <div class='sexo'>"+sexo+"</div>";
 			  membro += "  <div class='endereco'>"+endereco+"</div>";
 			  membro += "</div>";
 			  membro += "</div>";

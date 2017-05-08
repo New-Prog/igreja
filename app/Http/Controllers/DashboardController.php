@@ -39,7 +39,7 @@ class DashboardController extends Controller
         // qtd membros cadastrados ultimos 7 dias 
 
         $sete_dias = date('Y-m-d H:i:s', strtotime('-7 days', strtotime(date('Y-m-d H:i:s'))));
-        
+
         $arr_return['qtd_membros_ult_sete_dias'] = Membro::where("created_at", ">", $sete_dias)->count();
        
         // qtd reunioes realizadas ultimos 7 dias
