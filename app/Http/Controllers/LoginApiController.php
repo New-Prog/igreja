@@ -26,7 +26,7 @@ class LoginApiController extends Controller
         
         if (!$membro) 
         {
-            return Response::json(['fk_celula' => null], 400);
+            return Response::json(['fk_celula' => 0], 400);
         }    
         return Response::json($membro, 200);
     }
