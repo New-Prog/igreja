@@ -43,7 +43,6 @@ class Presenca extends Model
         {
             return false;
         }
-        
         return $presenca;
         
     }
