@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 
-use App\Http\Requests;
+use App\Http\Requests\MembroRequest;
 
 use App\Membro;
 use App\Celula;
@@ -65,6 +65,7 @@ class MembroViewController extends Controller
         } 
 
         $membros = $this->membro->with('celula')->get();
+        
         return view('membros_consultar')->with('membros', $membros);       
     }
     public function getMembroEspecifico(Request $request)

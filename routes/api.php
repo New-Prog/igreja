@@ -56,6 +56,9 @@ Route::group(['middleware' => 'cors'], function() {
 
         Route::get('/dashboard/getdados', 'DashboardController@getDadosDashboard'); //    		
 
+        Route::post('/usuario', 'LoginApiController@getUsuario'); //    		
+
+
 	//});
 
 });
