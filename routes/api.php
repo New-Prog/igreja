@@ -29,6 +29,7 @@ Route::group(['middleware' => 'cors'], function() {
 	        Route::get('', 'ReuniaoController@allReunioes'); // Get all reunioes
 	        Route::get('/{id}', 'ReuniaoController@getReuniao'); // Get Reuniao specific
 	        Route::post('', 'ReuniaoController@saveReuniao'); // save Reuniao
+	        Route::get('/byCelula/{id}', 'ReuniaoController@getReuniaoByCelula'); // save Reuniao
 	        Route::post('/up/{id}', 'ReuniaoController@updateReuniao'); // update Reuniao     
 	        Route::get('/del/{id}', 'ReuniaoController@deleteReuniao'); // update member     
 	    });
@@ -37,8 +38,7 @@ Route::group(['middleware' => 'cors'], function() {
 	        Route::get('', 'PresencaController@allPresencas'); // Get all reunioes
 	        Route::get('/{id}', 'PresencaController@getPresenca'); // Get Presenca specific
 	        Route::post('', 'PresencaController@savePresenca'); // save Presenca
-	        Route::post('/up/{id}', 'PresencaController@updatePresenca'); // update Reuniao     
-	        Route::get('/del/{id}', 'PresencaController@deletePresenca'); // update member     
+	        Route::post('/up', 'PresencaController@updatePresenca'); // update Reuniao     
 	    });
 	    
     	Route::group(['prefix' => 'posts'], function () {

@@ -43,7 +43,7 @@ class PresencaController extends Controller
             return Response::json(['response' => ''], 400);
         }
      
-        return Response::json($presenca, 200);
+        return Response::json($presenca->load('membro'), 200);
     }
 
     public function savePresenca(Request $request)

@@ -53,7 +53,8 @@ class Reuniao extends Model
     public static function getReuniaoByCelula($id)
     {
     	
-    	$reuniao = self::where('fk_celula',$id)->with('celula')->get();
+    	$reuniao = self::where('fk_celula', $id)->get();
+
     	if (is_null($reuniao))
     	{
     		return false;
