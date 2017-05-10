@@ -28,6 +28,7 @@
                         <li><a href="#team">Nosso Time</a></li>
                         <li><a href="#blog">Sobre o sistema</a></li>
                         <li><a href="#contato">Contato</a></li>
+                        <li><a href="/login">login</a></li>
                     </ul>
                   </div>
             </div>
@@ -250,7 +251,7 @@ Um grande abraço da nossa equipe, e boas vendas!</p>
                 </div>
                 <div class="col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4 col-xs-8 col-xs-offset-2 text-center">
                     <i class="fa fa-envelope-o fa-3x sr-contact"></i>
-                    <p><a href="mailto:your-email@your-domain.com">newprog@gmail.com</a></p>
+                    <p><a href="mailto:your-email@your-domain.com">newprogsoftwares@gmail.com</a></p>
                 </div>
             </div>
         </div>

@@ -15,7 +15,7 @@ var Script = function () {
            {"period": "2006 Q4", "licensed": 3245, "sorned": null},
            {"period": "2005 Q4", "licensed": 3289, "sorned": null}
       ];
-
+/*
       Morris.Bar({
         element: 'membros-celulas',
         data: [
@@ -33,6 +33,7 @@ var Script = function () {
         hideHover: 'auto',
         barColors: ['#ac92ec']
       });
+*/
 
       new Morris.Line({
         element: 'examplefirst',
