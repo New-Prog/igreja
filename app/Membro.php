@@ -97,8 +97,8 @@ class Membro extends Model
     public static function getMembroByCelulaAPI($id)
     {
     	
-    	$membro = self::where('fk_celula',$id);
-    	// dd($membro);
+    	$membro = self::where('fk_celula',$id)->get();
+
     	if (is_null($membro))
     	{
     		return false;

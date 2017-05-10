@@ -70,6 +70,17 @@ class MembroController extends Controller
      
         return Response::json( $membro, 200);
     }
+    public function getMembroByCelulaAPI($id)
+    {
+        $membro = $this->membro->getMembroByCelulaAPI($id);
+        
+        if (!$membro)
+        {
+            return Response::json(['response' => 'Membro não encontrado'], 400);
+        }
+     
+        return Response::json( $membro->load('celula'), 200);
+    }
     public function saveMembro(Request $request)
     {
         $input = $request->all();

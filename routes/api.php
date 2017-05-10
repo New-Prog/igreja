@@ -9,6 +9,7 @@ Route::group(['middleware' => 'cors'], function() {
 	        Route::get('/liders', 'MembroController@allLiders'); // Get all members
 	        Route::get('/ultimos', 'MembroController@ultimos');
 	        Route::get('/{id}', 'MembroController@getMembro'); // Get member specific
+	        Route::get('/byCelula/{id}', 'MembroController@getMembroByCelulaAPI'); // Get member specific
 	        Route::post('', 'MembroController@saveMembro'); // save member
 	        Route::post('/up/{id}', 'MembroController@updateMembro'); // update member     
 	        Route::get('/del/{id}', 'MembroController@deleteMembro'); // update member
