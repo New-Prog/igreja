@@ -37,13 +37,12 @@ class Presenca extends Model
     public function getPresencaByReuniao($id_membro)
     {	
 
-    	$presenca = $this->where("fk_reuniao", $id_membro);
+    	$presenca = $this->where("fk_reuniao", $id_membro)->get();
         
         if (is_null($presenca))
         {
             return false;
         }
-        
         return $presenca;
         
     }

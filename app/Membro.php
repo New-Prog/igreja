@@ -97,8 +97,8 @@ class Membro extends Model
     public static function getMembroByCelulaAPI($id)
     {
     	
-    	$membro = self::where('fk_celula',$id);
-    	// dd($membro);
+    	$membro = self::where('fk_celula',$id)->get();
+
     	if (is_null($membro))
     	{
     		return false;
@@ -118,6 +118,36 @@ class Membro extends Model
             return false;
         }
             
+        return $membro;
+        
+    }
+
+
+    public static function getMembroByCpfEmail($arr)
+    {
+
+        $cpf = $arr['cpf'];
+        $email = $arr['email'];
+
+        if (empty($cpf)) {
+            return false;
+        } 
+
+        if (empty($email)) {
+            return false;
+        } 
+
+        $membro = self::where('cpf',$cpf)->where('email',$email)->first();
+
+        if (is_null($membro))
+        {
+            return false;
+        }
+
+        if ($membro->tipo != 'lider') {
+            return false;
+        }
+
         return $membro;
         
     }

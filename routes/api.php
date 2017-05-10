@@ -9,6 +9,7 @@ Route::group(['middleware' => 'cors'], function() {
 	        Route::get('/liders', 'MembroController@allLiders'); // Get all members
 	        Route::get('/ultimos', 'MembroController@ultimos');
 	        Route::get('/{id}', 'MembroController@getMembro'); // Get member specific
+	        Route::get('/byCelula/{id}', 'MembroController@getMembroByCelulaAPI'); // Get member specific
 	        Route::post('', 'MembroController@saveMembro'); // save member
 	        Route::post('/up/{id}', 'MembroController@updateMembro'); // update member     
 	        Route::get('/del/{id}', 'MembroController@deleteMembro'); // update member
@@ -29,6 +30,7 @@ Route::group(['middleware' => 'cors'], function() {
 	        Route::get('', 'ReuniaoController@allReunioes'); // Get all reunioes
 	        Route::get('/{id}', 'ReuniaoController@getReuniao'); // Get Reuniao specific
 	        Route::post('', 'ReuniaoController@saveReuniao'); // save Reuniao
+	        Route::get('/byCelula/{id}', 'ReuniaoController@getReuniaoByCelula'); // save Reuniao
 	        Route::post('/up/{id}', 'ReuniaoController@updateReuniao'); // update Reuniao     
 	        Route::get('/del/{id}', 'ReuniaoController@deleteReuniao'); // update member     
 	    });
@@ -37,8 +39,7 @@ Route::group(['middleware' => 'cors'], function() {
 	        Route::get('', 'PresencaController@allPresencas'); // Get all reunioes
 	        Route::get('/{id}', 'PresencaController@getPresenca'); // Get Presenca specific
 	        Route::post('', 'PresencaController@savePresenca'); // save Presenca
-	        Route::post('/up/{id}', 'PresencaController@updatePresenca'); // update Reuniao     
-	        Route::get('/del/{id}', 'PresencaController@deletePresenca'); // update member     
+	        Route::post('/up', 'PresencaController@updatePresenca'); // update Reuniao     
 	    });
 	    
     	Route::group(['prefix' => 'posts'], function () {
@@ -55,6 +56,9 @@ Route::group(['middleware' => 'cors'], function() {
     	});
 
         Route::get('/dashboard/getdados', 'DashboardController@getDadosDashboard'); //    		
+
+        Route::post('/usuario', 'LoginApiController@getUsuario'); //    		
+
 
 	//});
 

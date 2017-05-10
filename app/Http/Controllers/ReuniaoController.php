@@ -47,6 +47,18 @@ class ReuniaoController extends Controller
         
         return Response::json( $reuniao, 200);
 	}
+
+    public function getReuniaoByCelula($id)
+    {
+        $reuniao = $this->reuniao->getReuniaoByCelula($id);
+        
+        if (!$reuniao)
+        {
+            return Response::json(['response' => ''], 400);
+        }
+        
+        return Response::json( $reuniao, 200);
+	}	
 	public function saveReuniao(Request $request) {
 		$input = $request->all();
 		
