@@ -28,7 +28,7 @@
                         <li><a href="#team">Nosso Time</a></li>
                         <li><a href="#blog">Sobre o sistema</a></li>
                         <li><a href="#contato">Contato</a></li>
-                        <li><a href="/login">login</a></li>
+                        <li><a href="/login">Área restrita</a></li>
                     </ul>
                   </div>
             </div>
