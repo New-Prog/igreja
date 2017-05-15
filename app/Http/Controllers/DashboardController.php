@@ -40,20 +40,19 @@ class DashboardController extends Controller
                 
         // lista de qtd de membros por celular 
       
-        $celulas = Celula::select(['id', 'nome'])->get();
+        $celulas = Celula::select(['id', 'nome'])->limit('5')->get();
+        
         $celulas->load('membro');
 
         foreach ($celulas as $key => $celula) {
-            
-            
+        	
             $arr_return['celula'][] = [
                     'id_celula'  =>  $celula->id,
                     'nome'       =>  $celula->nome,
                     'qtd_membro' => $celula->membro->count(),
             ];
-        }  
+        }
         
         return Response::json($arr_return, 200);
-
     }
-} 
+}

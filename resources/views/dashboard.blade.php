@@ -126,7 +126,23 @@ function preencheDados() {
 		$('#reunioes_realizadas_label').html(response.qtd_reunioes_ult_sete_dias);
 		$('#ultimos_newfeed_label').html("+"+response.qtd_posts_ult_sete_dias);
 
-		//GRÁFICO
+		var celulas = [];
+		
+		for(var i in response.celula) {
+			celulas.push({celula: response.celula[i].nome, quantidade: response.celula[i].qtd_membro});	
+		}
+		
+		Morris.Bar({
+			element: 'membros-celulas',
+			data: celulas,
+			xkey: 'celula',
+			ykeys: ['quantidade'],
+			labels: ['Quantidade de membros'],
+			barRatio: 0.4,
+			xLabelAngle: 5,
+			hideHover: 'auto',
+			barColors: ['#ac92ec']
+		});
 
 		
 	})
