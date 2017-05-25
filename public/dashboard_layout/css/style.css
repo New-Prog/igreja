@@ -1184,7 +1184,13 @@ PANELS CONFIGURATIONS
     padding: 5px 10px 5px 10px;
 }
 .content-panel h4 {
-	margin-left: 10px;
+   margin-left: 10px;
+}
+
+.box-dashboard {
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: 430px;
 }
 
 /*WEATHER PANELS*/
@@ -2272,18 +2278,17 @@ label {
 .site-min-height {
     min-height: 900px;
 }
-.foto{ 
+.foto{
     display: inline-block;
     padding: 10px;
 }
 
-.membro-descricao{ 
+.membro-descricao{
     display: inline-block;
     width: 400px;
 }
 
 .membro-card{
-    padding: 13px;
     border: 1px solid rgba(128, 128, 128, 0.34);
     margin: 4px 0px;
     display: inline-flex;
@@ -2299,9 +2304,6 @@ label {
     display: inline-block;
 }
 
-#ultimos-membros {
-   
-}
 .pedido-oracao {
     width: 398px;
     height: 94px;
@@ -2315,6 +2317,6 @@ label {
 
 .map {
     overflow: hidden;
-    height: 390px;
-    width: 496px;
+    height: 350px;
+    width: 100%;
 }

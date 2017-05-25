@@ -1,9 +1,11 @@
 @extends('layouts.dashboard.layout')
 
 @section('conteudo')
+    <link rel="stylesheet" type="text/css" href="css/float-modal/float-modal.css">
+
     <div class="row mtbox">
 
-        <div class="col-md-2 col-sm-1 col-md-offset-3 box0"> 
+        <div class="col-md-2 col-sm-1 col-md-offset-3 box0">
           <div class="box1">
             <span class="glyphicon glyphicon-user"></span>
             <h3 id="membros_cadastrados_label"></h3>
@@ -18,8 +20,8 @@
           </div>
           <p id="reunioes_realizadas"> </p>
         </div>
-        
-        <div class="col-md-2 col-sm-2 box0">  
+
+        <div class="col-md-2 col-sm-2 box0">
           <div class="box1">
             <span class="glyphicon glyphicon-film"></span>
             <h3 id="ultimos_newfeed_label"></h3>
@@ -29,47 +31,66 @@
 
       </div>
       <!-- /row mt -->
-            
+
   <!--main content start-->
     <section class="dashboard-dados wrapper site-min-height">
         <!-- page start-->
+
         <div id="morris">
             <div class="row mt">
                 <div class="col-lg-6">
-                    <div class="content-panel">
-                        <h4><i class="fa fa-angle-right"></i> Quantidade de membros por célula</h4>
+                    <div class="content-panel box-dashboard float-modal" id="float-modal-0">
+                        <h4><i class="fa fa-angle-right"></i> Membros por célula nos últimos 7 dias
+                            <button type="button" data-float-modal="#float-modal-0" class="btn btn-default pull-right">
+                                <i class="glyphicon glyphicon-resize-full"></i>
+                            </button>
+                        </h4>
                         <div class="panel-body">
                             <div id="membros-celulas" class="graph"></div>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-6">
-                    <div class="content-panel">
-                        <h4><i class="fa fa-angle-right"></i> Ultmos Membros adicionados</h4>
+                <div class="col-lg-6" >
+                    <div class="content-panel box-dashboard float-modal" id="float-modal-1">
+
+                        <h4>
+                            <i class="fa fa-angle-right"></i> Ultimos Membros adicionados
+                            <button type="button" data-float-modal="#float-modal-1" class="btn btn-default pull-right">
+                                <i class="glyphicon glyphicon-resize-full"></i>
+                            </button>
+                        </h4>
+
                         <div class="panel-body">
-                            <div id="ultimos-membros" class=""></div>
+                            <div id="ultimos-membros"></div>
                         </div>
                     </div>
                 </div>
             </div>
 
+
+
             <div class="row mt">
                 <div class="col-lg-6">
-                    <div class="content-panel">
-                        <h4><i class="fa fa-angle-right"></i> Pedidos de oração</h4>
-                        <div class="panel-body">
-                            <div id="pedidos-de-oracao" class=""></div>
-                        </div>
+                    <div class="content-panel box-dashboard float-modal" id="float-modal-2">
+                        <h4><i class="fa fa-angle-right"></i> Pedidos de oração
+                            <button type="button" data-float-modal="#float-modal-2" class="btn btn-default pull-right">
+                                <i class="glyphicon glyphicon-resize-full"></i>
+                            </button>
+                        </h4>
+                        <div id="pedidos-de-oracao" class=""></div>
+
                     </div>
                 </div>
-                
+
                 <div class="col-lg-6">
-                    <div class="content-panel">
-                        <h4><i class="fa fa-angle-right"></i> Mapa de reuniões pendentes</h4>
+                    <div class="content-panel box-dashboard float-modal" id="float-modal-3" style="overflow-y: hidden!important;">
+                        <h4><i class="fa fa-angle-right"></i> Mapa de reuniões pendentes
+                            <button type="button" data-float-modal="#float-modal-3" class="btn btn-default pull-right">
+                                <i class="glyphicon glyphicon-resize-full"></i>
+                            </button>
+                        </h4>
                         <div class="panel-body">
-                             <div class="map" id="map">
-                                <!--  <img src="http://cdn.newsapi.com.au/image/v1/0a0ceda4bda18e664ffac1a8fa86a7d1">-->
-                            </div>
+                             <div class="map" id="map"></div>
                         </div>
                     </div>
                 </div>
@@ -102,9 +123,10 @@
     <script src="dashboard_layout/js/graficos-dashboard.js"></script>
     <script src="dashboard_layout/js/common-scripts.js"></script>
 	<script type="text/javascript" src="js/mapa.js"></script>
+    <script type="text/javascript" src="js/float-modal/float-modal.js"></script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCo5xFM5H--dG9scIUhTmeT8d_Ut4C4-uo&callback=initMap"></script>
 
- 
+
 <script type="text/javascript">
 
 ultimosMemrosAdd();
@@ -127,11 +149,11 @@ function preencheDados() {
 		$('#ultimos_newfeed_label').html("+"+response.qtd_posts_ult_sete_dias);
 
 		var celulas = [];
-		
+
 		for(var i in response.celula) {
-			celulas.push({celula: response.celula[i].nome, quantidade: response.celula[i].qtd_membro});	
+			celulas.push({celula: response.celula[i].nome, quantidade: response.celula[i].qtd_membro});
 		}
-		
+
 		Morris.Bar({
 			element: 'membros-celulas',
 			data: celulas,
@@ -139,12 +161,12 @@ function preencheDados() {
 			ykeys: ['quantidade'],
 			labels: ['Quantidade de membros'],
 			barRatio: 0.4,
-			xLabelAngle: 5,
+			xLabelAngle: 10,
 			hideHover: 'auto',
 			barColors: ['#ac92ec']
 		});
 
-		
+
 	})
 	.fail(function(response) {
 		console.log("ERRO AO CARREGAR A LISTA DE PEDIDOS DE ORAÇÃO - ", response);
@@ -154,11 +176,11 @@ function ultimosMemrosAdd(){
 	request('/api/membros/ultimos', null, 'GET')
 	.done(function(response) {
 		var membro = "";
-	
+
 		for(var i in response) {
 			var sexo = response[i].sexo == 'm' ? 'Masculino' : 'Feminino';
 			var endereco = response[i].logradouro + ' '+ response[i].numero + ' - ' + response[i].bairro
-			  membro += "<div class='membro-card'>";
+			  membro += "<div class='col-md-12 membro-card'>";
 			  membro += "<div class='foto'><img src='/dashboard_layout/img/ui-sam.jpg' class='img-circle' width='60'></div>";
 			  membro += "<div class='membro-descricao'>";
 			  membro += "  <div class='nome'>"+response[i].nome+"</div>";
@@ -171,7 +193,7 @@ function ultimosMemrosAdd(){
 
 		}
 		  $("#ultimos-membros").html(membro);
-	
+
 	})
 	.fail(function(response) {
 		console.log("ERRO AO CARREGAR A LISTA DE PEDIDOS DE ORAÇÃO - ", response);
@@ -184,8 +206,8 @@ function pedidosDeOracao(){
 		var pedido = "";
 
 		for(var i in response) {
-			  pedido += "<div class='membro-card'>";
-			  pedido += "<div class='foto'><img src='/dashboard_layout/img/ui-sam.jpg' class='img-circle' width='60'></div>";
+			  pedido += "<div class='col-md-12 membro-card'>";
+			  pedido += "<div class='foto'><img src='/dashboard_layout/img/ui-sam.jpg' class='img-circle' width='50'></div>";
 			  pedido += "<div class='pedido-oracao'>";
 			  pedido += "  <div class='pedido-membro'><strong>Nome: </strong>"+response[i].nome+"</div>";
 			  pedido += "  <div class='pedido-membro'><strong>E-Mail: </strong>"+response[i].email+"</div>";
@@ -193,14 +215,22 @@ function pedidosDeOracao(){
 			  pedido += "  <div class='pedido-descricao'><strong>Descrição: </strong>"+response[i].descricao+"</div>";
 			  //pedido += "  <div class='pedido-descricao'>Pastor, boa tarde. Venho pedir oração para mim pois estou sentidno fortes dores nas costas durante a semana. Já fui ao médico e nada foi identificado, tenho fé que só Deus pode me curar. Peço que apresente o pedido de oração a igreja no proximo culto.</div>";
 			  pedido += "</div>";
+              pedido += "<span class='pull-right' style='line-height:96px;'><button class='btn btn-link btn-finalizar-oracao' >Finalizar pedido de oração</button></span>";
 			  pedido += "</div>";
 		}
 		$("#pedidos-de-oracao").html(pedido);
+
+        $('.btn-finalizar-oracao').off('click').on('click', function(e) {
+            removeLinhaOracao(e, this);
+        })
 
 	})
 	.fail(function(response) {
 		console.log("ERRO AO CARREGAR A LISTA DE PEDIDOS DE ORAÇÃO - ", response);
 	});
+}
+function removeLinhaOracao(e, element) {
+    $(element).closest('.membro-card').remove();
 }
 </script>
 
