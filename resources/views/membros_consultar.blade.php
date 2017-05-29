@@ -26,7 +26,7 @@
 
             </div>
         </div>
-    </div>  
+    </div>
 </div>
 
 <div class="row mt">
@@ -62,7 +62,7 @@
         </div><!-- /content-panel -->
     </div><!-- /col-md-12 -->
 </div><!-- /row -->
-<div>   
+<div>
 <script type="text/javascript">
 $(document).ready(function () {
     $("#filtro").on('change', function () {
@@ -70,14 +70,14 @@ $(document).ready(function () {
         if($(this).val() == 'cpf' || $(this).val() == 'nome') {
             html = "<input type='text' class='form-control' name='conteudo_filtro' id='conteudo_filtro'>";
             $("#retorno_filtro").html(html);
-            
+
             //$("#retorno_filtro").closest('div.row').removeClass('hidden');
             //$("#btn_pesquisar").closest('div.row').removeClass('hidden');
-            
+
         } else if ($(this).val() == 'fk_celula') {
             var celulas;
             $.get( "/api/celulas", function(data) {
-                   
+
                 celulas = data;
 
                 html = "<select class='form-control' name='conteudo_filtro' id='conteudo_filtro'>";
@@ -89,15 +89,15 @@ $(document).ready(function () {
                 $("#retorno_filtro").html(html);
                 //$("#retorno_filtro").closest('div.row').removeClass('hidden');
                 //$("#btn_pesquisar").closest('div.row').removeClass('hidden');
-                
-            }, 'json'); 
+
+            }, 'json');
         } else {
             $("#retorno_filtro").val('').closest('div.row').addClass('hidden');
             $("#btn_pesquisar").closest('div.row').addClass('hidden');
         }
     });
     $("#btn_pesquisar").on('click', function() {
-        $.post( "/membros/getEspecifico", 
+        $.post( "/membros/getEspecifico",
             { filtro: $('#filtro').val(), conteudo_filtro: $('#conteudo_filtro').val() },
             function(data) {
                 var html  = '';
@@ -130,7 +130,7 @@ function requestServer(url, tipo) {
             + "<strong>CPF: </strong>"             + data.cpf      + "<br>"
             + "<strong>Tel: </strong>"             + data.telefone + "<br>"
             + "<strong>Celular: </strong>"         + data.telefone;
-        } 
+        }
         modal.alerta('Detalhe do membro', html);
 
     }, 'json');

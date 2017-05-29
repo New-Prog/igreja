@@ -8,8 +8,6 @@
     <link href="css/vendors/plugins.css" rel="stylesheet">
     <link href="css/vendors/style.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Lobster|Roboto" rel="stylesheet">
-    <script src="bower_components/sweetalert/dist/sweetalert.min.js"></script>
-  	<script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
   </head>
   <body>
     <section id="container" >
@@ -17,4 +15,6 @@
     </section>
   </body>
 
+    <script src="/bower_components/sweetalert/dist/sweetalert.min.js"></script>
+    <script type="text/javascript" src="/bower_components/jquery/dist/jquery.min.js"></script>
 </html>

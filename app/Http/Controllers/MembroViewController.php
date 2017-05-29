@@ -31,42 +31,42 @@ class MembroViewController extends Controller
     public function allMembros()
     {
         $membro = $this->membro->with('celula')->get();
-        
-        if (!$membro) 
+
+        if (!$membro)
         {
             return Response::json(['response' => 'Membro não encontrado'], 400);
-        }    
+        }
         return view('membros_consultar')->with('membros', $membro)->renderSections()['conteudo'];
-   
+
     }
     public function getMembro($id)
     {
         $membro = $this->membro->getMembro($id);
-        
+
         if (!$membro)
         {
             return Response::json(['response' => 'Membro não encontrado'], 400);
         }
 
-        return view('membros_consultar')->with('membros', $membro)->renderSections()['conteudo'];        
+        return view('membros_consultar')->with('membros', $membro)->renderSections()['conteudo'];
 
         // return $membro;
     }
     public function saveMembro(Request $request)
     {
         $input = $request->all();
-		
-		$input['fk_celula'] = !$input['fk_celula'] ? null : $input['fk_celula']; 
+
+		$input['fk_celula'] = !$input['fk_celula'] ? null : $input['fk_celula'];
         $membro = $this->membro->saveMembro($input);
 
         if (!$membro)
         {
             //return Response::json(['response' => 'Membro não encontrado'], 400);
-        } 
+        }
 
         $membros = $this->membro->with('celula')->get();
-        
-        return view('membros_consultar')->with('membros', $membros);       
+
+        return view('membros_consultar')->with('membros', $membros);
     }
     public function getMembroEspecifico(Request $request)
     {
@@ -83,21 +83,21 @@ class MembroViewController extends Controller
         }
         // dd($membro);
         // $membros = $membro->with('celula')->get();
-        
-        return Response::json($membro, 200);
-        
 
-        // return view('membros_consultar')->with('membros', $membros);       
+        return Response::json($membro, 200);
+
+
+        // return view('membros_consultar')->with('membros', $membros);
     }
     public function updateMembro($id , Request $request)
     {
         $input = $request->all();
-        
+
         $input['fk_celula'] = !$input['fk_celula'] ? null : $input['fk_celula'];
-        
+
         $membro = $this->membro->updateMembro($id , $input);
-        
-        
+
+
         if (!$membro)
         {
             return Response::json(['response' => 'Membro não encontrado'], 400);
@@ -105,28 +105,20 @@ class MembroViewController extends Controller
 
         $membros = $this->membro->with('celula')->get();
         return view('membros_consultar')->with('membros', $membros);
-        
+
     }
     public function alterarMembro($id)
-    {        
-        
-        $membro = $this->membro->getMembro($id); 
-        // $membro = $this->membro->getMembro($id)->with('celula')->get();
-        
-        if (!$membro)
-        {
-            //return Response::json(['response' => 'Membro não encontrado'], 400);
-        }
-        // dd($membro->nome);
+    {
+        $membro = $this->membro->getMembro($id);
+
         return view('membros_cadastrar')->with(['membro' => $membro, 'celulas' => Celula::all()])->renderSections()['conteudo'];
-        
-        // return view('membros_cadastrar')->with('membro', $membro)->renderSections()['conteudo'];
-        
+
     }
+
     public function deleteMembro($id)
     {
-    	Celula::where('lider', $id)->update(['lider'=> null]); 
-    	
+    	Celula::where('lider', $id)->update(['lider'=> null]);
+
         $this->membro->deleteMembro($id);
         return Redirect::route('allMembros');
     }

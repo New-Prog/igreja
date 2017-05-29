@@ -2,7 +2,7 @@
 
 	'use strict';
 	$('#tipo').on('change', montarDivMidia);
-	
+
 	$('#btn-enviar').on('click', enviar);
 	$('#btn-preencher').on('click', preencher);
 
@@ -11,7 +11,7 @@
 		var day = ("0" + now.getDate()).slice(-2);
 		var month = ("0" + (now.getMonth() + 1)).slice(-2);
 		var today = now.getFullYear()+"-"+(month)+"-"+(day) ;
-		
+
 		$('#nome').val("Festa do Branco");
 		$('#tipo option[value=imagem]').attr('selected',true);
 		$('#data').val(today);
@@ -19,12 +19,12 @@
 		$('#link').val("https://www.youtube.com/watch?v=EcJHFK38heM");
 		var input = $('<input/>').attr({'type': 'file','name':'imagem', 'id': 'imagem'});
 		$('#midia').html(input);
-		
-			
+
+
 	}
-	
+
 	function enviar(e) {
-		
+
 		if($('#tipo').val() == "" || $('#nome').val() == "" || $('#descricao').val() == "") {
 			alert("Preencha todos os campos");
 			return;
@@ -32,24 +32,29 @@
 			alert("Selecione uma imagem");
 			return;
 		}
- 		
+
 		$('#form').submit();
 		console.log("xxx");
 	}
-	
+
 	function montarDivMidia(event) {
 		var $el = $(event.target);
-		
+
 		switch($el.val()) {
 			case 'video':
 			case 'audio':
 				$('#midia').html("");
 			break;
 			case 'imagem':
-				
+
 				var input = $('<input/>').attr({'type': 'file','name':'imagem'});
 				$('#midia').html(input);
 			break;
 		}
 	}
+
+
+	$('#tipo').trigger('change');
+
+
 })();

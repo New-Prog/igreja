@@ -19,7 +19,7 @@ use function GuzzleHttp\json_decode;
 					</select>
                 </div>
                 <div class="col-sm-4 " id="div_conteudo">
-                	
+
                 </div>
                 <div class="col-sm-2 ">
                 	<button type="button" class="btn btn-primary btn-block" id="btn_pesquisar">Pesquisar</button>
@@ -27,7 +27,7 @@ use function GuzzleHttp\json_decode;
 
             </div>
         </div>
-    </div>  
+    </div>
 </div>
     <form method="post" name="teste" >
     <div class="row mt">
@@ -44,7 +44,7 @@ use function GuzzleHttp\json_decode;
                     </tr>
                     </thead>
                     <tbody id='body-table'>
-					<?php 
+					<?php
 					$celulas = json_decode($celulas, true);
 					?>
                     @foreach($celulas as $key => $celula)
@@ -53,7 +53,7 @@ use function GuzzleHttp\json_decode;
                     ?>
 
                         <tr>
-                            <td><a href="basic_table.html#">{{ $celula['nome'] }}</a></td>
+                            <td>{{ $celula['nome'] }}</td>
                             <td class="hidden-phone">{{ $nome_lider}}</td>
                             <td>
                                 <a class="btn_link" href="/celulas/alterar/{{ $celula['id'] }}" alt="alterar"><button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button></a>
