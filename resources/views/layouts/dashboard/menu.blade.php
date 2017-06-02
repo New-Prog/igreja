@@ -30,7 +30,7 @@
                 <li class="sub-menu">
                       <a class="menu-item" href="/celulas/consultar" >
                           <i class="fa fa-tasks"></i>
-                          <span>Celulas</span>
+                          <span>Células</span>
                       </a>
                   </li>
 
