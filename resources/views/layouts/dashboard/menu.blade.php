@@ -7,11 +7,11 @@
           <div id="sidebar"  class="nav-collapse ">
               <!-- sidebar menu start-->
               <ul class="sidebar-menu" id="nav-accordion">
-              
+
               	  <p class="centered"><a href="/dashboard"><img src="/dashboard_layout/img/ui-sam.jpg" class="img-circle" width="60"></a></p>
                   <h5 class="centered">{{ Auth::user()->name }}</h5>
 
-                  
+
                   <li class="mt">
                       <a class="active" href="/dashboard">
                           <i class="fa fa-dashboard"></i>
@@ -47,17 +47,6 @@
                           <span>Posts</span>
                       </a>
                   </li>
-  <!--                 <li class="sub-menu">
-                      <a href="javascript:;" >
-                          <i class="fa fa-cogs"></i>
-                          <span>Configurações</span>
-                      </a>
-                      <ul class="sub">
-                         <li><a class="menu-item" href="calendar.html">Calendar</a></li>
-                         <li><a class="menu-item" href="gallery.html">Gallery</a></li>
-                         <li><a class="menu-item" href="todo_list.html">Todo List</a></li>
-                      </ul>
-                  </li> -->
 
               </ul>
               <!-- sidebar menu end-->

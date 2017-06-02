@@ -1,10 +1,10 @@
-   
-<?php 
-    if(!isset($membro)){ 
+
+<?php
+    if(!isset($membro)){
         $actionForm = "/membros/cadastrar/salvar";
         $messageButton = "Cadastrar";
         $membro = null;
-    } else { 
+    } else {
         $actionForm = "/membros/up/{$membro['id']}";
         $messageButton = "Alterar";
     }
@@ -19,9 +19,6 @@
       <footer class="site-footer">
           <div class="text-center">
               2017 - New Prog Softwares
-              <a href="index.html#" class="go-top">
-                  <i class="fa fa-angle-up"></i>
-              </a>
           </div>
       </footer>
       <!--footer end-->
@@ -39,40 +36,18 @@
 
     <!--common script for all pages-->
     <script src="/dashboard_layout/js/common-scripts.js"></script>
-    
+
     <script type="text/javascript" src="/dashboard_layout/js/gritter/js/jquery.gritter.js"></script>
     <script type="text/javascript" src="/dashboard_layout/js/gritter-conf.js"></script>
 
     <!--script for this page-->
-    <script src="/dashboard_layout/js/sparkline-chart.js"></script>    
-    <script src="/dashboard_layout/js/zabuto_calendar.js"></script> 
-    
+    <script src="/dashboard_layout/js/sparkline-chart.js"></script>
+    <script src="/dashboard_layout/js/zabuto_calendar.js"></script>
     <script src="/js/modals.js"></script>
 	<script type="text/javascript">
-        // $(document).ready(function () {
-            
-          
-            
-        // var unique_id = $.gritter.add({
-            // (string | mandatory) the heading of the notification
-            //title: 'Seja bem vindo ao Sistema New Prog!',
-            // (string | mandatory) the text inside the notification
-            //text: 'O sistema se encontra em fase de desenvolvimento. Existem funcionalidades que ainda não estão ativas.',
-            // (string | optional) the image to display on the left
-            //image: '/dashboard_layout/img/ui-sam.jpg',
-            // (bool | optional) if you want it to fade out on its own or just sit there
-            //sticky: true,
-            // (int | optional) the time you want it to be alive for before fading out
-            //time: '',
-            // (string | optional) the class name you want to apply to that specific message
-            //class_name: 'my-sticky-class'
-        // });
 
-        // return false;
-        // });
-	</script>
-	
-	<script type="application/javascript">
+
+
         $(document).ready(function () {
 
             $(document).on('click', ".btn_link", function (event) {
@@ -80,14 +55,13 @@
                 $('#conteudo-principal').load($(this).attr('href'));
             });
 
-  
+
 
             $(document).on('click', ".menu-item" , function( event ) {
                 event.preventDefault();
                 event.stopImmediatePropagation();
-        
+
                 $('#conteudo-principal').load($(this).attr('href'));
-                // return false;
             });
 
             $("#date-popover").popover({html: true, trigger: "manual"});
@@ -95,7 +69,7 @@
             $("#date-popover").click(function (e) {
                 $(this).hide();
             });
-        
+
             $("#my-calendar").zabuto_calendar({
                 action: function () {
                     return myDateFunction(this.id, false);
@@ -113,8 +87,8 @@
                 ]
             });
         });
-        
-        
+
+
         function myNavFunction(id) {
             $("#date-popover").hide();
             var nav = $("#" + id).data("navigation");
