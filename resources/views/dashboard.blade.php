@@ -3,6 +3,7 @@
 @section('conteudo')
     <link rel="stylesheet" type="text/css" href="css/float-modal/float-modal.css">
 
+    <script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
     <div class="row mtbox">
 
         <div class="col-md-2 col-sm-1 col-md-offset-3 box0">
@@ -46,7 +47,7 @@
                             </button>
                         </h4>
                         <div class="panel-body">
-                            <div id="membros-celulas" class="graph"></div>
+                            <div id="membros-celulas" class="graph" style="width: 100%"></div>
                         </div>
                     </div>
                 </div>
@@ -104,7 +105,7 @@
         </div>
     </section>
  <!--  <script src="http://cdn.oesmith.co.uk/morris-0.4.3.min.js"></script>-->
-<script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
+
 
     <!-- js placed at the end of the document so the pages load faster -->
     <script src="dashboard_layout/js/jquery.js"></script>
@@ -128,14 +129,14 @@
 
 
 <script type="text/javascript">
+$(document).ready(function() {
+
+});
 
 ultimosMemrosAdd();
 pedidosDeOracao();
 preencheDados();
 
-$(function(){
-    $('select.styled').customSelect();
-});
 
 function preencheDados() {
 
@@ -151,19 +152,20 @@ function preencheDados() {
 		var celulas = [];
 
 		for(var i in response.celula) {
+            if(response.celula[i].qtd_membro == 0) {
+                continue;
+            }
 			celulas.push({celula: response.celula[i].nome, quantidade: response.celula[i].qtd_membro});
 		}
-
+        $('#membros-celulas').html("");
 		Morris.Bar({
 			element: 'membros-celulas',
 			data: celulas,
 			xkey: 'celula',
 			ykeys: ['quantidade'],
 			labels: ['Quantidade de membros'],
-			barRatio: 0.4,
-			xLabelAngle: 10,
+			xLabelAngle: 5,
 			hideHover: 'auto',
-			barColors: ['#ac92ec']
 		});
 
 
@@ -172,7 +174,8 @@ function preencheDados() {
 		console.log("ERRO AO CARREGAR A LISTA DE PEDIDOS DE ORAÇÃO - ", response);
 	});
 }
-function ultimosMemrosAdd(){
+
+function ultimosMemrosAdd() {
 	request('/api/membros/ultimos', null, 'GET')
 	.done(function(response) {
 		var membro = "";

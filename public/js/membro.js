@@ -17,10 +17,10 @@
 	$('#btn-preencher').on('click', preencherMagicamente);
 
 	function preencherMagicamente(event) {
-		$('input[name=nome]').val("Monize Galvão");
-		$('#email').val("monize.galvao@bolivia.com");
-		$('#dt_nasc').val("19/02/1996");
-		$('#cpf').val("425.912.388-20");
+		$('input[name=nome]').val("Cloves Junior");
+		$('#email').val("cloves.junior@lab123.com.br");
+		$('#dt_nasc').val("23/09/1992");
+		$('#cpf').val("397.389.768-98");
 		$('#sexoM').attr('checked', true);
 		$('#estado_civil option[value=casado]').attr('selected', true);
 		$('#telefone').val('(11)3972-0210');

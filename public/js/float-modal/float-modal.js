@@ -67,7 +67,9 @@ function montaFloatModal(e, element) {
     $container.animate(animation.props, animation.transitionTime, animation.complete);
 
     setTimeout(function() {
+      $('#map').css({height: '500px'});
       initMap();
+      preencheDados();
     }, 500);
   }
 
@@ -77,6 +79,12 @@ function montaFloatModal(e, element) {
     $container.animate(originAnimation.props, originAnimation.transitionTime, originAnimation.complete);
     $('body').off('click');
     $(document).off('keyup');
+
+    setTimeout(function() {
+      $('#map').css({height: '350px'});
+      initMap();
+      preencheDados();
+    }, 500);
   }
 
   floatModal();
