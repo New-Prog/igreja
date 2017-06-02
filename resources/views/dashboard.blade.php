@@ -129,9 +129,6 @@
 
 
 <script type="text/javascript">
-$(document).ready(function() {
-
-});
 
 ultimosMemrosAdd();
 pedidosDeOracao();
@@ -158,13 +155,13 @@ function preencheDados() {
 			celulas.push({celula: response.celula[i].nome, quantidade: response.celula[i].qtd_membro});
 		}
         $('#membros-celulas').html("");
+        console.log(celulas);
 		Morris.Bar({
 			element: 'membros-celulas',
 			data: celulas,
 			xkey: 'celula',
 			ykeys: ['quantidade'],
 			labels: ['Quantidade de membros'],
-			xLabelAngle: 5,
 			hideHover: 'auto',
 		});
 
