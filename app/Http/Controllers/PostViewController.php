@@ -89,7 +89,7 @@ class PostViewController extends Controller
         $post = $this->model->create($arr_ins);
 
         //** INI - Enviando PUSH **//
-
+/*
         $optionBuiler = new OptionsBuilder();
         $optionBuiler->setTimeToLive(60*20);
 
@@ -115,7 +115,6 @@ class PostViewController extends Controller
         ];
 
         $downstreamResponse = FCM::sendTo($token, $option, $notification);
-        dd($downstreamResponse);
         $downstreamResponse->numberSuccess();
         $downstreamResponse->numberFailure(); 
 
@@ -132,7 +131,7 @@ class PostViewController extends Controller
 
         // return Array (key:token, value:errror) - in production you should remove from your database the tokens present in this array 
         $downstreamResponse->tokensWithError(); 
-
+*/
         //** FIM - Enviando PUSH **//
 
         // require_once 'vendor/autoload.php';
@@ -155,9 +154,9 @@ class PostViewController extends Controller
         $response = $client->send($message);
         dd($response->getStatusCode());
   */
-
+        return view('posts_consultar')->with('posts', Post::all()); 
     	
-        return view('posts_cadastrar')->with('post', $post);
+      //  return view('posts_cadastrar')->with('post', $post);
     }
 
     public function alterarPosts($id)
@@ -179,11 +178,12 @@ class PostViewController extends Controller
         return Response::json($post, 200);
     }
 
-    public function deletePost($id, Request $request)
-    {
-        $this->model->deletePost($id);
-        return $this->allPosts();
-    }
+    // public function deletePost($id, Request $request)
+    // {
+    //     $this->model->deletePost($id);
+    //     return $this->allPosts();
+    // }
+
     public function deletePost($id)
     {
         $this->post->deletePost($id);
@@ -193,7 +193,7 @@ class PostViewController extends Controller
             return Response::json(['response' => ''], 400);
         }
         
-        return view('posts_consultar')->with('posts', $reuniao)->renderSections()['conteudo'];
+        return view('posts_consultar')->with('posts', Post::all())->renderSections()['conteudo'];
         
     }
 }
