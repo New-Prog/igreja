@@ -56,6 +56,6 @@ class Post extends Model
     {
         $post = self::find($id);
         $post->delete();
-        return true;
+        return;
     }
 }

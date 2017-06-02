@@ -175,23 +175,13 @@ class PostViewController extends Controller
             return Response::json(['response' => ''], 400);
         }
 
-        return Response::json($post, 200);
+        return view('posts_consultar')->with('posts', Post::all()); 
     }
-
-    // public function deletePost($id, Request $request)
-    // {
-    //     $this->model->deletePost($id);
-    //     return $this->allPosts();
-    // }
 
     public function deletePost($id)
     {
-        $this->post->deletePost($id);
-        
-        if (!$post)
-        {
-            return Response::json(['response' => ''], 400);
-        }
+        $this->model->deletePost($id);
+
         
         return view('posts_consultar')->with('posts', Post::all())->renderSections()['conteudo'];
         
