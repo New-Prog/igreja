@@ -24,7 +24,7 @@
                             <td>{{ $post['tipo'] }}</td>
                             <td>
                                 <a class="btn_link" href="/posts/alterar/{{ $post['id'] }}" alt="alterar"><button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button></a>
-                                <a class="btn_link" href="/post/del/{{ $post['id'] }}" alt="deletar" ><button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button></a>
+                                <a class="btn_link" href="/posts/del/{{ $post['id'] }}" alt="deletar" ><button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button></a>
                             </td>
                         </tr>
                     @endforeach

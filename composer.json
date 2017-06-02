@@ -14,7 +14,9 @@
 		"guzzlehttp/guzzle" : "^6.2",
 		"barryvdh/laravel-cors" : "^0.8.6",
 		"tymon/jwt-auth": "0.5.*",
-		"barryvdh/laravel-ide-helper": "^2.3"
+		"barryvdh/laravel-ide-helper": "^2.3",
+		"brozot/laravel-fcm": "^1.2",
+		"paragraph1/php-fcm": "^0.7.0"
 	},
 	"require-dev" : {
 		"fzaninotto/faker" : "~1.4",

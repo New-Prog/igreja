@@ -128,7 +128,6 @@ class ReuniaoViewController extends Controller
     	
     	return view('reunioes_consultar')->with('reunioes', $reuniao)->renderSections()['conteudo'];
     	
-//     	return Redirect::route('allReunioes');
     }
     public function getReuniaoEspecifico(Request $request)
     {
@@ -140,7 +139,4 @@ class ReuniaoViewController extends Controller
     {
         return $reuniao = $this->reuniao->with('celula')->get();
     }
-
-
-    
 }
